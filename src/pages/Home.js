@@ -2,21 +2,7 @@ import '../App.css';
 
 export default function Home() {
   return (
-    <main className="content" style={{ paddingTop: '5rem' }}>
-      <section className="bold-band">
-        <div className="marquee" aria-hidden="true">
-          <div className="marquee-track">
-            <span className="bold-word">Cinematic</span>
-            <span className="bold-word">Warm</span>
-            <span className="bold-word">Witty</span>
-            <span className="bold-word">Resonant</span>
-            <span className="bold-word">Cinematic</span>
-            <span className="bold-word">Warm</span>
-            <span className="bold-word">Witty</span>
-            <span className="bold-word">Resonant</span>
-          </div>
-        </div>
-      </section>
+    <main className="content" style={{ paddingTop: '2rem' }}>
       <section className="home-hero" data-parallax="0.06">
         <video className="bg-video" autoPlay muted loop playsInline poster="/logo512.png">
           <source src="/bg.mp4" type="video/mp4" />
@@ -30,7 +16,7 @@ export default function Home() {
           <span style={{"--x":"85%","--y":"30%","--s":"12px","--c":"#b76e79"}} />
         </div>
         <div className="inner">
-          <p className="eyebrow">Cinematic social storytelling for small businesses</p>
+          <p className="eyebrow">lalalaaah</p>
           <h1>Socials by Caro</h1>
           <p className="subhead">Warm, witty, and resonant — autumn in Stars Hollow, energy in boardrooms.</p>
           <div className="cta-row">
