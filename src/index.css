@@ -14,7 +14,7 @@ code {
 /* Global scale & rhythm */
 :root {
   --page-max: 76rem;
-  --heading-font: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --heading-font: 'Canela', 'Times New Roman', serif;
   --body-font: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   /* Autumn palette */
   --cream: #f4ede4;
@@ -29,12 +29,22 @@ code {
   --accent-strong: #d94888;
 }
 
-html, body, #root { height: 100%; background: linear-gradient(180deg, #fffaf5, var(--parchment)); }
+html, body, #root { height: 100%; background: #8e9ec1; }
 
 * { box-sizing: border-box; }
 
 a { color: inherit; }
 
 /* Type scale */
-h1, h2, h3 { font-family: var(--heading-font); font-weight: 600; }
-p, a, li, small, span { font-family: var(--body-font); }
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--heading-font);
+  font-weight: 500;
+  line-height: 48px;
+  letter-spacing: -1.3px;
+}
+p, a, li, small, span, button {
+  font-family: var(--body-font);
+  font-weight: 400;
+  line-height: 21px;
+  letter-spacing: -0.9px;
+}

@@ -1,0 +1,460 @@
+{
+    "meta": {
+      "source": "https://www.callbaba.com/",
+      "brandName": "Baba Care (CallBaba)",
+      "platform": "Framer",
+      "confidence": {
+        "layoutAndContent": "high",
+        "fontsAndColorFamilies": "high",
+        "exactHexValues": "medium (approximated from screenshots + visual inspection)",
+        "exactScrollTimelines": "medium (Framer-style motion patterns inferred)"
+      }
+    },
+    "style": {
+      "tokens": {
+        "color": {
+          "mode": "light",
+          "palette": {
+            "sky": {
+              "50": "#F3F6FF",
+              "100": "#D9E2FF",
+              "200": "#B9C9FF",
+              "300": "#8EA7E6",
+              "400": "#6D8AD0",
+              "500": "#4B66B5"
+            },
+            "cloudPink": {
+              "50": "#FFF3FA",
+              "100": "#FFD9EE",
+              "200": "#FFB5DD",
+              "300": "#F28BC4",
+              "400": "#E266AD",
+              "500": "#C84B92"
+            },
+            "cream": {
+              "50": "#FFFDF7",
+              "100": "#FFF6E6",
+              "200": "#FBE8C7"
+            },
+            "ink": {
+              "900": "#101022",
+              "800": "#1B1B33",
+              "700": "#2A2A44",
+              "600": "#3F3F5B",
+              "500": "#5B5B74",
+              "400": "#787891"
+            },
+            "white": {
+              "0": "#FFFFFF"
+            }
+          },
+          "semantic": {
+            "bg": {
+              "page": "{color.palette.sky.50}",
+              "heroGradientTop": "{color.palette.sky.300}",
+              "heroGradientBottom": "{color.palette.cloudPink.300}",
+              "surface": "{color.palette.white.0}",
+              "surfaceMuted": "rgba(255,255,255,0.72)"
+            },
+            "text": {
+              "primary": "{color.palette.ink.900}",
+              "secondary": "{color.palette.ink.600}",
+              "tertiary": "{color.palette.ink.500}",
+              "inverse": "{color.palette.white.0}"
+            },
+            "border": {
+              "subtle": "rgba(16,16,34,0.10)",
+              "default": "rgba(16,16,34,0.16)",
+              "strong": "rgba(16,16,34,0.28)"
+            },
+            "brand": {
+              "primary": "{color.palette.sky.300}",
+              "secondary": "{color.palette.cloudPink.300}",
+              "accent": "{color.palette.cloudPink.400}"
+            },
+            "focusRing": "rgba(142,167,230,0.35)"
+          },
+          "gradients": {
+            "heroSkyToClouds": {
+              "type": "linear",
+              "angle": 180,
+              "stops": [
+                { "color": "{color.semantic.bg.heroGradientTop}", "pos": 0 },
+                { "color": "{color.semantic.bg.heroGradientBottom}", "pos": 75 }
+              ]
+            }
+          }
+        },
+        "typography": {
+          "fontFamilies": {
+            "displaySerif": "Octave, ui-serif, Georgia, Times, serif",
+            "uiSans": "Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial"
+          },
+          "scale": {
+            "heroDisplay": {
+              "fontFamily": "{typography.fontFamilies.displaySerif}",
+              "fontSize": 56,
+              "lineHeight": 1.05,
+              "letterSpacing": -0.02,
+              "fontWeight": 500
+            },
+            "h1": {
+              "fontFamily": "{typography.fontFamilies.displaySerif}",
+              "fontSize": 44,
+              "lineHeight": 1.1,
+              "letterSpacing": -0.02,
+              "fontWeight": 500
+            },
+            "h2": {
+              "fontFamily": "{typography.fontFamilies.uiSans}",
+              "fontSize": 32,
+              "lineHeight": 1.2,
+              "letterSpacing": -0.015,
+              "fontWeight": 600
+            },
+            "h3": {
+              "fontFamily": "{typography.fontFamilies.uiSans}",
+              "fontSize": 22,
+              "lineHeight": 1.25,
+              "letterSpacing": -0.01,
+              "fontWeight": 600
+            },
+            "bodyL": {
+              "fontFamily": "{typography.fontFamilies.uiSans}",
+              "fontSize": 18,
+              "lineHeight": 1.6,
+              "letterSpacing": 0,
+              "fontWeight": 450
+            },
+            "bodyM": {
+              "fontFamily": "{typography.fontFamilies.uiSans}",
+              "fontSize": 16,
+              "lineHeight": 1.6,
+              "letterSpacing": 0,
+              "fontWeight": 450
+            },
+            "labelCaps": {
+              "fontFamily": "{typography.fontFamilies.uiSans}",
+              "fontSize": 12,
+              "lineHeight": 1.2,
+              "letterSpacing": 0.08,
+              "fontWeight": 600,
+              "textTransform": "uppercase"
+            }
+          }
+        },
+        "space": {
+          "unit": 4,
+          "scale": {
+            "0": 0,
+            "1": 4,
+            "2": 8,
+            "3": 12,
+            "4": 16,
+            "5": 20,
+            "6": 24,
+            "8": 32,
+            "10": 40,
+            "12": 48,
+            "16": 64,
+            "20": 80,
+            "24": 96,
+            "32": 128
+          }
+        },
+        "radius": {
+          "sm": 10,
+          "md": 14,
+          "lg": 18,
+          "xl": 28,
+          "pill": 999
+        },
+        "shadow": {
+          "none": "none",
+          "sm": "0 1px 2px rgba(16,16,34,0.08)",
+          "md": "0 10px 28px rgba(16,16,34,0.14)",
+          "lg": "0 18px 60px rgba(16,16,34,0.18)"
+        },
+        "stroke": {
+          "hairline": 1,
+          "regular": 1.5,
+          "strong": 2
+        },
+        "layout": {
+          "container": {
+            "maxWidth": 1180,
+            "gutter": { "mobile": 20, "desktop": 32 }
+          },
+          "grid": {
+            "columns": 12,
+            "gap": { "mobile": 16, "desktop": 24 }
+          }
+        }
+      },
+      "components": {
+        "nav": {
+          "topbar": {
+            "height": 72,
+            "bg": "transparent (over hero gradient)",
+            "items": {
+              "link": {
+                "font": "bodyM",
+                "color": "{color.semantic.text.primary}",
+                "hover": { "opacity": 0.8 }
+              },
+              "ctaPrimary": {
+                "component": "ButtonPrimary",
+                "labelExamples": ["Get Started", "Match with an expert"]
+              }
+            },
+            "scrollBehavior": {
+              "pattern": "becomes more legible after hero",
+              "treatment": "background fades to a subtle white/blurred surface on scroll"
+            }
+          }
+        },
+        "buttons": {
+          "base": {
+            "height": 44,
+            "paddingX": 18,
+            "radius": "{radius.pill}",
+            "borderWidth": "{stroke.strong}",
+            "fontToken": "bodyM",
+            "fontWeight": 600
+          },
+          "primary": {
+            "bg": "{color.palette.sky.300}",
+            "text": "{color.semantic.text.primary}",
+            "border": "{color.semantic.text.primary}",
+            "shadow": "{shadow.sm}",
+            "hover": {
+              "bg": "{color.palette.sky.200}",
+              "transform": "translateY(-1px) scale(1.01)",
+              "shadow": "{shadow.md}"
+            },
+            "active": {
+              "transform": "translateY(0px) scale(0.99)"
+            },
+            "focus": {
+              "ring": "0 0 0 4px {color.semantic.focusRing}"
+            }
+          },
+          "secondary": {
+            "bg": "{color.semantic.bg.surface}",
+            "text": "{color.semantic.text.primary}",
+            "border": "{color.semantic.border.strong}",
+            "hover": {
+              "bg": "rgba(255,255,255,0.86)",
+              "transform": "translateY(-1px)",
+              "shadow": "{shadow.sm}"
+            }
+          }
+        },
+        "cards": {
+          "base": {
+            "bg": "{color.semantic.bg.surface}",
+            "border": "{color.semantic.border.default}",
+            "radius": "{radius.xl}",
+            "shadow": "{shadow.md}",
+            "padding": "{space.scale.6}"
+          },
+          "featureCard": {
+            "titleToken": "h3",
+            "bodyToken": "bodyM",
+            "iconOrIllustration": "soft illustration / image"
+          },
+          "testimonialCard": {
+            "quoteToken": "bodyL",
+            "metaToken": "bodyM",
+            "layout": "quote + name + age + supporting image"
+          },
+          "faqItem": {
+            "interaction": "accordion",
+            "titleToken": "h3",
+            "bodyToken": "bodyM"
+          }
+        },
+        "typographyStyles": {
+          "heroHeadline": {
+            "token": "heroDisplay",
+            "alignment": "center",
+            "color": "{color.semantic.text.primary}"
+          },
+          "heroSubhead": {
+            "token": "bodyL",
+            "alignment": "center",
+            "color": "{color.semantic.text.secondary}"
+          },
+          "sectionLabel": {
+            "token": "labelCaps",
+            "color": "{color.semantic.text.tertiary}"
+          }
+        }
+      },
+      "pageStructure": {
+        "sections": [
+          {
+            "id": "hero",
+            "headline": "Navigating healthcare is hard.",
+            "subhead": "Imagine a health expert doing it for you — covered by insurance.",
+            "primaryCta": "Match with an expert",
+            "visualMotif": "illustrated sky gradient + birds + cloud forms"
+          },
+          {
+            "id": "howItWorks",
+            "headline": "Here's how it works:",
+            "steps": ["Consultation", "Meet Your Advocate", "Focus on You"]
+          },
+          {
+            "id": "howWeHelp",
+            "headline": "How we can help you",
+            "pattern": "expandable/clickable condition tiles (multi-line descriptions)"
+          },
+          {
+            "id": "benefits",
+            "headline": "No more calls, forms, or fine print.",
+            "pattern": "two-column benefit lists (Insurance & Benefits / Prescriptions & Savings)"
+          },
+          {
+            "id": "aiPlusHuman",
+            "headline": "Real people, supported by AI.",
+            "features": ["Medication/Appointment Reminders", "Brain screen phone calls", "AI Companionship"]
+          },
+          {
+            "id": "testimonials",
+            "headline": "Trusted by families like yours:",
+            "pattern": "quote cards with name + age"
+          },
+          {
+            "id": "stats",
+            "headline": "Easier care for people across all 50 states",
+            "pattern": "large-number stats blocks"
+          },
+          {
+            "id": "faq",
+            "headline": "Your Questions Answered",
+            "pattern": "accordion list + See All FAQs link"
+          },
+          {
+            "id": "blog",
+            "headline": "What’s New on the Blog",
+            "pattern": "blog card grid"
+          },
+          {
+            "id": "footer",
+            "pattern": "final CTA + legal + links"
+          }
+        ]
+      }
+    },
+    "motion": {
+      "techAssumption": {
+        "siteBuilder": "Framer Sites",
+        "animationEngine": "Framer Motion-style declarative animations (typical of Framer publishing)"
+      },
+      "global": {
+        "prefersReducedMotion": {
+          "supported": true,
+          "behavior": "reduce/disable parallax + large transforms; keep fades"
+        }
+      },
+      "timing": {
+        "durationsMs": {
+          "micro": 120,
+          "fast": 180,
+          "base": 280,
+          "slow": 500,
+          "scrollReveal": 600
+        },
+        "easing": {
+          "standard": "cubic-bezier(0.2, 0.8, 0.2, 1)",
+          "emphasized": "cubic-bezier(0.16, 1, 0.3, 1)",
+          "linear": "linear"
+        }
+      },
+      "interactions": {
+        "hover": {
+          "links": { "opacityTo": 0.8, "durationMs": 180, "ease": "standard" },
+          "buttons": { "scaleTo": 1.01, "yTo": -1, "durationMs": 180, "ease": "standard" },
+          "cards": { "yTo": -2, "shadowTo": "{shadow.lg}", "durationMs": 220, "ease": "standard" }
+        },
+        "press": {
+          "buttons": { "scaleTo": 0.99, "durationMs": 120, "ease": "standard" }
+        },
+        "accordion": {
+          "open": {
+            "height": "auto",
+            "opacityFromTo": [0, 1],
+            "yFromTo": [6, 0],
+            "durationMs": 280,
+            "ease": "standard"
+          },
+          "close": {
+            "height": 0,
+            "opacityFromTo": [1, 0],
+            "yFromTo": [0, 6],
+            "durationMs": 220,
+            "ease": "standard"
+          }
+        }
+      },
+      "scrollEffects": {
+        "revealOnScroll": {
+          "trigger": "element enters viewport (once or slight replay)",
+          "defaultVariant": {
+            "from": { "opacity": 0, "y": 18, "filter": "blur(6px)" },
+            "to": { "opacity": 1, "y": 0, "filter": "blur(0px)" }
+          },
+          "durationMs": 600,
+          "ease": "emphasized",
+          "staggerMs": 70,
+          "viewportMargin": "-10% 0% -10% 0%"
+        },
+        "parallaxLayers": [
+          {
+            "name": "birds",
+            "type": "decorative layer",
+            "effect": "slow parallax drift",
+            "mapping": {
+              "scrollProgress(0->1)": { "y": [-8, 18], "x": [0, 10], "rotateDeg": [-1, 2] }
+            },
+            "ease": "linear"
+          },
+          {
+            "name": "cloudsForeground",
+            "type": "illustration layer",
+            "effect": "slower-than-content parallax",
+            "mapping": {
+              "scrollProgress(0->1)": { "y": [0, 28] }
+            },
+            "ease": "linear"
+          }
+        ],
+        "navBackgroundOnScroll": {
+          "trigger": "page scrollY > heroThreshold",
+          "from": { "background": "rgba(255,255,255,0)", "backdropBlurPx": 0, "borderOpacity": 0 },
+          "to": { "background": "rgba(255,255,255,0.70)", "backdropBlurPx": 10, "borderOpacity": 0.12 },
+          "durationMs": 220,
+          "ease": "standard"
+        },
+        "statCounters": {
+          "pattern": "count-up animation when in view",
+          "durationMs": 900,
+          "ease": "standard",
+          "formatting": ["2,500+", "2 days", "27+", "10k+"]
+        }
+      }
+    },
+    "assets": {
+      "illustrationStyle": {
+        "motifs": ["sky gradient", "cloud shapes", "birds in flight"],
+        "texture": "soft, friendly, storybook-like",
+        "use": "hero + section dividers"
+      },
+      "imagery": {
+        "type": "supporting photos + illustrated overlays",
+        "treatment": "rounded corners, soft shadows, high legibility over gradients"
+      }
+    }
+  }
+  
