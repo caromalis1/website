@@ -19,6 +19,18 @@
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
 }
 
+.lab-scroll-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.lab-scroll-content {
+  position: relative;
+  width: 100%;
+}
+
+
 .lab h1,
 .lab h2,
 .lab h3,
@@ -411,10 +423,33 @@
   stroke: rgba(255, 255, 255, 0.65);
   stroke-width: 2.5;
   stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
 }
 
-.lab-spiral-line circle {
-  fill: #ee8164;
+.lab-spiral-motion-dot {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #ee7e2e;
+  box-shadow: 0 0 0 10px rgba(238, 126, 46, 0.2);
+  animation: lab-spiral-dot-glow 2.2s ease-in-out infinite;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  pointer-events: none;
+  will-change: transform;
+}
+
+@keyframes lab-spiral-dot-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 10px rgba(238, 126, 46, 0);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(238, 126, 46, 0.25);
+  }
 }
 
 .lab-spiral-inner {
@@ -438,6 +473,7 @@
   position: absolute;
   width: 286px;
   min-height: 142px;
+  z-index: 4;
   border-radius: 28px;
   border: 1.5px solid #666;
   background: #ededed;
@@ -454,38 +490,38 @@
 }
 
 .lab-spiral-card--a {
-  top: 292px;
-  right: 132px;
+  top: 306px;
+  right: 190px;
   transform: rotate(2deg);
 }
 
 .lab-spiral-card--b {
-  top: 332px;
-  left: 352px;
+  top: 350px;
+  left: 300px;
   transform: rotate(-2deg);
 }
 
 .lab-spiral-card--c {
   top: 592px;
-  left: 60px;
+  left: 122px;
   transform: rotate(2deg);
 }
 
 .lab-spiral-card--d {
-  top: 878px;
-  left: 366px;
+  top: 910px;
+  left: 380px;
   transform: rotate(2deg);
 }
 
 .lab-spiral-card--e {
-  top: 760px;
-  right: 132px;
+  top: 788px;
+  right: 190px;
   transform: rotate(2deg);
 }
 
 .lab-spiral-card--f {
   top: 1070px;
-  right: 0;
+  right: 40px;
   transform: rotate(2deg);
 }
 
@@ -666,6 +702,10 @@
   }
 
   .lab-spiral-line {
+    display: none;
+  }
+
+  .lab-spiral-motion-dot {
     display: none;
   }
 
@@ -912,5 +952,12 @@
   .lab-spiral-bottom-copy {
     margin-top: 38px;
     font-size: clamp(30px, 8.5vw, 38px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lab-spiral-line,
+  .lab-spiral-motion-dot {
+    display: none;
   }
 }
