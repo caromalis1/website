@@ -1,3 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&display=swap');
+
+@font-face {
+  font-family: 'Breathing';
+  src: url('./assets/fonts/Breathing-Personal-Use-Only.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
 body {
   margin: 0;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -14,7 +24,7 @@ code {
 /* Global scale & rhythm */
 :root {
   --page-max: 76rem;
-  --heading-font: 'Canela', 'Times New Roman', serif;
+  --heading-font: 'Libre Caslon Text', 'Times New Roman', serif;
   --body-font: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   /* Autumn palette */
   --cream: #f4ede4;
@@ -29,7 +39,7 @@ code {
   --accent-strong: #d94888;
 }
 
-html, body, #root { height: 100%; background: #8e9ec1; }
+html, body, #root { height: 100%; background: #f6f1f0; }
 
 * { box-sizing: border-box; }
 

@@ -1,99 +1,51 @@
-/* Intentionally minimal styles */
 body {
-  background: #8e9ec1;
+  background: #f6f1f0;
 }
 
 .App {
-  background: #8e9ec1;
-}
-.site-header {
-  padding: 18px 20px 0;
-  background: #8a9acc;
-  color: #ffffff;
+  min-height: 100%;
+  background: #f6f1f0;
+  color: #141111;
 }
 
-.site-header-inner {
-  display: flex;
-  align-items: center;
-  gap: 16px;
+.home-page {
+  min-height: calc(100vh - 120px);
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.home-page-content {
+  text-align: center;
+}
+
+.site-footer {
+  padding: 26px 20px;
+}
+
+.site-footer .inner {
   max-width: 1120px;
   margin: 0 auto;
-  padding: 16px 20px;
-  background: rgba(255, 255, 255, 0.25);
-  border: none;
-  border-radius: 18px;
-  box-shadow: none;
-  backdrop-filter: blur(8px);
-  opacity: 1;
-}
-
-.brand {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  text-decoration: none;
+  justify-content: space-between;
+  gap: 12px;
+  color: rgba(10, 9, 9, 0.7);
 }
 
-.brand-logo {
-  height: 22px;
-  width: auto;
-  display: block;
-}
-
-.nav {
-  margin-left: auto;
+.site-footer .nav {
   display: inline-flex;
   gap: 12px;
 }
 
-.nav-link {
+.site-footer .nav-link {
   text-decoration: none;
-  color: inherit;
+  color: rgba(10, 9, 9, 0.65);
+  font-size: 14px;
 }
 
-.site-nav {
-  margin-left: auto;
-  gap: 18px;
-  font-size: 13px;
-  letter-spacing: 0.2px;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.9);
-  font-weight: 600;
-}
-
-.site-nav .nav-link {
-  padding: 6px 8px;
-  border-radius: 999px;
-  font-weight: 600;
-}
-
-.site-nav .nav-link:hover {
-  background: rgba(255, 255, 255, 0.12);
-}
-
-.header-actions {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.header-button {
-  text-decoration: none;
-  font-size: 12px;
-  font-weight: 600;
-  padding: 7px 16px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  color: #ffffff;
-  background: transparent;
-}
-
-.header-button--ghost {
-  background: rgba(255, 255, 255, 0.12);
-}
-
-.header-button--primary {
-  background: #e6ecff;
-  color: #2c3561;
-  border-color: transparent;
-  box-shadow: 0 6px 14px rgba(33, 45, 90, 0.2);
+@media (max-width: 760px) {
+  .site-footer .inner {
+    flex-direction: column;
+  }
 }

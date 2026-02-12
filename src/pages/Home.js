@@ -2,12 +2,11 @@ import '../App.css';
 
 export default function Home() {
   return (
-    <main>
-      <p>Eyebrow</p>
-      <h1>Socials by Caro</h1>
-      <p>Subtitulo</p>
+    <main className="home-page">
+      <section className="home-page-content">
+        <h1>Home</h1>
+        <p>Esta página queda separada del diseño de Storytelling Lab.</p>
+      </section>
     </main>
   );
 }
-
-

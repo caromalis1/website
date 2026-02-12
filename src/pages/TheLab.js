@@ -1,26 +1,4 @@
-import { useState } from "react";
 import "./TheLab.css";
-
-const TABS = [
-  {
-    id: "emprendedoras",
-    label: "Emprendedoras",
-    title: "Storytelling para negocios con voz propia",
-    copy: "Aquí iría un párrafo breve sobre cómo el Lab ayuda a emprendedoras a contar su historia con claridad."
-  },
-  {
-    id: "creadoras",
-    label: "Creadoras",
-    title: "Contenido que se siente tuyo",
-    copy: "Aquí iría un párrafo breve sobre cómo el Lab convierte ideas dispersas en narrativa auténtica."
-  },
-  {
-    id: "marcas",
-    label: "Marcas personales",
-    title: "De la historia a la comunidad",
-    copy: "Aquí iría un párrafo breve sobre cómo el Lab conecta la historia personal con la oferta."
-  }
-];
 
 const FEATURES = [
   {
@@ -56,80 +34,126 @@ const TESTIMONIALS = [
 ];
 
 export default function TheLab() {
-  const [activeTab, setActiveTab] = useState(TABS[0].id);
-  const currentTab = TABS.find((tab) => tab.id === activeTab);
-
   return (
     <main className="lab">
-      <section className="lab-hero">
-        <div className="lab-container">
-          <div className="lab-hero-grid">
-            <div>
-              <h1 className="lab-headline">
-              Tu forma de ver el mundo es única. Tu contenido también debería serlo.
-              </h1>
-              <p className="lab-subhead">
-              Un laboratorio creativo para aprender a crear contenido que no depende de hacks virales, sino de lo que te hace única: tu historia.
-
-              </p>
-              <div className="lab-cta-row">
-                <button className="lab-button lab-button--primary" type="button">
-                  Entra al Storytelling Lab
-                </button>
-              </div>
-            </div>
-          </div>
+      <section className="home-hero">
+        <div className="home-hero-content">
+          <p className="home-hero-greeting">Hola!</p>
+          <h1 className="home-hero-title">Bienvenida al Storytelling Lab.</h1>
+          <p className="home-hero-subtitle">
+            Un laboratorio creativo para aprender a crear contenido que no depende de hacks
+            virales, sino de lo que te hace única: tu historia.
+          </p>
+          <span className="home-hero-arrow" aria-hidden="true">↓</span>
         </div>
+        <div className="home-hero-curve" aria-hidden="true" />
       </section>
 
       <section className="lab-proof">
-        <div className="lab-container">
-          <p className="lab-label">Social proof</p>
-          <div className="lab-logos">
-            <span>Logo 1</span>
-            <span>Logo 2</span>
-            <span>Logo 3</span>
-            <span>Logo 4</span>
-            <span>Logo 5</span>
+        <span className="lab-proof-squiggle lab-proof-squiggle--left" aria-hidden="true" />
+        <span className="lab-proof-squiggle lab-proof-squiggle--long" aria-hidden="true" />
+        <span className="lab-proof-dot" aria-hidden="true" />
+
+        <div className="lab-container lab-proof-intro">
+          <h2 className="lab-proof-title">
+            Tu forma de ver el mundo es única.
+            <br />
+            Tu contenido también debería serlo.
+          </h2>
+          <p className="lab-proof-copy">
+            Bienvenida al laboratorio creativo para aprender a crear contenido que no depende de
+            hacks virales, sino de lo que te hace única: tu historia.
+          </p>
+          <button className="lab-proof-cta" type="button">
+            Únete al Storytelling Lab
+          </button>
+          <div className="lab-proof-social" aria-label="Prueba social">
+            <div className="lab-proof-avatars" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+              <span />
+            </div>
+            <p>Únete a más de 450 emprendedores</p>
           </div>
-          <p className="lab-note">
-            Frase corta de confianza (placeholder).
+        </div>
+
+        <div className="lab-container lab-proof-reality">
+          <h3 className="lab-proof-reality-title">
+            Seamos sinceras: crear contenido no es fácil, sobre
+            <br />
+            todo cuando también tienes que sostener un negocio.
+          </h3>
+          <p className="lab-proof-reality-copy">
+            Porque una cosa es “tener una idea” y otra muy distinta es sentarte a bajarla cuando
+            eres la CEO, la de atención al cliente, la contadora, la diseñadora... y la que embala
+            pedidos con una mano mientras responde mensajes con la otra.
           </p>
         </div>
       </section>
 
-      <section className="lab-tabs">
-        <div className="lab-container">
-          <p className="lab-label">Use cases</p>
-          <div className="lab-tab-row">
-            {TABS.map((tab) => (
-              <button
-                key={tab.id}
-                type="button"
-                className={`lab-chip${activeTab === tab.id ? " is-active" : ""}`}
-                onClick={() => setActiveTab(tab.id)}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
-          <div className="lab-tab-panel">
-            <div>
-              <h2>{currentTab.title}</h2>
-              <p>{currentTab.copy}</p>
-              <div className="lab-cta-row">
-                <button className="lab-button lab-button--primary" type="button">
-                  CTA del tab
-                </button>
-                <button className="lab-button lab-button--tertiary" type="button">
-                  Ver detalles
-                </button>
-              </div>
-            </div>
-            <div className="lab-tab-visual" aria-hidden="true">
-              <p>Ilustración o screenshot (placeholder)</p>
-            </div>
-          </div>
+      <section className="lab-spiral">
+        <svg className="lab-spiral-line" viewBox="0 0 1728 1460" aria-hidden="true" preserveAspectRatio="none">
+          <path d="M246 0C280 58 336 126 420 178C514 236 648 258 786 238C930 218 1068 198 1160 230C1244 258 1306 314 1328 400C1360 520 1326 598 1266 646C1170 724 1004 744 842 738C676 732 532 746 450 828C362 914 374 1046 468 1142C564 1240 736 1286 900 1268C1050 1252 1168 1194 1298 1182C1396 1172 1476 1194 1544 1238C1602 1278 1632 1336 1640 1394" />
+          <circle cx="592" cy="242" r="15" />
+          <circle cx="1410" cy="452" r="15" />
+        </svg>
+
+        <div className="lab-container lab-spiral-inner">
+          <h2 className="lab-spiral-title">Y es muy fácil caer en este espiral...</h2>
+
+          <article className="lab-spiral-card lab-spiral-card--a">
+            Quieres compartir
+            <br />
+            algo que amas en con
+            <br />
+            el mundo
+          </article>
+          <article className="lab-spiral-card lab-spiral-card--b">
+            Pero mostrarlo en
+            <br />
+            redes se siente
+            <br />
+            tortuoso
+          </article>
+          <article className="lab-spiral-card lab-spiral-card--c">
+            Y aparece la duda
+            <br />
+            existencial: ¿por
+            <br />
+            dónde parto?
+          </article>
+          <article className="lab-spiral-card lab-spiral-card--d">
+            Abres Instagram y te
+            <br />
+            quedas paralizada
+            <br />
+            mirando la pantalla
+          </article>
+          <article className="lab-spiral-card lab-spiral-card--e">
+            Pruebas algo pero
+            <br />
+            sientes que estás
+            <br />
+            siempre improvisando.
+          </article>
+          <article className="lab-spiral-card lab-spiral-card--f">
+            Te frustras y te
+            <br />
+            cuestionas si realmente
+            <br />
+            “sirves” para esto.
+          </article>
+
+          <h3 className="lab-spiral-bottom-copy">
+            Pero el secreto no es volverte una
+            <br />
+            máquina de contenido ni aprenderte “la
+            <br />
+            fórmula del algoritmo”, sino encontrar tu
+            <br />
+            forma única de comunicar lo que haces.
+          </h3>
         </div>
       </section>
 
