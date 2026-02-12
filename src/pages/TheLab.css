@@ -436,7 +436,6 @@
   animation: lab-spiral-dot-glow 2.2s ease-in-out infinite;
   top: 0;
   left: 0;
-  transform: translate(-50%, -50%);
   z-index: 2;
   pointer-events: none;
   will-change: transform;
@@ -487,42 +486,43 @@
   font-size: clamp(14px, 0.95vw, 17px);
   line-height: 1.15;
   letter-spacing: -0.02em;
+  transform: translate(-50%, -50%) rotate(var(--tilt, 0deg));
 }
 
 .lab-spiral-card--a {
-  top: 306px;
-  right: 190px;
-  transform: rotate(2deg);
+  top: 377px;
+  left: 927px;
+  --tilt: 2deg;
 }
 
 .lab-spiral-card--b {
-  top: 350px;
-  left: 300px;
-  transform: rotate(-2deg);
+  top: 421px;
+  left: 443px;
+  --tilt: -2deg;
 }
 
 .lab-spiral-card--c {
-  top: 592px;
-  left: 122px;
-  transform: rotate(2deg);
+  top: 663px;
+  left: 265px;
+  --tilt: 2deg;
 }
 
 .lab-spiral-card--d {
-  top: 910px;
-  left: 380px;
-  transform: rotate(2deg);
+  top: 981px;
+  left: 523px;
+  --tilt: 2deg;
 }
 
 .lab-spiral-card--e {
-  top: 788px;
-  right: 190px;
-  transform: rotate(2deg);
+  top: 859px;
+  left: 927px;
+  --tilt: 2deg;
 }
 
 .lab-spiral-card--f {
-  top: 1070px;
-  right: 40px;
-  transform: rotate(2deg);
+  top: 1141px;
+  left: 1077px;
+  --tilt: 2deg;
 }
 
 .lab-spiral-bottom-copy {

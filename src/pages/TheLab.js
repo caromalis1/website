@@ -40,11 +40,18 @@ const TESTIMONIALS = [
   }
 ];
 
-const PATH_SEGMENTS = 28;
 const SPIRAL_MATCH = {
   desktop: "(min-width: 901px)",
   reducedMotion: "(prefers-reduced-motion: no-preference)"
 };
+const SPIRAL_VIEWBOX = {
+  width: 1260,
+  height: 1580
+};
+const SPIRAL_PATH_D =
+  "M320 0C430 120 620 180 760 160C900 142 1030 182 1100 276C1164 360 1146 442 983 451C850 458 700 452 508 443C372 438 248 530 225 695C206 828 316 948 527 986C700 1018 820 900 981 887C1118 882 1186 990 1105 1193C1056 1318 980 1390 920 1460";
+const SPIRAL_CARD_PROGRESS = [0.29, 0.22, 0.44, 0.62, 0.55, 0.81];
+const SPIRAL_CARD_TILT = ["2deg", "-2deg", "2deg", "2deg", "2deg", "2deg"];
 const SPIRAL_SCROLL = {
   start: "top 80%",
   travelHeightScale: 1.1,
@@ -69,71 +76,6 @@ const createMotionPathMediaListener = (query, handler) => {
   return () => query.removeListener(handler);
 };
 
-function catmullRom(points, i, t) {
-  const p0 = points[Math.max(i - 1, 0)];
-  const p1 = points[i];
-  const p2 = points[Math.min(i + 1, points.length - 1)];
-  const p3 = points[Math.min(i + 2, points.length - 1)];
-
-  const t2 = t * t;
-  const t3 = t2 * t;
-
-  return {
-    x:
-      0.5 *
-      (2 * p1.x +
-        (-p0.x + p2.x) * t +
-        (2 * p0.x - 5 * p1.x + 4 * p2.x - p3.x) * t2 +
-        (-p0.x + 3 * p1.x - 3 * p2.x + p3.x) * t3),
-    y:
-      0.5 *
-      (2 * p1.y +
-        (-p0.y + p2.y) * t +
-        (2 * p0.y - 5 * p1.y + 4 * p2.y - p3.y) * t2 +
-        (-p0.y + 3 * p1.y - 3 * p2.y + p3.y) * t3)
-  };
-}
-
-function buildPathD(points) {
-  if (!points.length) {
-    return "";
-  }
-
-  if (points.length === 1) {
-    return `M ${points[0].x} ${points[0].y}`;
-  }
-
-  const commands = [`M ${points[0].x} ${points[0].y}`];
-
-  for (let i = 0; i < points.length - 1; i += 1) {
-    for (let step = 1; step <= PATH_SEGMENTS; step += 1) {
-      const point = catmullRom(points, i, step / PATH_SEGMENTS);
-      commands.push(`L ${point.x} ${point.y}`);
-    }
-  }
-
-  return commands.join(" ");
-}
-
-function createMotionPathFromCards(sectionRect, cards) {
-  const sortedCards = cards
-    .map((card) => {
-      const rect = card.getBoundingClientRect();
-      return {
-        x: rect.left - sectionRect.left + rect.width / 2,
-        y: rect.top - sectionRect.top + rect.height / 2
-      };
-    })
-    .sort((a, b) => a.y - b.y);
-
-  const marginY = Math.max(sectionRect.height * 0.06, SPIRAL_SCROLL.minimumTopOffset);
-  return [
-    { x: sectionRect.width / 2, y: marginY },
-    ...sortedCards,
-    { x: sectionRect.width / 2, y: sectionRect.height - marginY }
-  ];
-}
-
 function canAnimateSpiral() {
   return (
     window.matchMedia(SPIRAL_MATCH.desktop).matches &&
@@ -141,21 +83,12 @@ function canAnimateSpiral() {
   );
 }
 
-function killMotionTween(tweenRef) {
-  if (!tweenRef.current) {
-    return;
-  }
-
-  tweenRef.current.scrollTrigger?.kill();
-  tweenRef.current.kill();
-  tweenRef.current = null;
-}
-
 export default function TheLab() {
   const smootherWrapperRef = useRef(null);
   const smootherContentRef = useRef(null);
   const homeHeroRef = useRef(null);
   const spiralSectionRef = useRef(null);
+  const spiralInnerRef = useRef(null);
   const spiralSvgRef = useRef(null);
   const spiralPathRef = useRef(null);
   const spiralDotRef = useRef(null);
@@ -188,11 +121,12 @@ export default function TheLab() {
 
     const updatePathAndTween = () => {
       const spiralSection = spiralSectionRef.current;
+      const spiralInner = spiralInnerRef.current;
       const pathElement = spiralPathRef.current;
       const dot = spiralDotRef.current;
       const cards = spiralCardsRef.current.filter(Boolean);
 
-      if (!spiralSection || !pathElement || !dot || !cards.length) {
+      if (!spiralSection || !spiralInner || !pathElement || !dot || !cards.length) {
         return;
       }
 
@@ -209,21 +143,43 @@ export default function TheLab() {
 
       gsap.set(dot, {
         opacity: 1,
-        xPercent: -50,
-        yPercent: -50,
+        x: 0,
+        y: 0,
+        xPercent: 0,
+        yPercent: 0,
         transformOrigin: "50% 50%"
       });
 
       const sectionRect = spiralSection.getBoundingClientRect();
-      const pathPoints = createMotionPathFromCards(sectionRect, cards);
+      const innerRect = spiralInner.getBoundingClientRect();
+      const scaleX = innerRect.width / SPIRAL_VIEWBOX.width;
+      const scaleY = innerRect.height / SPIRAL_VIEWBOX.height;
+      const totalLength = pathElement.getTotalLength();
 
       const svg = spiralSvgRef.current;
       if (svg) {
-        svg.setAttribute("viewBox", `0 0 ${sectionRect.width} ${sectionRect.height}`);
+        svg.setAttribute("viewBox", `0 0 ${SPIRAL_VIEWBOX.width} ${SPIRAL_VIEWBOX.height}`);
       }
 
-      const pathD = buildPathD(pathPoints);
-      pathElement.setAttribute("d", pathD);
+      if (pathElement.getAttribute("d") !== SPIRAL_PATH_D) {
+        pathElement.setAttribute("d", SPIRAL_PATH_D);
+      }
+
+      SPIRAL_CARD_PROGRESS.forEach((progress, index) => {
+        const card = spiralCardsRef.current[index];
+
+        if (!card) {
+          return;
+        }
+
+        const point = pathElement.getPointAtLength(totalLength * progress);
+        const x = point.x * scaleX;
+        const y = point.y * scaleY;
+
+        card.style.left = `${x}px`;
+        card.style.top = `${y}px`;
+        card.style.setProperty("--tilt", SPIRAL_CARD_TILT[index] || "0deg");
+      });
 
       if (motionTweenRef.current) {
         motionTweenRef.current.kill();
@@ -243,7 +199,7 @@ export default function TheLab() {
         force3D: false,
         motionPath: {
           path: pathElement,
-          align: false,
+          align: pathElement,
           alignOrigin: [0.5, 0.5],
           autoRotate: false
         },
@@ -402,21 +358,22 @@ export default function TheLab() {
           </section>
 
           <section className="lab-spiral" ref={spiralSectionRef}>
-            <svg
-              ref={spiralSvgRef}
-              className="lab-spiral-line"
-              aria-hidden="true"
-              preserveAspectRatio="none"
-            >
-              <path ref={spiralPathRef} />
-            </svg>
-            <span
-              className="lab-spiral-motion-dot"
-              ref={spiralDotRef}
-              aria-hidden="true"
-            />
+            <div className="lab-container lab-spiral-inner" ref={spiralInnerRef}>
+              <svg
+                ref={spiralSvgRef}
+                className="lab-spiral-line"
+                viewBox={`0 0 ${SPIRAL_VIEWBOX.width} ${SPIRAL_VIEWBOX.height}`}
+                aria-hidden="true"
+                preserveAspectRatio="none"
+              >
+                <path ref={spiralPathRef} d={SPIRAL_PATH_D} />
+              </svg>
+              <span
+                className="lab-spiral-motion-dot"
+                ref={spiralDotRef}
+                aria-hidden="true"
+              />
 
-            <div className="lab-container lab-spiral-inner">
               <h2 className="lab-spiral-title">Y es muy fácil caer en este espiral...</h2>
 
               <article ref={setCardRef(0)} className="lab-spiral-card lab-spiral-card--a">
