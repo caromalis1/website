@@ -1500,13 +1500,11 @@
   background: rgba(255, 255, 253, 0.86);
   color: #63140f;
   overflow: hidden;
-  transition: background 220ms ease, border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
 }
 
 .lab-curriculum-module.is-open {
   background: rgba(255, 255, 253, 0.93);
   border-color: #63140f;
-  box-shadow: 0 18px 44px rgba(121, 45, 39, 0.08);
 }
 
 .lab-curriculum-trigger {
@@ -1522,7 +1520,6 @@
   color: inherit;
   text-align: left;
   cursor: pointer;
-  transition: padding 220ms ease;
 }
 
 .lab-curriculum-trigger:focus-visible {
@@ -1578,7 +1575,6 @@
 .lab-curriculum-chevron {
   margin-top: 2px;
   color: #9c4c47;
-  transition: color 220ms ease, transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .lab-curriculum-module.is-open .lab-curriculum-chevron {
@@ -1587,31 +1583,11 @@
 }
 
 .lab-curriculum-panel {
-  display: grid;
-  grid-template-rows: 0fr;
-  opacity: 0;
-  transform: translateY(-4px);
-  transition:
-    grid-template-rows 320ms cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 220ms ease,
-    transform 260ms ease;
-}
-
-.lab-curriculum-module.is-open .lab-curriculum-panel {
-  grid-template-rows: 1fr;
-  opacity: 1;
-  transform: translateY(0);
+  padding: 0;
 }
 
 .lab-curriculum-panel-inner {
-  min-height: 0;
-  overflow: hidden;
-  padding: 0 38px;
-  transition: padding 320ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.lab-curriculum-module.is-open .lab-curriculum-panel-inner {
-  padding-bottom: 28px;
+  padding: 0 38px 28px;
 }
 
 .lab-about {
@@ -2032,6 +2008,12 @@
   background: rgba(255, 255, 253, 0.96);
 }
 
+.lab-faq-item.is-open {
+  border-color: #8f3035;
+  background: rgba(255, 255, 253, 0.99);
+  box-shadow: 0 16px 34px rgba(89, 34, 35, 0.1);
+}
+
 .lab-faq-trigger {
   width: 100%;
   min-height: 66px;
@@ -2058,6 +2040,7 @@
 
 .lab-faq-chevron {
   color: #5b5551;
+  flex: 0 0 auto;
 }
 
 .lab-faq-item.is-open .lab-faq-chevron {
@@ -2066,7 +2049,11 @@
 }
 
 .lab-faq-answer {
-  padding: 0 58px 24px 44px;
+  padding: 0;
+}
+
+.lab-faq-answer-inner {
+  padding: 0 58px 24px;
 }
 
 .lab .lab-faq-answer p {
@@ -2636,11 +2623,7 @@
   }
 
   .lab-curriculum-panel-inner {
-    padding: 0 22px;
-  }
-
-  .lab-curriculum-module.is-open .lab-curriculum-panel-inner {
-    padding-bottom: 24px;
+    padding: 0 22px 24px;
   }
 
   .lab-about {
@@ -2746,7 +2729,7 @@
     font-size: 14px;
   }
 
-  .lab-faq-answer {
+  .lab-faq-answer-inner {
     padding: 0 18px 22px;
   }
 

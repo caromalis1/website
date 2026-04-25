@@ -1013,7 +1013,7 @@ export default function TheLab() {
                   <div
                     className="lab-curriculum-panel"
                     id={`course-module-${index}`}
-                    aria-hidden={openModuleIndex !== index}
+                    hidden={openModuleIndex !== index}
                   >
                     <div className="lab-curriculum-panel-inner">
                       <ul>
@@ -1152,10 +1152,12 @@ export default function TheLab() {
                       id={`faq-answer-${index}`}
                       hidden={openFaqIndex !== index}
                     >
-                      <p>
-                        Placeholder: aquí irá una respuesta clara y breve para esta pregunta.
-                        La idea es resolver la duda sin sonar técnica ni prometer de más.
-                      </p>
+                      <div className="lab-faq-answer-inner">
+                        <p>
+                          Placeholder: aquí irá una respuesta clara y breve para esta pregunta.
+                          La idea es resolver la duda sin sonar técnica ni prometer de más.
+                        </p>
+                      </div>
                     </div>
                   </article>
                 ))}
