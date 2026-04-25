@@ -90,6 +90,39 @@ const LAB_FIT_PILLS = [
   "Negocios creativos"
 ];
 
+const LAB_FIT_CONTENT = [
+  {
+    label: "Servicios",
+    title: "Para proveedoras de servicios",
+    description: "Placeholder: ordena tu mensaje, explica tu proceso y muestra el valor de tu mirada sin sonar rígida o repetitiva."
+  },
+  {
+    label: "Productos",
+    title: "Para marcas de productos",
+    description: "Placeholder: convierte detalles, usos y momentos cotidianos en historias simples que hagan que tu producto se entienda mejor."
+  },
+  {
+    label: "Marcas personales",
+    title: "Para marcas personales",
+    description: "Placeholder: habla de tus ideas, tu experiencia y tu punto de vista con una voz más reconocible y más tuya."
+  },
+  {
+    label: "Educadoras",
+    title: "Para educadoras y mentoras",
+    description: "Placeholder: transforma conceptos, ejemplos y frameworks en piezas narrativas, claras y fáciles de seguir."
+  },
+  {
+    label: "Negocios locales",
+    title: "Para negocios locales",
+    description: "Placeholder: cuenta lo que pasa detrás de tu negocio y muestra tus diferencias de una manera cercana."
+  },
+  {
+    label: "Negocios creativos",
+    title: "Para negocios creativos",
+    description: "Placeholder: dale estructura a tus ideas sin quitarles personalidad, y convierte inspiración en contenido publicable."
+  }
+];
+
 const TESTIMONIALS = [
   {
     quote: "I'm afraid I'm getting addicted to this great platform. It allows me to get into a flow state and not have autocorrect or voice dictation stop and interrupt me while I'm attempting to articulate my ideas.",
@@ -240,6 +273,8 @@ function canAnimateSpiral() {
 export default function TheLab() {
   const [openModuleIndex, setOpenModuleIndex] = useState(0);
   const [openFaqIndex, setOpenFaqIndex] = useState(-1);
+  const [selectedFitIndex, setSelectedFitIndex] = useState(0);
+  const [isFitCardVisible, setIsFitCardVisible] = useState(true);
   const smootherWrapperRef = useRef(null);
   const smootherContentRef = useRef(null);
   const homeHeroRef = useRef(null);
@@ -249,9 +284,16 @@ export default function TheLab() {
   const spiralPathRef = useRef(null);
   const depthStackRef = useRef(null);
   const methodSectionRef = useRef(null);
+  const includesSectionRef = useRef(null);
+  const mapCopyRef = useRef(null);
+  const mapStackRef = useRef(null);
+  const useCasesRef = useRef(null);
 
   const motionTweenRef = useRef(null);
   const depthPinRef = useRef(null);
+  const mapCopyPinRef = useRef(null);
+  const mapCardPinsRef = useRef([]);
+  const fitFadeTimeoutRef = useRef(null);
   const smootherRef = useRef(null);
   const resizeObserverRef = useRef(null);
   const resizeRafRef = useRef(0);
@@ -335,8 +377,9 @@ export default function TheLab() {
     const updateDepthPin = () => {
       const depthStack = depthStackRef.current;
       const methodSection = methodSectionRef.current;
+      const includesSection = includesSectionRef.current;
 
-      if (!depthStack || !methodSection) {
+      if (!depthStack || !methodSection || !includesSection) {
         return;
       }
 
@@ -352,7 +395,7 @@ export default function TheLab() {
       }
 
       const pinDistance = Math.max(
-        depthStack.offsetHeight - window.innerHeight,
+        includesSection.offsetTop - window.innerHeight * 0.08,
         window.innerHeight * 0.9
       );
 
@@ -363,9 +406,139 @@ export default function TheLab() {
         pin: methodSection,
         pinSpacing: false,
         anticipatePin: 1,
-        invalidateOnRefresh: true
+        invalidateOnRefresh: true,
+        onLeave: () => {
+          gsap.set(methodSection, { autoAlpha: 0, pointerEvents: "none" });
+        },
+        onEnterBack: () => {
+          gsap.set(methodSection, { autoAlpha: 1, pointerEvents: "auto" });
+        }
       });
     };
+
+    const updateMapCardPins = () => {
+      const mapStack = mapStackRef.current;
+      const mapSection = mapStack?.closest(".lab-map");
+      const mapCopy = mapCopyRef.current;
+
+      if (mapCopyPinRef.current) {
+        mapCopyPinRef.current.kill();
+        mapCopyPinRef.current = null;
+      }
+
+      if (fitFadeTimeoutRef.current) {
+        clearTimeout(fitFadeTimeoutRef.current);
+        fitFadeTimeoutRef.current = null;
+      }
+
+      mapCardPinsRef.current.forEach((trigger) => trigger.kill());
+      mapCardPinsRef.current = [];
+
+      if (!mapStack || !mapSection || !mapCopy || window.innerWidth <= 900) {
+        return;
+      }
+
+      mapCopyPinRef.current = ScrollTrigger.create({
+        trigger: mapCopy,
+        start: "top 132px",
+        endTrigger: mapSection,
+        end: "bottom 72%",
+        pin: true,
+        pinSpacing: false,
+        anticipatePin: 1,
+        invalidateOnRefresh: true
+      });
+
+      const mapCards = Array.from(mapStack.querySelectorAll(".lab-map-card"));
+      const stackedGap = 72;
+      const stackTop = Math.max(86, window.innerHeight * 0.12);
+
+      mapCards.forEach((card, index) => {
+        const pinTop = Math.round(stackTop + index * stackedGap);
+
+        mapCardPinsRef.current.push(
+          ScrollTrigger.create({
+            trigger: card,
+            start: () => `top ${pinTop}`,
+            endTrigger: mapSection,
+            end: () => `bottom ${pinTop + card.offsetHeight + 180}`,
+            pin: true,
+            pinSpacing: false,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+            onEnter: () => card.classList.add("is-stacked"),
+            onLeaveBack: () => card.classList.remove("is-stacked")
+          })
+        );
+      });
+    };
+
+    const useCases = useCasesRef.current;
+    let useCasesAnimation;
+    let useCasesObserver;
+
+    if (useCases) {
+      const paths = useCases.querySelectorAll(".lab-use-lines path");
+      const dots = useCases.querySelectorAll(".lab-use-dot");
+      const labels = useCases.querySelectorAll(".lab-use-label");
+      const shuffledLabels = gsap.utils.shuffle(Array.from(labels));
+
+      if (canAnimateSpiral() && window.innerWidth > 900) {
+        paths.forEach((path) => {
+          const pathLength = path.getTotalLength();
+
+          gsap.set(path, {
+            strokeDasharray: pathLength,
+            strokeDashoffset: pathLength
+          });
+        });
+
+        gsap.set(labels, { autoAlpha: 0, y: 12 });
+        gsap.set(dots, { autoAlpha: 0, scale: 0.5, transformOrigin: "center" });
+
+        useCasesAnimation = gsap.timeline({
+          defaults: { ease: "power2.out" },
+          paused: true
+        });
+
+        useCasesAnimation
+          .to(shuffledLabels, {
+            autoAlpha: 1,
+            y: 0,
+            duration: () => gsap.utils.random(0.42, 0.72),
+            stagger: () => gsap.utils.random(0.05, 0.22)
+          })
+          .to(paths, {
+            strokeDashoffset: 0,
+            duration: 1.35,
+            ease: "power1.inOut"
+          })
+          .to(dots, {
+            autoAlpha: 1,
+            scale: 1,
+            duration: 0.22,
+            stagger: 0.035
+          }, "-=0.28");
+
+        useCasesObserver = new IntersectionObserver((entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) {
+            useCasesAnimation.play();
+            useCasesObserver.disconnect();
+          }
+        }, { rootMargin: "0px 0px -28% 0px", threshold: 0.12 });
+
+        useCasesObserver.observe(useCases);
+      } else {
+        paths.forEach((path) => {
+          gsap.set(path, {
+            strokeDasharray: path.getTotalLength(),
+            strokeDashoffset: 0
+          });
+        });
+        gsap.set(dots, { autoAlpha: 1, scale: 1, transformOrigin: "center" });
+        gsap.set(labels, { autoAlpha: 1, y: 0, clearProps: "transform" });
+      }
+    }
 
     const scheduleUpdate = () => {
       if (resizeRafRef.current) {
@@ -376,6 +549,7 @@ export default function TheLab() {
         resizeRafRef.current = 0;
         updatePathAndTween();
         updateDepthPin();
+        updateMapCardPins();
       });
     };
 
@@ -423,6 +597,22 @@ export default function TheLab() {
         depthPinRef.current = null;
       }
 
+      if (mapCopyPinRef.current) {
+        mapCopyPinRef.current.kill();
+        mapCopyPinRef.current = null;
+      }
+
+      if (useCasesAnimation) {
+        useCasesAnimation.kill();
+      }
+
+      if (useCasesObserver) {
+        useCasesObserver.disconnect();
+      }
+
+      mapCardPinsRef.current.forEach((trigger) => trigger.kill());
+      mapCardPinsRef.current = [];
+
       if (resizeObserverRef.current) {
         resizeObserverRef.current.disconnect();
         resizeObserverRef.current = null;
@@ -434,6 +624,26 @@ export default function TheLab() {
       }
     };
   }, []);
+
+  const selectedFit = LAB_FIT_CONTENT[selectedFitIndex];
+
+  const handleFitSelect = (index) => {
+    if (index === selectedFitIndex) {
+      return;
+    }
+
+    if (fitFadeTimeoutRef.current) {
+      clearTimeout(fitFadeTimeoutRef.current);
+    }
+
+    setIsFitCardVisible(false);
+
+    fitFadeTimeoutRef.current = setTimeout(() => {
+      setSelectedFitIndex(index);
+      setIsFitCardVisible(true);
+      fitFadeTimeoutRef.current = null;
+    }, 160);
+  };
 
   return (
     <div className="lab-scroll-wrapper" ref={smootherWrapperRef}>
@@ -596,7 +806,7 @@ export default function TheLab() {
               </div>
             </section>
 
-            <section className="lab-includes">
+            <section className="lab-includes" ref={includesSectionRef}>
               <div className="lab-includes-inner content-shell">
                 <div className="lab-includes-heading">
                   <p className="lab-pill eyebrow-pill">
@@ -628,7 +838,7 @@ export default function TheLab() {
 
           <section className="lab-map">
             <div className="lab-map-inner content-shell">
-              <div className="lab-map-copy">
+              <div className="lab-map-copy" ref={mapCopyRef}>
                 <h2>
                   El Mapa Narrativo: la
                   <br />
@@ -641,7 +851,7 @@ export default function TheLab() {
                 </p>
               </div>
 
-              <div className="lab-map-stack" aria-label="Componentes del Mapa Narrativo">
+              <div className="lab-map-stack" ref={mapStackRef} aria-label="Componentes del Mapa Narrativo">
                 {NARRATIVE_MAP_STEPS.map((step, index) => (
                   <article
                     className="lab-map-card surface-card"
@@ -681,14 +891,18 @@ export default function TheLab() {
                 <br />
                 en que puedes usar el Lab
               </h2>
-              <div className="lab-use-map">
-                <svg className="lab-use-lines" viewBox="0 0 980 520" aria-hidden="true" preserveAspectRatio="none">
-                  <path d="M155 96C192 57 288 127 363 83C424 47 474 54 532 91" />
-                  <path d="M188 267C252 228 340 291 393 308C428 319 408 258 426 276C451 302 497 304 557 268" />
-                  <path d="M166 385C150 432 175 459 213 447C249 434 230 404 196 418C169 429 162 478 188 518" />
-                  <path d="M396 356C461 314 515 378 488 406" />
-                  <path d="M623 119C672 70 771 73 775 131C778 181 728 239 772 286" />
-                  <path d="M744 348C793 425 760 469 637 468C550 467 499 442 459 393" />
+              <div className="lab-use-map" ref={useCasesRef}>
+                <svg className="lab-use-lines" viewBox="0 0 1120 690" aria-hidden="true" preserveAspectRatio="none">
+                  <path
+                    d="M660 66C595 35 535 36 503 70C429 116 366 94 254 68C158 45 112 89 168 151C190 176 242 168 236 139C228 99 166 111 202 141C238 205 327 239 412 232C489 225 555 207 622 211C682 215 690 172 660 164C624 154 601 188 637 204C734 218 850 196 910 252C955 294 922 315 943 334C998 387 1005 467 913 516C794 580 619 535 553 406C522 355 472 352 429 376C365 411 279 399 207 371C150 348 107 398 126 455C145 512 227 507 257 462C280 427 315 459 285 486C255 513 215 545 240 595"
+                  />
+                  <circle className="lab-use-dot lab-use-dot--2" cx="660" cy="66" r="4" />
+                  <circle className="lab-use-dot lab-use-dot--1" cx="202" cy="141" r="4" />
+                  <circle className="lab-use-dot lab-use-dot--3" cx="637" cy="204" r="4" />
+                  <circle className="lab-use-dot lab-use-dot--4" cx="943" cy="334" r="4" />
+                  <circle className="lab-use-dot lab-use-dot--5" cx="553" cy="406" r="4" />
+                  <circle className="lab-use-dot lab-use-dot--6" cx="207" cy="371" r="4" />
+                  <circle className="lab-use-dot lab-use-dot--7" cx="240" cy="595" r="4" />
                 </svg>
                 {LAB_USE_CASES.map((item, index) => (
                   <p className={`lab-use-label lab-use-label--${index + 1}`} key={item}>
@@ -709,22 +923,23 @@ export default function TheLab() {
                 </h2>
                 <div className="lab-fit-pills pill-cluster" aria-label="Tipos de negocios">
                   {LAB_FIT_PILLS.map((pill, index) => (
-                    <span className={index === 0 ? "is-highlighted" : ""} key={pill}>
+                    <button
+                      className={selectedFitIndex === index ? "is-highlighted" : ""}
+                      key={pill}
+                      type="button"
+                      aria-pressed={selectedFitIndex === index}
+                      onClick={() => handleFitSelect(index)}
+                    >
                       {pill}
-                    </span>
+                    </button>
                   ))}
                 </div>
               </div>
 
               <div className="lab-fit-card-wrap">
-                <article className="lab-fit-card surface-card">
-                  <h3>Para proveedoras de servicios</h3>
-                  <p>
-                    Si ofreces un servicio, probablemente sabes que el reto no es solo decir
-                    "esto hago". También es mostrar tu proceso, tu criterio y qué hace distinto
-                    tu enfoque. El Storytelling Lab te ayuda a convertir todo eso en contenido
-                    más claro, más humano y mucho más fácil de sostener.
-                  </p>
+                <article className={`lab-fit-card surface-card${isFitCardVisible ? "" : " is-fading"}`}>
+                  <h3>{selectedFit.title}</h3>
+                  <p>{selectedFit.description}</p>
                 </article>
               </div>
             </div>
@@ -764,10 +979,9 @@ export default function TheLab() {
               <span className="lab-curriculum-word lab-curriculum-word--del">del</span>
               <span className="lab-curriculum-word lab-curriculum-word--curso">curso</span>
               <svg className="lab-curriculum-line" viewBox="0 0 520 360" aria-hidden="true">
-                <path d="M126 44C204 29 296 38 356 68C442 112 430 196 366 206" />
-                <path d="M119 144C63 148 38 165 56 200" />
-                <path d="M94 147C190 133 242 134 287 142" />
-                <path d="M128 242C184 296 349 315 359 220C367 144 263 110 218 174C174 237 183 302 222 352" />
+                <path d="M190 46C250 38 334 38 386 69C431 96 429 132 397 152" />
+                <path d="M185 130C122 131 72 138 64 170C58 194 80 206 103 210" />
+                <path d="M125 232C161 270 247 287 307 266C363 247 354 193 294 192C229 190 203 236 214 286C221 317 232 336 250 352" />
               </svg>
               <span className="lab-curriculum-dot" aria-hidden="true" />
             </div>
@@ -799,13 +1013,15 @@ export default function TheLab() {
                   <div
                     className="lab-curriculum-panel"
                     id={`course-module-${index}`}
-                    hidden={openModuleIndex !== index}
+                    aria-hidden={openModuleIndex !== index}
                   >
-                    <ul>
-                      {module.lessons.map((lesson) => (
-                        <li key={lesson}>{lesson}</li>
-                      ))}
-                    </ul>
+                    <div className="lab-curriculum-panel-inner">
+                      <ul>
+                        {module.lessons.map((lesson) => (
+                          <li key={lesson}>{lesson}</li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </article>
               ))}
