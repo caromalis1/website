@@ -26,6 +26,12 @@ code {
   --page-max: 76rem;
   --heading-font: 'Libre Caslon Text', 'Times New Roman', serif;
   --body-font: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+
+  --page-gutter: clamp(18px, 5vw, 72px);
+  --section-gutter: clamp(72px, 9vw, 132px);
+  --content-wide: 1360px;
+  --content-default: 1120px;
+
   /* Autumn palette */
   --cream: #f4ede4;
   --parchment: #f7f1e8;
@@ -37,6 +43,27 @@ code {
   --pumpkin: #e48f3d;
   --brass: #c89b3c;
   --accent-strong: #d94888;
+
+  --surface-page: #f6f1ef;
+  --surface-paper: rgba(255, 255, 253, 0.94);
+  --surface-paper-soft: rgba(255, 255, 253, 0.86);
+  --text-strong: #1f1917;
+  --text-body: #4f453f;
+  --text-heading: #4a403b;
+  --text-red: #63140f;
+  --accent-red: #d24b46;
+  --accent-coral: #e05b55;
+  --accent-yellow: #fbf3aa;
+  --border-ink: rgba(48, 33, 28, 0.72);
+  --border-soft: rgba(68, 51, 44, 0.1);
+  --shadow-panel: 0 28px 70px rgba(83, 61, 55, 0.05);
+  --shadow-card: 0 1px 0 rgba(68, 51, 44, 0.03);
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
 }
 
 html, body, #root { height: 100%; background: #f6f1f0; }
@@ -57,4 +84,74 @@ p, a, li, small, span, button {
   font-weight: 400;
   line-height: 21px;
   letter-spacing: -0.9px;
+}
+
+.content-shell {
+  width: min(100%, var(--shell-max, var(--content-default)));
+  margin-inline: auto;
+}
+
+.surface-panel {
+  background: var(--surface-paper);
+  box-shadow: var(--shadow-panel);
+}
+
+.surface-card {
+  border-radius: var(--radius-sm);
+  background: var(--surface-paper);
+  box-shadow: var(--shadow-card);
+}
+
+.eyebrow-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 21px;
+  margin: 0 0 22px;
+  padding: 0 12px;
+  border: 1px solid #80772c;
+  border-radius: var(--radius-pill);
+  background: var(--accent-yellow);
+  color: #40372f;
+  font-family: var(--body-font);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.eyebrow-pill span {
+  color: #bd4d45;
+  font-size: 12px;
+}
+
+.pill-cluster {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.ui-chevron {
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  transition: transform 180ms ease, color 180ms ease;
+}
+
+.ui-chevron path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.35;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
