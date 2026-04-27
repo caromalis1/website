@@ -115,7 +115,7 @@
   line-height: 0.82;
 }
 
-.portfolio-hero-copy > p:not(.eyebrow-pill) {
+.portfolio-hero-copy > p {
   max-width: 650px;
   margin-top: 28px;
   font-size: clamp(17px, 1.45vw, 24px);

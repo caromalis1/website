@@ -1,107 +1,18 @@
 .brand-logo {
   display: inline-flex;
   align-items: center;
-  gap: 11px;
-  min-width: 0;
-  color: #342b27;
+  width: clamp(148px, 15vw, 220px);
+  line-height: 0;
 }
 
-.brand-logo-mark {
-  position: relative;
-  display: inline-grid;
-  flex: 0 0 auto;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  justify-items: center;
-  width: 58px;
-  height: 42px;
-  color: #2f2723;
-}
-
-.brand-logo-mark span {
-  position: relative;
-  z-index: 2;
-  font-family: var(--heading-font);
-  font-size: 27px;
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: -0.08em;
-}
-
-.brand-logo-mark span + span {
-  margin-left: -8px;
-}
-
-.brand-logo-mark svg {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
+.brand-logo img {
+  display: block;
   width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-
-.brand-logo-mark path {
-  fill: none;
-  stroke: #9c4c47;
-  stroke-width: 1.45;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  vector-effect: non-scaling-stroke;
-}
-
-.brand-logo-wordmark {
-  display: grid;
-  gap: 1px;
-  min-width: 0;
-  text-align: left;
-}
-
-.brand-logo-wordmark > span {
-  color: #332b27;
-  font-family: var(--body-font);
-  font-size: 15px;
-  font-weight: 900;
-  line-height: 0.95;
-  letter-spacing: -0.055em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.brand-logo-wordmark small {
-  color: rgba(65, 54, 48, 0.66);
-  font-family: var(--body-font);
-  font-size: 9px;
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.brand:hover .brand-logo-mark path {
-  stroke: #c53655;
+  height: auto;
 }
 
 @media (max-width: 760px) {
   .brand-logo {
-    gap: 9px;
-  }
-
-  .brand-logo-mark {
-    width: 52px;
-    height: 38px;
-  }
-
-  .brand-logo-mark span {
-    font-size: 24px;
-  }
-
-  .brand-logo-wordmark > span {
-    font-size: 13px;
-  }
-
-  .brand-logo-wordmark small {
-    font-size: 8px;
+    width: clamp(136px, 44vw, 178px);
   }
 }

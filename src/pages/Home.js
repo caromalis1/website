@@ -68,7 +68,6 @@ export default function Home() {
 
       <section className="portfolio-hero">
         <div className="portfolio-hero-copy">
-          <p className="eyebrow-pill"><span>*</span> Social Media Producer & Content Writer</p>
           <h1>Carolina Malis</h1>
           <p>
             I merge creative thinking with strategy to craft compelling content that elevates
