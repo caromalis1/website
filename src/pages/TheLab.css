@@ -74,13 +74,7 @@
   border-radius: 0;
   background: transparent;
   color: #3d342f;
-  font-family: 'Inter', system-ui, sans-serif;
-  font-size: 25px;
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: -1.2px;
   text-decoration: none;
-  text-transform: uppercase;
 }
 
 .nav {
@@ -1575,6 +1569,7 @@
 .lab-curriculum-chevron {
   margin-top: 2px;
   color: #9c4c47;
+  transition: none;
 }
 
 .lab-curriculum-module.is-open .lab-curriculum-chevron {
@@ -2041,6 +2036,7 @@
 .lab-faq-chevron {
   color: #5b5551;
   flex: 0 0 auto;
+  transition: none;
 }
 
 .lab-faq-item.is-open .lab-faq-chevron {

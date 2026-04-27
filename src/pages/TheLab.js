@@ -1,10 +1,6 @@
 import { useLayoutEffect, useRef, useState } from "react";
-import gsap from "gsap";
-import { ScrollSmoother } from "gsap/ScrollSmoother";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Logo from "../components/Logo";
 import "./TheLab.css";
-
-gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
 
 const FEATURES = [
   {
@@ -79,15 +75,6 @@ const LAB_USE_CASES = [
   "Darle más narrativa a tus lanzamientos o ventas",
   "Encontrar una voz más clara y más tuya",
   "Una estructura a la que volver cuando te quedas en blanco"
-];
-
-const LAB_FIT_PILLS = [
-  "Servicios",
-  "Productos",
-  "Marcas personales",
-  "Educadoras",
-  "Negocios locales",
-  "Negocios creativos"
 ];
 
 const LAB_FIT_CONTENT = [
@@ -270,6 +257,14 @@ function canAnimateSpiral() {
   return window.matchMedia(SPIRAL_MATCH.reducedMotion).matches;
 }
 
+function ChevronIcon({ className }) {
+  return (
+    <svg className={`${className} ui-chevron`} viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M6.5 9.5L12 15l5.5-5.5" />
+    </svg>
+  );
+}
+
 export default function TheLab() {
   const [openModuleIndex, setOpenModuleIndex] = useState(0);
   const [openFaqIndex, setOpenFaqIndex] = useState(-1);
@@ -299,329 +294,362 @@ export default function TheLab() {
   const resizeRafRef = useRef(0);
 
   useLayoutEffect(() => {
-    const smootherWrapper = smootherWrapperRef.current;
-    const smootherContent = smootherContentRef.current;
+    let isActive = true;
+    let cleanupMotion = () => {};
 
-    if (!smootherWrapper || !smootherContent) {
-      return;
-    }
+    const initMotion = async () => {
+      const [
+        gsapModule,
+        { ScrollSmoother },
+        { ScrollTrigger }
+      ] = await Promise.all([
+        import("gsap"),
+        import("gsap/ScrollSmoother"),
+        import("gsap/ScrollTrigger")
+      ]);
 
-    if (smootherWrapper && smootherContent) {
-      smootherRef.current = ScrollSmoother.create({
-        wrapper: smootherWrapper,
-        content: smootherContent,
-        ...SMOOTHER_OPTIONS
-      });
-    }
-
-    const updatePathAndTween = () => {
-      const spiralSection = spiralSectionRef.current;
-      const pathElement = spiralPathRef.current;
-
-      if (!spiralSection || !pathElement) {
+      if (!isActive) {
         return;
       }
 
-      const svg = spiralSvgRef.current;
-      if (svg) {
-        svg.setAttribute("viewBox", `0 0 ${SPIRAL_VIEWBOX.width} ${SPIRAL_VIEWBOX.height}`);
-      }
+      const gsap = gsapModule.gsap || gsapModule.default || gsapModule;
+      gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
 
-      if (pathElement.getAttribute("d") !== SPIRAL_PATH_D) {
-        pathElement.setAttribute("d", SPIRAL_PATH_D);
-      }
+      const smootherWrapper = smootherWrapperRef.current;
+      const smootherContent = smootherContentRef.current;
 
-      const sectionRect = spiralSection.getBoundingClientRect();
-      const totalLength = pathElement.getTotalLength();
-
-      if (motionTweenRef.current) {
-        motionTweenRef.current.scrollTrigger?.kill();
-        motionTweenRef.current.kill();
-        motionTweenRef.current = null;
-      }
-
-      gsap.set(pathElement, {
-        strokeDasharray: totalLength,
-        strokeDashoffset: canAnimateSpiral() ? totalLength : 0
-      });
-
-      if (!canAnimateSpiral()) {
+      if (!smootherWrapper || !smootherContent) {
         return;
       }
 
-      const travelDistance = Math.max(
-        sectionRect.height * SPIRAL_SCROLL.travelHeightScale,
-        window.innerHeight * SPIRAL_SCROLL.minTravelHeightScale
-      );
-      const triggerNode = spiralSection;
+      if (smootherWrapper && smootherContent) {
+        smootherRef.current = ScrollSmoother.create({
+          wrapper: smootherWrapper,
+          content: smootherContent,
+          ...SMOOTHER_OPTIONS
+        });
+      }
 
-      motionTweenRef.current = gsap.to(pathElement, {
-        duration: 1,
-        immediateRender: false,
-        ease: "none",
-        force3D: false,
-        strokeDashoffset: 0,
-        scrollTrigger: {
-          trigger: triggerNode,
-          start: SPIRAL_SCROLL.start,
-          end: `+=${Math.round(travelDistance)}`,
-          scrub: SPIRAL_SCROLL.scrub,
-          invalidateOnRefresh: true,
-          markers: false
+      const updatePathAndTween = () => {
+        const spiralSection = spiralSectionRef.current;
+        const pathElement = spiralPathRef.current;
+
+        if (!spiralSection || !pathElement) {
+          return;
         }
-      });
 
-      ScrollTrigger.refresh();
-    };
-
-    const updateDepthPin = () => {
-      const depthStack = depthStackRef.current;
-      const methodSection = methodSectionRef.current;
-      const includesSection = includesSectionRef.current;
-
-      if (!depthStack || !methodSection || !includesSection) {
-        return;
-      }
-
-      if (depthPinRef.current) {
-        depthPinRef.current.kill();
-        depthPinRef.current = null;
-      }
-
-      gsap.set(methodSection, { clearProps: "all" });
-
-      if (window.innerWidth <= 900) {
-        return;
-      }
-
-      const pinDistance = Math.max(
-        includesSection.offsetTop - window.innerHeight * 0.08,
-        window.innerHeight * 0.9
-      );
-
-      depthPinRef.current = ScrollTrigger.create({
-        trigger: depthStack,
-        start: "top top",
-        end: `+=${Math.round(pinDistance)}`,
-        pin: methodSection,
-        pinSpacing: false,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-        onLeave: () => {
-          gsap.set(methodSection, { autoAlpha: 0, pointerEvents: "none" });
-        },
-        onEnterBack: () => {
-          gsap.set(methodSection, { autoAlpha: 1, pointerEvents: "auto" });
+        const svg = spiralSvgRef.current;
+        if (svg) {
+          svg.setAttribute("viewBox", `0 0 ${SPIRAL_VIEWBOX.width} ${SPIRAL_VIEWBOX.height}`);
         }
-      });
-    };
 
-    const updateMapCardPins = () => {
-      const mapStack = mapStackRef.current;
-      const mapSection = mapStack?.closest(".lab-map");
-      const mapCopy = mapCopyRef.current;
+        if (pathElement.getAttribute("d") !== SPIRAL_PATH_D) {
+          pathElement.setAttribute("d", SPIRAL_PATH_D);
+        }
 
-      if (mapCopyPinRef.current) {
-        mapCopyPinRef.current.kill();
-        mapCopyPinRef.current = null;
-      }
+        const sectionRect = spiralSection.getBoundingClientRect();
+        const totalLength = pathElement.getTotalLength();
 
-      if (fitFadeTimeoutRef.current) {
-        clearTimeout(fitFadeTimeoutRef.current);
-        fitFadeTimeoutRef.current = null;
-      }
+        if (motionTweenRef.current) {
+          motionTweenRef.current.scrollTrigger?.kill();
+          motionTweenRef.current.kill();
+          motionTweenRef.current = null;
+        }
 
-      mapCardPinsRef.current.forEach((trigger) => trigger.kill());
-      mapCardPinsRef.current = [];
+        gsap.set(pathElement, {
+          strokeDasharray: totalLength,
+          strokeDashoffset: canAnimateSpiral() ? totalLength : 0
+        });
 
-      if (!mapStack || !mapSection || !mapCopy || window.innerWidth <= 900) {
-        return;
-      }
+        if (!canAnimateSpiral()) {
+          return;
+        }
 
-      mapCopyPinRef.current = ScrollTrigger.create({
-        trigger: mapCopy,
-        start: "top 132px",
-        endTrigger: mapSection,
-        end: "bottom 72%",
-        pin: true,
-        pinSpacing: false,
-        anticipatePin: 1,
-        invalidateOnRefresh: true
-      });
-
-      const mapCards = Array.from(mapStack.querySelectorAll(".lab-map-card"));
-      const stackedGap = 72;
-      const stackTop = Math.max(86, window.innerHeight * 0.12);
-
-      mapCards.forEach((card, index) => {
-        const pinTop = Math.round(stackTop + index * stackedGap);
-
-        mapCardPinsRef.current.push(
-          ScrollTrigger.create({
-            trigger: card,
-            start: () => `top ${pinTop}`,
-            endTrigger: mapSection,
-            end: () => `bottom ${pinTop + card.offsetHeight + 180}`,
-            pin: true,
-            pinSpacing: false,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-            onEnter: () => card.classList.add("is-stacked"),
-            onLeaveBack: () => card.classList.remove("is-stacked")
-          })
+        const travelDistance = Math.max(
+          sectionRect.height * SPIRAL_SCROLL.travelHeightScale,
+          window.innerHeight * SPIRAL_SCROLL.minTravelHeightScale
         );
-      });
-    };
+        const triggerNode = spiralSection;
 
-    const useCases = useCasesRef.current;
-    let useCasesAnimation;
-    let useCasesObserver;
-
-    if (useCases) {
-      const paths = useCases.querySelectorAll(".lab-use-lines path");
-      const dots = useCases.querySelectorAll(".lab-use-dot");
-      const labels = useCases.querySelectorAll(".lab-use-label");
-      const shuffledLabels = gsap.utils.shuffle(Array.from(labels));
-
-      if (canAnimateSpiral() && window.innerWidth > 900) {
-        paths.forEach((path) => {
-          const pathLength = path.getTotalLength();
-
-          gsap.set(path, {
-            strokeDasharray: pathLength,
-            strokeDashoffset: pathLength
-          });
-        });
-
-        gsap.set(labels, { autoAlpha: 0, y: 12 });
-        gsap.set(dots, { autoAlpha: 0, scale: 0.5, transformOrigin: "center" });
-
-        useCasesAnimation = gsap.timeline({
-          defaults: { ease: "power2.out" },
-          paused: true
-        });
-
-        useCasesAnimation
-          .to(shuffledLabels, {
-            autoAlpha: 1,
-            y: 0,
-            duration: () => gsap.utils.random(0.42, 0.72),
-            stagger: () => gsap.utils.random(0.05, 0.22)
-          })
-          .to(paths, {
-            strokeDashoffset: 0,
-            duration: 1.35,
-            ease: "power1.inOut"
-          })
-          .to(dots, {
-            autoAlpha: 1,
-            scale: 1,
-            duration: 0.22,
-            stagger: 0.035
-          }, "-=0.28");
-
-        useCasesObserver = new IntersectionObserver((entries) => {
-          if (entries.some((entry) => entry.isIntersecting)) {
-            useCasesAnimation.play();
-            useCasesObserver.disconnect();
+        motionTweenRef.current = gsap.to(pathElement, {
+          duration: 1,
+          immediateRender: false,
+          ease: "none",
+          force3D: false,
+          strokeDashoffset: 0,
+          scrollTrigger: {
+            trigger: triggerNode,
+            start: SPIRAL_SCROLL.start,
+            end: `+=${Math.round(travelDistance)}`,
+            scrub: SPIRAL_SCROLL.scrub,
+            invalidateOnRefresh: true,
+            markers: false
           }
-        }, { rootMargin: "0px 0px -28% 0px", threshold: 0.12 });
-
-        useCasesObserver.observe(useCases);
-      } else {
-        paths.forEach((path) => {
-          gsap.set(path, {
-            strokeDasharray: path.getTotalLength(),
-            strokeDashoffset: 0
-          });
         });
-        gsap.set(dots, { autoAlpha: 1, scale: 1, transformOrigin: "center" });
-        gsap.set(labels, { autoAlpha: 1, y: 0, clearProps: "transform" });
-      }
-    }
 
-    const scheduleUpdate = () => {
-      if (resizeRafRef.current) {
-        cancelAnimationFrame(resizeRafRef.current);
+        ScrollTrigger.refresh();
+      };
+
+      const updateDepthPin = () => {
+        const depthStack = depthStackRef.current;
+        const methodSection = methodSectionRef.current;
+        const includesSection = includesSectionRef.current;
+
+        if (!depthStack || !methodSection || !includesSection) {
+          return;
+        }
+
+        if (depthPinRef.current) {
+          depthPinRef.current.kill();
+          depthPinRef.current = null;
+        }
+
+        gsap.set(methodSection, { clearProps: "all" });
+
+        if (window.innerWidth <= 900) {
+          return;
+        }
+
+        const pinDistance = Math.max(
+          includesSection.offsetTop - window.innerHeight * 0.08,
+          window.innerHeight * 0.9
+        );
+
+        depthPinRef.current = ScrollTrigger.create({
+          trigger: depthStack,
+          start: "top top",
+          end: `+=${Math.round(pinDistance)}`,
+          pin: methodSection,
+          pinSpacing: false,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          onLeave: () => {
+            gsap.set(methodSection, { autoAlpha: 0, pointerEvents: "none" });
+          },
+          onEnterBack: () => {
+            gsap.set(methodSection, { autoAlpha: 1, pointerEvents: "auto" });
+          }
+        });
+      };
+
+      const updateMapCardPins = () => {
+        const mapStack = mapStackRef.current;
+        const mapSection = mapStack?.closest(".lab-map");
+        const mapCopy = mapCopyRef.current;
+
+        if (mapCopyPinRef.current) {
+          mapCopyPinRef.current.kill();
+          mapCopyPinRef.current = null;
+        }
+
+        mapCardPinsRef.current.forEach((trigger) => trigger.kill());
+        mapCardPinsRef.current = [];
+
+        if (!mapStack || !mapSection || !mapCopy || window.innerWidth <= 900) {
+          return;
+        }
+
+        mapCopyPinRef.current = ScrollTrigger.create({
+          trigger: mapCopy,
+          start: "top 132px",
+          endTrigger: mapSection,
+          end: "bottom 72%",
+          pin: true,
+          pinSpacing: false,
+          anticipatePin: 1,
+          invalidateOnRefresh: true
+        });
+
+        const mapCards = Array.from(mapStack.querySelectorAll(".lab-map-card"));
+        const stackedGap = 72;
+        const stackTop = Math.max(86, window.innerHeight * 0.12);
+
+        mapCards.forEach((card, index) => {
+          const pinTop = Math.round(stackTop + index * stackedGap);
+
+          mapCardPinsRef.current.push(
+            ScrollTrigger.create({
+              trigger: card,
+              start: () => `top ${pinTop}`,
+              endTrigger: mapSection,
+              end: () => `bottom ${pinTop + card.offsetHeight + 180}`,
+              pin: true,
+              pinSpacing: false,
+              anticipatePin: 1,
+              invalidateOnRefresh: true,
+              onEnter: () => card.classList.add("is-stacked"),
+              onLeaveBack: () => card.classList.remove("is-stacked")
+            })
+          );
+        });
+      };
+
+      const useCases = useCasesRef.current;
+      let useCasesAnimation;
+      let useCasesObserver;
+
+      if (useCases) {
+        const paths = useCases.querySelectorAll(".lab-use-lines path");
+        const dots = useCases.querySelectorAll(".lab-use-dot");
+        const labels = useCases.querySelectorAll(".lab-use-label");
+        const shuffledLabels = gsap.utils.shuffle(Array.from(labels));
+
+        if (canAnimateSpiral() && window.innerWidth > 900) {
+          paths.forEach((path) => {
+            const pathLength = path.getTotalLength();
+
+            gsap.set(path, {
+              strokeDasharray: pathLength,
+              strokeDashoffset: pathLength
+            });
+          });
+
+          gsap.set(labels, { autoAlpha: 0, y: 12 });
+          gsap.set(dots, { autoAlpha: 0, scale: 0.5, transformOrigin: "center" });
+
+          useCasesAnimation = gsap.timeline({
+            defaults: { ease: "power2.out" },
+            paused: true
+          });
+
+          useCasesAnimation
+            .to(shuffledLabels, {
+              autoAlpha: 1,
+              y: 0,
+              duration: () => gsap.utils.random(0.42, 0.72),
+              stagger: () => gsap.utils.random(0.05, 0.22)
+            })
+            .to(paths, {
+              strokeDashoffset: 0,
+              duration: 1.35,
+              ease: "power1.inOut"
+            })
+            .to(dots, {
+              autoAlpha: 1,
+              scale: 1,
+              duration: 0.22,
+              stagger: 0.035
+            }, "-=0.28");
+
+          useCasesObserver = new IntersectionObserver((entries) => {
+            if (entries.some((entry) => entry.isIntersecting)) {
+              useCasesAnimation.play();
+              useCasesObserver.disconnect();
+            }
+          }, { rootMargin: "0px 0px -28% 0px", threshold: 0.12 });
+
+          useCasesObserver.observe(useCases);
+        } else {
+          paths.forEach((path) => {
+            gsap.set(path, {
+              strokeDasharray: path.getTotalLength(),
+              strokeDashoffset: 0
+            });
+          });
+          gsap.set(dots, { autoAlpha: 1, scale: 1, transformOrigin: "center" });
+          gsap.set(labels, { autoAlpha: 1, y: 0, clearProps: "transform" });
+        }
       }
 
-      resizeRafRef.current = requestAnimationFrame(() => {
-        resizeRafRef.current = 0;
-        updatePathAndTween();
-        updateDepthPin();
-        updateMapCardPins();
+      const scheduleUpdate = () => {
+        if (resizeRafRef.current) {
+          cancelAnimationFrame(resizeRafRef.current);
+        }
+
+        resizeRafRef.current = requestAnimationFrame(() => {
+          resizeRafRef.current = 0;
+          updatePathAndTween();
+          updateDepthPin();
+          updateMapCardPins();
+        });
+      };
+
+      scheduleUpdate();
+      window.addEventListener("resize", scheduleUpdate, { passive: true });
+
+      const resizeObserver = new ResizeObserver(() => {
+        scheduleUpdate();
       });
+
+      if (spiralSectionRef.current) {
+        resizeObserver.observe(spiralSectionRef.current);
+      }
+
+      if (homeHeroRef.current) {
+        resizeObserver.observe(homeHeroRef.current);
+      }
+
+      const reduceMq = window.matchMedia(SPIRAL_MATCH.reducedMotion);
+
+      const onPreferenceChange = () => {
+        scheduleUpdate();
+      };
+
+      const cleanupReduceMq = createMotionPathMediaListener(reduceMq, onPreferenceChange);
+
+      resizeObserverRef.current = resizeObserver;
+
+      cleanupMotion = () => {
+        window.removeEventListener("resize", scheduleUpdate);
+        cleanupReduceMq();
+
+        if (resizeRafRef.current) {
+          cancelAnimationFrame(resizeRafRef.current);
+        }
+
+        if (motionTweenRef.current) {
+          motionTweenRef.current.scrollTrigger?.kill();
+          motionTweenRef.current.kill();
+          motionTweenRef.current = null;
+        }
+
+        if (depthPinRef.current) {
+          depthPinRef.current.kill();
+          depthPinRef.current = null;
+        }
+
+        if (mapCopyPinRef.current) {
+          mapCopyPinRef.current.kill();
+          mapCopyPinRef.current = null;
+        }
+
+        if (useCasesAnimation) {
+          useCasesAnimation.kill();
+        }
+
+        if (useCasesObserver) {
+          useCasesObserver.disconnect();
+        }
+
+        mapCardPinsRef.current.forEach((trigger) => trigger.kill());
+        mapCardPinsRef.current = [];
+
+        if (fitFadeTimeoutRef.current) {
+          clearTimeout(fitFadeTimeoutRef.current);
+          fitFadeTimeoutRef.current = null;
+        }
+
+        if (resizeObserverRef.current) {
+          resizeObserverRef.current.disconnect();
+          resizeObserverRef.current = null;
+        }
+
+        if (smootherRef.current) {
+          smootherRef.current.kill();
+          smootherRef.current = null;
+        }
+      };
     };
 
-    scheduleUpdate();
-    window.addEventListener("resize", scheduleUpdate, { passive: true });
-
-    const resizeObserver = new ResizeObserver(() => {
-      scheduleUpdate();
+    initMotion().catch((error) => {
+      if (isActive) {
+        console.error("Unable to initialize Lab motion.", error);
+      }
     });
 
-    if (spiralSectionRef.current) {
-      resizeObserver.observe(spiralSectionRef.current);
-    }
-
-    if (homeHeroRef.current) {
-      resizeObserver.observe(homeHeroRef.current);
-    }
-
-    const reduceMq = window.matchMedia(SPIRAL_MATCH.reducedMotion);
-
-    const onPreferenceChange = () => {
-      scheduleUpdate();
-    };
-
-    const cleanupReduceMq = createMotionPathMediaListener(reduceMq, onPreferenceChange);
-
-    resizeObserverRef.current = resizeObserver;
-
     return () => {
-      window.removeEventListener("resize", scheduleUpdate);
-      cleanupReduceMq();
-
-      if (resizeRafRef.current) {
-        cancelAnimationFrame(resizeRafRef.current);
-      }
-
-      if (motionTweenRef.current) {
-        motionTweenRef.current.scrollTrigger?.kill();
-        motionTweenRef.current.kill();
-        motionTweenRef.current = null;
-      }
-
-      if (depthPinRef.current) {
-        depthPinRef.current.kill();
-        depthPinRef.current = null;
-      }
-
-      if (mapCopyPinRef.current) {
-        mapCopyPinRef.current.kill();
-        mapCopyPinRef.current = null;
-      }
-
-      if (useCasesAnimation) {
-        useCasesAnimation.kill();
-      }
-
-      if (useCasesObserver) {
-        useCasesObserver.disconnect();
-      }
-
-      mapCardPinsRef.current.forEach((trigger) => trigger.kill());
-      mapCardPinsRef.current = [];
-
-      if (resizeObserverRef.current) {
-        resizeObserverRef.current.disconnect();
-        resizeObserverRef.current = null;
-      }
-
-      if (smootherRef.current) {
-        smootherRef.current.kill();
-        smootherRef.current = null;
-      }
+      isActive = false;
+      cleanupMotion();
     };
   }, []);
 
@@ -652,7 +680,7 @@ export default function TheLab() {
           <header className="site-header">
             <div className="site-header-inner">
               <a href="#/" className="brand" aria-label="Socials by Caro">
-                LOGO
+                <Logo label="Caro Malis" sublabel="Storytelling Lab" />
               </a>
               <nav className="nav site-nav" aria-label="Primary">
                 <a href="#/" className="nav-link">Home</a>
@@ -922,15 +950,15 @@ export default function TheLab() {
                   Storytelling Lab es para mi?
                 </h2>
                 <div className="lab-fit-pills pill-cluster" aria-label="Tipos de negocios">
-                  {LAB_FIT_PILLS.map((pill, index) => (
+                  {LAB_FIT_CONTENT.map((fit, index) => (
                     <button
                       className={selectedFitIndex === index ? "is-highlighted" : ""}
-                      key={pill}
+                      key={fit.label}
                       type="button"
                       aria-pressed={selectedFitIndex === index}
                       onClick={() => handleFitSelect(index)}
                     >
-                      {pill}
+                      {fit.label}
                     </button>
                   ))}
                 </div>
@@ -1005,9 +1033,7 @@ export default function TheLab() {
                       <h3>{module.title}</h3>
                       <p>{module.meta}</p>
                     </span>
-                    <svg className="lab-curriculum-chevron ui-chevron" viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M6.5 9.5L12 15l5.5-5.5" />
-                    </svg>
+                    <ChevronIcon className="lab-curriculum-chevron" />
                   </button>
 
                   <div
@@ -1143,9 +1169,7 @@ export default function TheLab() {
                       ))}
                     >
                       <span>{question}</span>
-                      <svg className="lab-faq-chevron ui-chevron" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M6.5 9.5L12 15l5.5-5.5" />
-                      </svg>
+                      <ChevronIcon className="lab-faq-chevron" />
                     </button>
                     <div
                       className="lab-faq-answer"
