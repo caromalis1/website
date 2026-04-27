@@ -2579,9 +2579,9 @@
   }
 
   .lab-curriculum-title {
-    width: min(100%, 360px);
-    height: 300px;
-    margin-bottom: 64px;
+    width: min(100%, 340px);
+    height: 318px;
+    margin-bottom: 52px;
   }
 
   .lab-curriculum-word {
@@ -2594,18 +2594,22 @@
   }
 
   .lab-curriculum-word--contenido {
-    top: 96px;
-    left: 136px;
+    top: 104px;
+    left: 146px;
   }
 
   .lab-curriculum-word--del {
-    top: 186px;
+    top: 184px;
     left: 30px;
   }
 
   .lab-curriculum-word--curso {
-    top: 266px;
+    top: 270px;
     left: 138px;
+  }
+
+  .lab-curriculum-line path:nth-child(2) {
+    opacity: 0;
   }
 
   .lab-curriculum-dot {
