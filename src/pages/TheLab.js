@@ -673,6 +673,10 @@ export default function TheLab() {
     }, 160);
   };
 
+  const scrollToStoryDetails = () => {
+    spiralSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   return (
     <div className="lab-scroll-wrapper" ref={smootherWrapperRef}>
       <div className="lab-scroll-content" ref={smootherContentRef}>
@@ -698,13 +702,21 @@ export default function TheLab() {
                 Tu contenido también debería serlo.
               </h1>
               <p className="home-hero-subtitle">
-                Un curso de storytelling aplicado para que publicar contenido deje de sentirse
-                como jugar a las adivinanzas.
+                El Storytelling Lab te ayuda a encontrar tu forma natural de comunicarte para
+                que crear contenido deje de sentirse como jugar a las adivinanzas.
               </p>
-              <a className="home-hero-cta cta-button" href="#/storytelling-lab">
-                <span aria-hidden="true">⊙</span>
-                Únete al Storytelling Lab
-              </a>
+              <div className="home-hero-actions">
+                <a className="home-hero-cta home-hero-cta--primary cta-button" href="#/storytelling-lab">
+                  Únete al Storytelling Lab
+                </a>
+                <button
+                  className="home-hero-cta home-hero-cta--secondary cta-button"
+                  type="button"
+                  onClick={scrollToStoryDetails}
+                >
+                  Quiero saber más
+                </button>
+              </div>
             </div>
             <div className="home-hero-bloom home-hero-bloom--pink" aria-hidden="true" />
             <div className="home-hero-bloom home-hero-bloom--peach" aria-hidden="true" />
