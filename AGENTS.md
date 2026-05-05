@@ -7,6 +7,7 @@ The Storytelling Lab page uses a page-scoped design system in `src/pages/TheLab.
 - Treat the `.lab` token block in `TheLab.css` as the source of truth for Lab colors, radii, type sizes, line heights, control heights, and shell widths.
 - Add or adjust shared tokens there when changing repeated values. Do not scatter raw font sizes, pill radii, section backgrounds, or repeated colors through individual section rules.
 - Keep the Lab type scale at 14px or above. The current recurring text tokens are body, copy, and fact; add a named 14px+ token first if the page needs another recurring size.
+- Paragraph copy uses `--paragraph-font`, currently IBM Plex Sans. Keep headings in the editorial serif and UI labels/actions in the body/UI sans unless the design language changes.
 - Keep body-like copy readable on desktop. Prefer normal letter spacing for small Inter text; only use tighter letter spacing where the editorial serif headings need it.
 - Preserve the quiet editorial look from the desktop mockups: warm off-white background, olive thread/path elements, soft pink pills, burgundy primary actions, pale green Lab panel, cream section controls, and black testimonial band.
 - Keep section transitions intentional. Shared background sections should flow on `--lab-bg`; shaped or waved transitions should match the adjacent section color through tokens.

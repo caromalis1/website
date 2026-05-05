@@ -6,26 +6,31 @@ const FEATURES = [
   {
     title: "El método central: tu Mapa Narrativo",
     label: "El método central",
+    illustration: "map",
     description: "La base de todo lo que vas a crear. Una ruta clara que te ayuda a entender a tu audiencia, qué necesita escuchar, qué la frena, tu rol en su historia, y cómo crear contenido que les hable."
   },
   {
     title: "Storytelling Lab Workbook",
     label: "Tu hub de trabajo",
+    illustration: "workbook",
     description: "Más de 150 ejercicios para convertir tus ideas en posts, reels y stories usando estructuras probadas, para pasar de improvisar semana a semana a tener una ruta que te guía."
   },
   {
     title: "Banco de plantillas, ejemplos e ideas",
     label: "Tu banco de recursos",
+    illustration: "templates",
     description: "Para cuando tienes algo que decir pero la pantalla en blanco gana. Estructuras narrativas editables para abrir conversación, educar, compartir tus procesos y vender desde lo humano."
   },
   {
     title: "6 módulos, 20 lecciones",
     label: "Curso on-demand",
+    illustration: "modules",
     description: "Todo el recorrido, desde entender el storytelling y cómo aplicarlo paso a paso, hasta cómo elegir una idea, escribir un guión y crear contenido con tu voz."
   },
   {
     title: "Tu universo visual",
     label: "Identidad estética",
+    illustration: "visual",
     description: "Tu contenido se ve antes de que lo lean. Este módulo te ayuda a que lo visual y lo escrito cuenten la misma historia."
   }
 ];
@@ -264,11 +269,100 @@ function canAnimateSpiral() {
   return window.matchMedia(SPIRAL_MATCH.reducedMotion).matches;
 }
 
+function buildMapThreadPath(points, width) {
+  if (points.length < 5) {
+    return "";
+  }
+
+  const [bet, protagonist, obstacles, compass, route] = points;
+  const leftEdge = { x: -8, y: bet.y };
+  const rightEdge = { x: width + 8, y: route.y + 6 };
+  const loop = {
+    x: compass.x + (route.x - compass.x) * 0.46,
+    y: Math.max(34, compass.y + 22)
+  };
+
+  return [
+    `M${leftEdge.x.toFixed(1)} ${leftEdge.y.toFixed(1)}`,
+    `C${(bet.x - 160).toFixed(1)} ${(bet.y - 10).toFixed(1)} ${(bet.x - 58).toFixed(1)} ${(bet.y - 8).toFixed(1)} ${bet.x.toFixed(1)} ${bet.y.toFixed(1)}`,
+    `C${(bet.x + 90).toFixed(1)} ${(bet.y + 2).toFixed(1)} ${(protagonist.x - 150).toFixed(1)} ${(protagonist.y - 78).toFixed(1)} ${protagonist.x.toFixed(1)} ${protagonist.y.toFixed(1)}`,
+    `C${(protagonist.x + 116).toFixed(1)} ${(protagonist.y - 126).toFixed(1)} ${(obstacles.x - 178).toFixed(1)} ${(obstacles.y - 112).toFixed(1)} ${obstacles.x.toFixed(1)} ${obstacles.y.toFixed(1)}`,
+    `C${(obstacles.x + 86).toFixed(1)} ${(obstacles.y - 68).toFixed(1)} ${(compass.x - 110).toFixed(1)} ${(compass.y - 10).toFixed(1)} ${compass.x.toFixed(1)} ${compass.y.toFixed(1)}`,
+    `C${(compass.x + 68).toFixed(1)} ${(compass.y + 4).toFixed(1)} ${(loop.x - 56).toFixed(1)} ${(loop.y - 34).toFixed(1)} ${loop.x.toFixed(1)} ${loop.y.toFixed(1)}`,
+    `C${(loop.x + 56).toFixed(1)} ${(loop.y + 28).toFixed(1)} ${(loop.x + 36).toFixed(1)} ${(loop.y + 84).toFixed(1)} ${(loop.x - 12).toFixed(1)} ${(loop.y + 66).toFixed(1)}`,
+    `C${(loop.x - 60).toFixed(1)} ${(loop.y + 48).toFixed(1)} ${(loop.x - 32).toFixed(1)} ${(loop.y - 16).toFixed(1)} ${(loop.x + 24).toFixed(1)} ${(loop.y + 4).toFixed(1)}`,
+    `C${(loop.x + 68).toFixed(1)} ${(loop.y + 20).toFixed(1)} ${(route.x - 92).toFixed(1)} ${(route.y - 44).toFixed(1)} ${route.x.toFixed(1)} ${route.y.toFixed(1)}`,
+    `C${(route.x + 74).toFixed(1)} ${(route.y + 38).toFixed(1)} ${(rightEdge.x - 180).toFixed(1)} ${(rightEdge.y - 6).toFixed(1)} ${rightEdge.x.toFixed(1)} ${rightEdge.y.toFixed(1)}`
+  ].join("");
+}
+
 function ChevronIcon({ className }) {
   return (
     <svg className={`${className} ui-chevron`} viewBox="0 0 24 24" aria-hidden="true">
       <path d="M6.5 9.5L12 15l5.5-5.5" />
     </svg>
+  );
+}
+
+function LabFeatureIllustration({ type }) {
+  return (
+    <figure className={`lab-include-illustration lab-include-illustration--${type}`} aria-hidden="true">
+      <svg viewBox="0 0 180 150" focusable="false">
+        {type === "map" && (
+          <>
+            <path d="M34 105C51 70 72 47 105 36C125 30 143 30 156 38" />
+            <path d="M45 105L83 91L120 101L151 82" />
+            <circle cx="82" cy="91" r="8" />
+            <circle cx="121" cy="101" r="8" />
+            <path d="M54 58L70 82L56 112L39 86Z" />
+            <path d="M99 41L119 70L106 101L83 91Z" />
+          </>
+        )}
+        {type === "workbook" && (
+          <>
+            <path d="M48 36H125C135 36 142 43 142 53V119H60C53 119 48 114 48 107Z" />
+            <path d="M60 36V119" />
+            <path d="M76 58H121" />
+            <path d="M76 78H116" />
+            <path d="M76 98H105" />
+            <path d="M134 46C145 55 149 67 145 82" />
+          </>
+        )}
+        {type === "templates" && (
+          <>
+            <rect x="35" y="42" width="55" height="68" rx="5" />
+            <rect x="88" y="32" width="58" height="70" rx="5" />
+            <path d="M47 60H76" />
+            <path d="M47 78H70" />
+            <path d="M101 52H133" />
+            <path d="M101 71H127" />
+            <path d="M70 116C88 126 118 124 139 110" />
+          </>
+        )}
+        {type === "modules" && (
+          <>
+            <rect x="41" y="44" width="98" height="64" rx="7" />
+            <path d="M83 64L110 76L83 89Z" />
+            <path d="M51 122H129" />
+            <path d="M69 108L62 122" />
+            <path d="M111 108L118 122" />
+            <circle cx="143" cy="45" r="13" />
+            <path d="M143 38V52" />
+            <path d="M136 45H150" />
+          </>
+        )}
+        {type === "visual" && (
+          <>
+            <path d="M43 89C55 54 83 35 116 41C137 45 150 59 153 79" />
+            <path d="M43 89C70 119 117 122 153 79" />
+            <circle cx="97" cy="80" r="18" />
+            <circle cx="97" cy="80" r="6" />
+            <path d="M55 38C63 30 75 27 86 31" />
+            <path d="M128 113C139 111 149 105 156 96" />
+          </>
+        )}
+      </svg>
+    </figure>
   );
 }
 
@@ -290,9 +384,12 @@ export default function TheLab() {
   const includesSectionRef = useRef(null);
   const mapCopyRef = useRef(null);
   const mapStackRef = useRef(null);
+  const mapLineSvgRef = useRef(null);
+  const mapLinePathRef = useRef(null);
   const useCasesRef = useRef(null);
 
   const motionTweenRef = useRef(null);
+  const mapLineTweenRef = useRef(null);
   const depthPinRef = useRef(null);
   const mapCopyPinRef = useRef(null);
   const mapCardPinsRef = useRef([]);
@@ -504,6 +601,79 @@ export default function TheLab() {
         });
       };
 
+      const updateMapLine = () => {
+        const mapStack = mapStackRef.current;
+        const svgElement = mapLineSvgRef.current;
+        const pathElement = mapLinePathRef.current;
+
+        if (mapLineTweenRef.current) {
+          mapLineTweenRef.current.scrollTrigger?.kill();
+          mapLineTweenRef.current.kill();
+          mapLineTweenRef.current = null;
+        }
+
+        if (!mapStack || !svgElement || !pathElement) {
+          return;
+        }
+
+        const svgRect = svgElement.getBoundingClientRect();
+        const mapCards = Array.from(mapStack.querySelectorAll(".lab-map-card"));
+        const anchorPoints = mapCards
+          .map((card) => {
+            const dot = card.querySelector(".lab-map-card-icon");
+            const dotRect = dot?.getBoundingClientRect();
+
+            if (!dotRect) {
+              return null;
+            }
+
+            return {
+              x: dotRect.left + dotRect.width / 2 - svgRect.left,
+              y: dotRect.top + dotRect.height / 2 - svgRect.top
+            };
+          })
+          .filter(Boolean)
+          .sort((a, b) => a.x - b.x);
+
+        if (anchorPoints.length < 5) {
+          return;
+        }
+
+        const viewBoxWidth = Math.max(1, svgRect.width);
+        const viewBoxHeight = Math.max(1, svgRect.height);
+        const pathData = buildMapThreadPath(anchorPoints, viewBoxWidth);
+
+        svgElement.setAttribute("viewBox", `0 0 ${viewBoxWidth} ${viewBoxHeight}`);
+
+        if (pathElement.getAttribute("d") !== pathData) {
+          pathElement.setAttribute("d", pathData);
+        }
+
+        const pathLength = pathElement.getTotalLength();
+
+        gsap.set(pathElement, {
+          strokeDasharray: pathLength,
+          strokeDashoffset: canAnimateSpiral() && window.innerWidth > 900 ? pathLength : 0
+        });
+
+        if (!canAnimateSpiral() || window.innerWidth <= 900) {
+          return;
+        }
+
+        mapLineTweenRef.current = gsap.to(pathElement, {
+          strokeDashoffset: 0,
+          duration: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: mapStack,
+            start: "top 72%",
+            end: "bottom 58%",
+            scrub: 0.8,
+            invalidateOnRefresh: true
+          }
+        });
+      };
+
       const useCases = useCasesRef.current;
       let useCasesAnimation;
       let useCasesObserver;
@@ -581,6 +751,7 @@ export default function TheLab() {
           updatePathAndTween();
           updateDepthPin();
           updateMapCardPins();
+          updateMapLine();
         });
       };
 
@@ -631,6 +802,12 @@ export default function TheLab() {
         if (mapCopyPinRef.current) {
           mapCopyPinRef.current.kill();
           mapCopyPinRef.current = null;
+        }
+
+        if (mapLineTweenRef.current) {
+          mapLineTweenRef.current.scrollTrigger?.kill();
+          mapLineTweenRef.current.kill();
+          mapLineTweenRef.current = null;
         }
 
         if (useCasesAnimation) {
@@ -833,9 +1010,12 @@ export default function TheLab() {
                 <div className="lab-feature-grid">
                   {FEATURES.map((feature) => (
                     <article key={feature.title} className="lab-include-card surface-card">
-                      <span>{feature.label}</span>
-                      <h3>{feature.title}</h3>
-                      <p>{feature.description}</p>
+                      <div className="lab-include-copy">
+                        <span>{feature.label}</span>
+                        <h3>{feature.title}</h3>
+                        <p>{feature.description}</p>
+                      </div>
+                      <LabFeatureIllustration type={feature.illustration} />
                     </article>
                   ))}
                 </div>
@@ -859,6 +1039,9 @@ export default function TheLab() {
               </div>
 
               <div className="lab-map-stack" ref={mapStackRef} aria-label="Componentes del Mapa Narrativo">
+                <svg ref={mapLineSvgRef} className="lab-map-thread" preserveAspectRatio="none" aria-hidden="true">
+                  <path ref={mapLinePathRef} />
+                </svg>
                 {NARRATIVE_MAP_STEPS.map((step, index) => (
                   <article
                     className="lab-map-card surface-card"
@@ -949,7 +1132,6 @@ export default function TheLab() {
                 <path d="M185 130C122 131 72 138 64 170C58 194 80 206 103 210" />
                 <path d="M125 232C161 270 247 287 307 266C363 247 354 193 294 192C229 190 203 236 214 286C221 317 232 336 250 352" />
               </svg>
-              <span className="lab-curriculum-dot" aria-hidden="true" />
             </div>
 
             <div className="lab-curriculum-list" aria-label="Contenido del curso">
