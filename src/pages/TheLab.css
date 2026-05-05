@@ -121,12 +121,12 @@
 }
 
 .home-hero {
-  position: relative;
-  min-height: 472px;
-  overflow: hidden;
-  padding: 104px 24px 120px;
-  background: var(--lab-bg);
-  isolation: isolate;
+    order: 2;
+    min-height: 78vh;
+    /* padding: 132px 24px 112px; */
+    background: var(--lab-bg);
+    display: grid;
+    align-content: center;
 }
 
 .home-hero-content {
@@ -447,10 +447,10 @@
 }
 
 .lab-storyline-copy--first {
-  top: 174px;
-  left: 18vw;
-  width: 500px;
-  text-align: left;
+top: 174px;
+    left: 18vw;
+    max-width: 560px;
+    text-align: left;
 }
 
 .lab-storyline-copy--second {
@@ -711,9 +711,9 @@
 }
 
 .lab-method-copy h2 {
-  max-width: 640px;
-  font-size: clamp(36px, 3vw, 56px);
-  line-height: 0.95;
+    max-width: 100%;
+    font-size: clamp(26px, 2.2vw, 34px);
+    line-height: 0.95;
 }
 
 .lab .lab-method-copy > p:last-child {
@@ -921,15 +921,6 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
   margin-top: 80px;
-}
-
-.lab-include-card {
-  min-height: 284px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 42px 36px 48px;
-  border-radius: var(--lab-radius-md);
 }
 
 .lab-include-card h3 {
@@ -2225,10 +2216,7 @@
     font-size: var(--lab-type-body);
   }
 
-  .home-hero {
-    min-height: max(100vh, 640px);
-    padding-top: clamp(118px, 21vh, 146px);
-  }
+
 
   .lab .home-hero-title {
     font-size: clamp(38px, 5.2vw, 56px);
@@ -3026,13 +3014,6 @@
   color: var(--lab-body);
 }
 
-.home-hero {
-  order: 2;
-  min-height: 540px;
-  padding: 132px 24px 112px;
-  background: var(--lab-bg);
-}
-
 .home-hero-content {
   max-width: 1040px;
 }
@@ -3119,11 +3100,6 @@
   font-weight: 500;
 }
 
-.lab-storyline-copy--first {
-  top: 174px;
-  left: 16%;
-  width: 370px;
-}
 
 .lab-storyline-copy--first strong {
   max-width: 280px;
@@ -3209,13 +3185,6 @@
   margin: 0 auto;
 }
 
-.lab-method-copy h2 {
-  max-width: 850px;
-  margin: 0 auto;
-  color: #3c3632;
-  font-size: clamp(35px, 3.25vw, 55px);
-  line-height: 1.02;
-}
 
 .lab .lab-method-copy > p:last-of-type {
   max-width: 760px;
@@ -3267,7 +3236,7 @@
 .lab-include-card {
   min-height: 0;
   display: grid;
-  grid-template-columns: minmax(0, 420px) 180px;
+  grid-template-columns: minmax(0, 320px) 180px;
   align-items: center;
   justify-content: space-between;
   gap: 72px;
@@ -3283,7 +3252,7 @@
 
 .lab-include-card:nth-child(even) {
   justify-self: stretch;
-  grid-template-columns: 180px minmax(0, 420px);
+  grid-template-columns: 180px minmax(0, 320px);
 }
 
 .lab-include-card:nth-child(even) .lab-include-illustration {
@@ -3314,7 +3283,6 @@
   color: #a0082d;
   font-family: 'Inter', system-ui, sans-serif;
   font-size: var(--lab-type-body);
-  font-weight: 800;
   letter-spacing: var(--lab-tracking-reset);
   text-transform: uppercase;
 }

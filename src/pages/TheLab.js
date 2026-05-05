@@ -4,7 +4,7 @@ import "./TheLab.css";
 
 const FEATURES = [
   {
-    title: "El método central: tu Mapa Narrativo",
+    title: "Tu Mapa Narrativo",
     label: "El método central",
     illustration: "map",
     description: "La base de todo lo que vas a crear. Una ruta clara que te ayuda a entender a tu audiencia, qué necesita escuchar, qué la frena, tu rol en su historia, y cómo crear contenido que les hable."
@@ -951,9 +951,6 @@ export default function TheLab() {
                 <p>
                   Seamos sinceras: Crear contenido se siente más difícil de lo que debería...
                 </p>
-                <strong>
-                  ILUSTRACIÓN: Persona rodeada de tags flotantes. (Guiones · Captions · Stories · Ideas · Reels · Voz propia · Coherencia · Calendario · Tendencias · Hooks · Narrativa · Consistencia)
-                </strong>
               </article>
 
               <figure className="lab-sketch lab-sketch--runner" aria-hidden="true">
