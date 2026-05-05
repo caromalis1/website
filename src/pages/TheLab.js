@@ -4,28 +4,29 @@ import "./TheLab.css";
 
 const FEATURES = [
   {
-    title: "Curso completo en video (on-demand)",
-    description: "6 módulos, 20 lecciones para entender el storytelling y cómo aplicarlo paso a paso a tu contenido, para pasar de improvisar semana a semana a tener una ruta que te guía."
-  },
-  {
     title: "El método central: tu Mapa Narrativo",
-    description: "Una ruta clara para entender quién es y qué le importa a tu audiencia, cómo crear contenido que les hable, y cómo direccionar tu mensaje para que tu oferta se entienda de manera natural."
+    label: "El método central",
+    description: "La base de todo lo que vas a crear. Una ruta clara que te ayuda a entender a tu audiencia, qué necesita escuchar, qué la frena, tu rol en su historia, y cómo crear contenido que les hable."
   },
   {
     title: "Storytelling Lab Workbook",
-    description: "Un espacio práctico con más de 150 ejercicios y un sistema para convertir tus ideas en contenido usando estructuras probadas, para dejar de improvisar semana a semana y tener una ruta clara."
+    label: "Tu hub de trabajo",
+    description: "Más de 150 ejercicios para convertir tus ideas en posts, reels y stories usando estructuras probadas, para pasar de improvisar semana a semana a tener una ruta que te guía."
   },
   {
     title: "Banco de plantillas, ejemplos e ideas",
-    description: "Estructuras narrativas editables, prompts y puntos de partida para abrir conversación, educar, mostrar tus procesos y vender desde lo humano. Para que nunca tengas que partir desde cero."
+    label: "Tu banco de recursos",
+    description: "Para cuando tienes algo que decir pero la pantalla en blanco gana. Estructuras narrativas editables para abrir conversación, educar, compartir tus procesos y vender desde lo humano."
   },
   {
-    title: "Método paso a paso para crear contenido",
-    description: "Módulos para aprender a definir tus temáticas de contenido, cómo elegir una idea, cómo escribir un guión, y cómo sostener una narrativa visual coherente."
+    title: "6 módulos, 20 lecciones",
+    label: "Curso on-demand",
+    description: "Todo el recorrido, desde entender el storytelling y cómo aplicarlo paso a paso, hasta cómo elegir una idea, escribir un guión y crear contenido con tu voz."
   },
   {
     title: "Tu universo visual",
-    description: "Cómo traducir tu narrativa a lo visual: paleta, estética, luz y estilo para que tu contenido se vea coherente y se sienta tuyo, no genérico."
+    label: "Identidad estética",
+    description: "Tu contenido se ve antes de que lo lean. Este módulo te ayuda a que lo visual y lo escrito cuenten la misma historia."
   }
 ];
 
@@ -52,105 +53,80 @@ const NARRATIVE_MAP_STEPS = [
   }
 ];
 
-const LAB_PROCESS_STEPS = [
-  {
-    title: "Entras al Lab",
-    description: "Acceso inmediato a todo el contenido, sin fechas límite. Este espacio es tuyo, y se adapta a tu ritmo (no al revés)."
-  },
-  {
-    title: "Armas tu Mapa Narrativo",
-    description: "Construyes tu mapa narrativo paso a paso: tu base para crear contenido sin depender de tendencias ni hacks."
-  },
-  {
-    title: "Lo conviertes en contenido",
-    description: "Eliges ideas, usas puertas de entrada, escribes guiones y captions que se sienten como tú."
-  }
-];
-
-const LAB_USE_CASES = [
-  "Stories, captions y carruseles mejor aterrizados",
-  "Escribir guiones para reels con más dirección",
-  "Hablar de lo que ofreces con más naturalidad",
-  "Convertir ideas sueltas en contenido publicable",
-  "Darle más narrativa a tus lanzamientos o ventas",
-  "Encontrar una voz más clara y más tuya",
-  "Una estructura a la que volver cuando te quedas en blanco"
-];
-
 const LAB_FIT_CONTENT = [
   {
     label: "Servicios",
     title: "Para proveedoras de servicios",
-    description: "Placeholder: ordena tu mensaje, explica tu proceso y muestra el valor de tu mirada sin sonar rígida o repetitiva."
+    description: "Si ofreces un servicio, probablemente sabes que el reto no es solo decir “esto hago”. También es mostrar tu proceso, tu criterio y qué hace distinto tu enfoque. El Storytelling Lab te ayuda a convertir todo eso en contenido más claro, más humano y mucho más fácil de sostener."
   },
   {
     label: "Productos",
     title: "Para marcas de productos",
-    description: "Placeholder: convierte detalles, usos y momentos cotidianos en historias simples que hagan que tu producto se entienda mejor."
+    description: "Convierte detalles, usos, materiales y momentos cotidianos en historias simples que ayuden a entender por qué tu producto importa y cómo entra en la vida de tus clientes."
   },
   {
     label: "Marcas personales",
     title: "Para marcas personales",
-    description: "Placeholder: habla de tus ideas, tu experiencia y tu punto de vista con una voz más reconocible y más tuya."
+    description: "Ordena tus ideas, tu experiencia y tu punto de vista para que tu contenido tenga una voz reconocible, sin depender de tendencias que no se sienten tuyas."
   },
   {
     label: "Educadoras",
     title: "Para educadoras y mentoras",
-    description: "Placeholder: transforma conceptos, ejemplos y frameworks en piezas narrativas, claras y fáciles de seguir."
+    description: "Transforma conceptos, ejemplos y frameworks en piezas narrativas, claras y fáciles de seguir, para que enseñar no se sienta como repetir lo mismo de mil formas."
   },
   {
     label: "Negocios locales",
     title: "Para negocios locales",
-    description: "Placeholder: cuenta lo que pasa detrás de tu negocio y muestra tus diferencias de una manera cercana."
+    description: "Cuenta lo que pasa detrás de tu negocio, muestra tus diferencias y convierte la experiencia diaria de tu marca en contenido cercano."
   },
   {
     label: "Negocios creativos",
     title: "Para negocios creativos",
-    description: "Placeholder: dale estructura a tus ideas sin quitarles personalidad, y convierte inspiración en contenido publicable."
+    description: "Dale estructura a tus ideas sin quitarles personalidad, y convierte inspiración, referencias y procesos en contenido publicable."
   }
 ];
 
 const TESTIMONIALS = [
   {
-    quote: "I'm afraid I'm getting addicted to this great platform. It allows me to get into a flow state and not have autocorrect or voice dictation stop and interrupt me while I'm attempting to articulate my ideas.",
-    name: "Greg Dickson",
-    role: "Bestselling Author and Business Coach",
-    avatar: "GD"
+    quote: "Por fin pude explicar lo que hago sin sentir que estaba copiando una fórmula ajena.",
+    name: "Camila R.",
+    role: "Diseñadora de marca",
+    avatar: "CR"
   },
   {
-    quote: "I have Parkinson's, and this app has just made my life so much easier using my Mac. I can't even explain the change that it has provided for me.",
-    name: "Rick Deeley",
-    role: "Index Scanning Manager",
-    avatar: "RD"
+    quote: "El mapa narrativo me ordenó la cabeza. Ahora sé desde dónde escribir cada pieza de contenido.",
+    name: "Valentina M.",
+    role: "Mentora creativa",
+    avatar: "VM"
   },
   {
-    quote: "I can make quick edits while speaking to it because flow really understands me perfectly and can make the necessary changes. Flow's accuracy and speed make it a real game changer.",
-    name: "Shazabat Yousaf",
-    role: "Scout at Soma Capital",
-    avatar: "SY"
+    quote: "Dejé de publicar por cumplir. Mis captions volvieron a sonar como yo.",
+    name: "Paula S.",
+    role: "Fotógrafa",
+    avatar: "PS"
   },
   {
-    quote: "Hey! Flow is currently blowing my mind with how fast and useful it is.",
-    name: "Marcus Hajjar",
-    role: "Platform at X",
-    avatar: "MH"
+    quote: "Me ayudó a convertir ideas sueltas en una narrativa clara para mi lanzamiento.",
+    name: "Mariana F.",
+    role: "Consultora",
+    avatar: "MF"
   },
   {
-    quote: "Flow is that extra little part of your brain that helps you formulate full sentences when you might be stuck in thought and have a jittery response.",
-    name: "Jeannette Tan",
-    role: "Fiction Writer",
-    avatar: "JT"
+    quote: "Nunca había sentido que un curso de contenido entendiera tan bien mi manera de trabajar.",
+    name: "Daniela L.",
+    role: "Ceramista",
+    avatar: "DL"
   },
   {
-    quote: "Stuttering and it still works well. I think it's really it.",
-    name: "Aysen Webb",
-    role: "Student",
-    avatar: "AW"
+    quote: "Volví a mirar mi historia como una herramienta, no como algo que tenía que esconder.",
+    name: "Sofía G.",
+    role: "Psicóloga",
+    avatar: "SG"
   },
   {
-    quote: "I rewrote 70% of our content calendar in one sitting. It felt clearer, more human, and finally sounded like us.",
+    quote: "Reescribí todo mi calendario en una tarde. Se sintió más humano y mucho más sostenible.",
     name: "D. Mejía",
-    role: "Founder",
+    role: "Fundadora",
     avatar: "DM"
   }
 ];
@@ -197,7 +173,38 @@ const CAROLINA_FACTS = [
   "Soy Chilena",
   "Viví en New York por 10 años",
   "Ahora vivo en Londres",
-  "No tengo un perrito, pero quiero un perrito"
+  "No tengo un perrito, pero quiero un perrito",
+  "Amo los días nublados",
+  "Siempre llego temprano a todo",
+  "Ya tengo pensado el nombre del perrito",
+  "Soy adicta a las flores y plantas"
+];
+
+const PAYMENT_PLANS = [
+  {
+    label: "Un solo pago",
+    eyebrow: "1 pago de",
+    amount: "$69",
+    suffix: "dólares",
+    badge: "Más Conveniente"
+  },
+  {
+    label: "3 cuotas",
+    eyebrow: "3 pagos de",
+    amount: "$25",
+    suffix: "dólares",
+    badge: "Más Flexible"
+  }
+];
+
+const PAYMENT_INCLUDES = [
+  "Acceso inmediato a todo el material del curso",
+  "6 módulos y 20 lecciones on-demand",
+  "Tu Mapa Narrativo",
+  "Storytelling Lab Workbook con 150+ ejercicios",
+  "Banco de plantillas, prompts y puntos de partida",
+  "Módulo de universo visual",
+  "Acceso de por vida y a todas las actualizaciones futuras"
 ];
 
 const FAQ_ITEMS = [
@@ -269,6 +276,7 @@ export default function TheLab() {
   const [openModuleIndex, setOpenModuleIndex] = useState(0);
   const [openFaqIndex, setOpenFaqIndex] = useState(-1);
   const [selectedFitIndex, setSelectedFitIndex] = useState(0);
+  const [selectedPaymentIndex, setSelectedPaymentIndex] = useState(0);
   const [isFitCardVisible, setIsFitCardVisible] = useState(true);
   const smootherWrapperRef = useRef(null);
   const smootherContentRef = useRef(null);
@@ -309,7 +317,9 @@ export default function TheLab() {
       ]);
 
       if (!isActive) {
-        return;
+        if (!document.documentElement.classList.contains("lab-pin-sections")) {
+          return;
+        }
       }
 
       const gsap = gsapModule.gsap || gsapModule.default || gsapModule;
@@ -319,7 +329,9 @@ export default function TheLab() {
       const smootherContent = smootherContentRef.current;
 
       if (!smootherWrapper || !smootherContent) {
-        return;
+        if (!document.documentElement.classList.contains("lab-pin-sections")) {
+          return;
+        }
       }
 
       if (smootherWrapper && smootherContent) {
@@ -406,6 +418,10 @@ export default function TheLab() {
 
         gsap.set(methodSection, { clearProps: "all" });
 
+        if (!document.documentElement.classList.contains("lab-pin-sections")) {
+          return;
+        }
+
         if (window.innerWidth <= 900) {
           return;
         }
@@ -444,6 +460,10 @@ export default function TheLab() {
 
         mapCardPinsRef.current.forEach((trigger) => trigger.kill());
         mapCardPinsRef.current = [];
+
+        if (!document.documentElement.classList.contains("lab-pin-sections")) {
+          return;
+        }
 
         if (!mapStack || !mapSection || !mapCopy || window.innerWidth <= 900) {
           return;
@@ -654,6 +674,7 @@ export default function TheLab() {
   }, []);
 
   const selectedFit = LAB_FIT_CONTENT[selectedFitIndex];
+  const selectedPaymentPlan = PAYMENT_PLANS[selectedPaymentIndex];
 
   const handleFitSelect = (index) => {
     if (index === selectedFitIndex) {
@@ -751,10 +772,11 @@ export default function TheLab() {
 
               <article className="lab-storyline-copy lab-storyline-copy--first">
                 <p>
-                  Si llegaste aquí, me atrevo a adivinar que amas lo que haces,
-                  pero cada vez que piensas en tener que crear contenido para Instagram
-                  te dan ganas de salir corriendo.
+                  Seamos sinceras: Crear contenido se siente más difícil de lo que debería...
                 </p>
+                <strong>
+                  ILUSTRACIÓN: Persona rodeada de tags flotantes. (Guiones · Captions · Stories · Ideas · Reels · Voz propia · Coherencia · Calendario · Tendencias · Hooks · Narrativa · Consistencia)
+                </strong>
               </article>
 
               <figure className="lab-sketch lab-sketch--runner" aria-hidden="true">
@@ -765,10 +787,11 @@ export default function TheLab() {
 
               <article className="lab-storyline-copy lab-storyline-copy--second">
                 <p>
-                  Pero lo frustrante no es crear contenido. Es intentar hacerlo desde
-                  reglas que no fueron escritas para ti. Que te piden sonar perfecta,
-                  ser viral. Empujar cuando en verdad lo que quieres es conectar.
+                  Sobre todo cuando eres tú sola haciéndolo TODO
                 </p>
+                <small>
+                  La CEO, la contadora, la de marketing, la de atención al cliente... y ahora también la creadora de contenido.
+                </small>
               </article>
 
               <figure className="lab-sketch lab-sketch--knitter" aria-hidden="true">
@@ -779,9 +802,7 @@ export default function TheLab() {
 
               <article className="lab-storyline-copy lab-storyline-copy--final">
                 <p>
-                  Pero la idea no es convertirte en un gurú de las redes sociales,
-                  sino aprender a crear contenido desde lo que ya tienes: tu historia,
-                  tu mirada y tu voz. Y ahí es donde entra el storytelling.
+                  Pero la idea no es convertirte en un gurú de las redes sociales. Es aprender a crear desde lo que ya tienes:
                 </p>
               </article>
 
@@ -794,79 +815,25 @@ export default function TheLab() {
             <section className="lab-method" ref={methodSectionRef}>
               <div className="lab-method-panel surface-panel">
                 <div className="lab-method-copy">
-                  <p className="lab-pill eyebrow-pill">
-                    <span aria-hidden="true">⊙</span>
-                    Dentro del Storytelling Lab
-                  </p>
                   <h2>
-                    Un método práctico de storytelling para que publicar contenido
-                    deje de sentirse como adivinar en la oscuridad.
+                    El Storytelling Lab nació justamente para eso. No como un curso de marketing tradicional ni una colección de fórmulas genéricas para "hacer contenido para el algoritmo".
                   </h2>
                   <p>
-                    El Lab NO es un curso de marketing tradicional, ni una colección
-                    de fórmulas para "hacer contenido que venda". Es un laboratorio
-                    creativo y práctico donde aprendes a entender tu historia, ordenar
-                    tus ideas y convertirlas en contenido que se sienta auténtico y
-                    emocionalmente honesto, con una ruta concreta que puedas sostener
-                    en el tiempo, sin depender de la inspiración del día.
+                    Es un espacio práctico y humano donde aprendes a ordenar tus ideas y convertirlas en contenido que se sienta TUYO. Vas a encontrar una ruta concreta y herramientas prácticas para que tus ideas dejen de dar vueltas en tu cabeza y empiecen a convertirse en contenido.
                   </p>
-                </div>
-
-                <div className="lab-method-visuals" aria-hidden="true">
-                  <figure className="lab-laptop lab-laptop--video">
-                    <div className="lab-laptop-screen">
-                      <div className="lab-video-frame">
-                        <span>La esencia del objeto</span>
-                        <strong>Foto por intención</strong>
-                      </div>
-                    </div>
-                  </figure>
-                  <figure className="lab-laptop lab-laptop--workbook">
-                    <div className="lab-laptop-screen">
-                      <div className="lab-workbook-page">
-                        <span>Taller Creativo</span>
-                        <i />
-                        <i />
-                        <i />
-                      </div>
-                    </div>
-                  </figure>
-                  <figure className="lab-laptop lab-laptop--modules">
-                    <div className="lab-laptop-screen">
-                      <div className="lab-modules-list">
-                        <span>MÓDULO 1: Bienvenida</span>
-                        <i />
-                        <i />
-                        <span>MÓDULO 2: Los fundamentos del Storytelling</span>
-                        <i />
-                      </div>
-                    </div>
-                  </figure>
+                  <a className="lab-method-cta cta-button" href="#/storytelling-lab">
+                    Únete al Storytelling Lab
+                  </a>
                 </div>
               </div>
             </section>
 
             <section className="lab-includes" ref={includesSectionRef}>
               <div className="lab-includes-inner content-shell">
-                <div className="lab-includes-heading">
-                  <p className="lab-pill eyebrow-pill">
-                    <span aria-hidden="true">⊙</span>
-                    Dentro del Storytelling Lab
-                  </p>
-                  <h2>
-                    Todo lo que incluye el Lab
-                    <br />
-                    para destrabar tu contenido
-                  </h2>
-                  <p>
-                    Porque no se trata solo de tener ideas. Se trata de poder usarlas
-                    en los espacios donde de verdad comunicas lo que haces.
-                  </p>
-                </div>
-
                 <div className="lab-feature-grid">
                   {FEATURES.map((feature) => (
                     <article key={feature.title} className="lab-include-card surface-card">
+                      <span>{feature.label}</span>
                       <h3>{feature.title}</h3>
                       <p>{feature.description}</p>
                     </article>
@@ -909,57 +876,11 @@ export default function TheLab() {
             </div>
           </section>
 
-          <section className="lab-process">
-            <div className="lab-process-panel surface-panel">
-              <h2>Cómo funciona el Storytelling Lab</h2>
-              <div className="lab-process-grid">
-                {LAB_PROCESS_STEPS.map((step) => (
-                  <article className="lab-process-step" key={step.title}>
-                    <div className="lab-process-image-slot" aria-hidden="true" />
-                    <h3>{step.title}</h3>
-                    <p>{step.description}</p>
-                  </article>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          <section className="lab-use-cases">
-            <div className="lab-use-cases-inner content-shell">
-              <h2>
-                Algunas de las formas
-                <br />
-                en que puedes usar el Lab
-              </h2>
-              <div className="lab-use-map" ref={useCasesRef}>
-                <svg className="lab-use-lines" viewBox="0 0 1120 690" aria-hidden="true" preserveAspectRatio="none">
-                  <path
-                    d="M660 66C595 35 535 36 503 70C429 116 366 94 254 68C158 45 112 89 168 151C190 176 242 168 236 139C228 99 166 111 202 141C238 205 327 239 412 232C489 225 555 207 622 211C682 215 690 172 660 164C624 154 601 188 637 204C734 218 850 196 910 252C955 294 922 315 943 334C998 387 1005 467 913 516C794 580 619 535 553 406C522 355 472 352 429 376C365 411 279 399 207 371C150 348 107 398 126 455C145 512 227 507 257 462C280 427 315 459 285 486C255 513 215 545 240 595"
-                  />
-                  <circle className="lab-use-dot lab-use-dot--2" cx="660" cy="66" r="4" />
-                  <circle className="lab-use-dot lab-use-dot--1" cx="202" cy="141" r="4" />
-                  <circle className="lab-use-dot lab-use-dot--3" cx="637" cy="204" r="4" />
-                  <circle className="lab-use-dot lab-use-dot--4" cx="943" cy="334" r="4" />
-                  <circle className="lab-use-dot lab-use-dot--5" cx="553" cy="406" r="4" />
-                  <circle className="lab-use-dot lab-use-dot--6" cx="207" cy="371" r="4" />
-                  <circle className="lab-use-dot lab-use-dot--7" cx="240" cy="595" r="4" />
-                </svg>
-                {LAB_USE_CASES.map((item, index) => (
-                  <p className={`lab-use-label lab-use-label--${index + 1}`} key={item}>
-                    {item}
-                  </p>
-                ))}
-              </div>
-            </div>
-          </section>
-
           <section className="lab-fit">
             <div className="lab-fit-inner content-shell">
               <div className="lab-fit-copy">
                 <h2>
-                  ¿Pero cómo sé si el
-                  <br />
-                  Storytelling Lab es para mi?
+                  ¿Pero cómo sé si el Storytelling Lab es para mi?
                 </h2>
                 <div className="lab-fit-pills pill-cluster" aria-label="Tipos de negocios">
                   {LAB_FIT_CONTENT.map((fit, index) => (
@@ -978,8 +899,13 @@ export default function TheLab() {
 
               <div className="lab-fit-card-wrap">
                 <article className={`lab-fit-card surface-card${isFitCardVisible ? "" : " is-fading"}`}>
-                  <h3>{selectedFit.title}</h3>
-                  <p>{selectedFit.description}</p>
+                  <div>
+                    <h3>{selectedFit.title}</h3>
+                    <p>{selectedFit.description}</p>
+                  </div>
+                  <figure className="lab-fit-illustration" aria-hidden="true">
+                    <span />
+                  </figure>
                 </article>
               </div>
             </div>
@@ -1117,54 +1043,79 @@ export default function TheLab() {
           <section className="lab-price">
             <div className="lab-price-panel">
               <div className="lab-price-heading">
-                <h2>¿Entonces, de cuánto estamos hablando?</h2>
-                <p>Si te sumas al Lab hoy, recibes acceso inmediato a todo el material del curso</p>
+                <h2>Dos formas de entrar al Lab</h2>
               </div>
 
-              <div className="lab-price-options">
-                <article className="lab-price-option">
-                  <p className="lab-price-badge lab-price-badge--yellow">Más Conveniente</p>
-                  <h3>Un Solo Pago</h3>
-                  <p className="lab-price-installments">1 pago de</p>
-                  <p className="lab-price-amount">
-                    <span>$</span>69 <small>dólares</small>
-                  </p>
+              <div className="lab-price-tabs" aria-label="Opciones de pago">
+                {PAYMENT_PLANS.map((plan, index) => (
+                  <button
+                    className={selectedPaymentIndex === index ? "is-active" : ""}
+                    type="button"
+                    aria-pressed={selectedPaymentIndex === index}
+                    key={plan.label}
+                    onClick={() => setSelectedPaymentIndex(index)}
+                  >
+                    {plan.label}
+                  </button>
+                ))}
+              </div>
+
+              <article className="lab-price-offer">
+                <div className="lab-price-copy">
+                  <h3>Todo lo que incluye</h3>
+                  <ul>
+                    {PAYMENT_INCLUDES.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+
+                  <div className="lab-price-summary">
+                    <p className="lab-price-installments">{selectedPaymentPlan.eyebrow}</p>
+                    <p className="lab-price-amount">
+                      <span>{selectedPaymentPlan.amount}</span> <small>{selectedPaymentPlan.suffix}</small>
+                    </p>
+                    <p className="lab-price-badge">{selectedPaymentPlan.badge}</p>
+                  </div>
+
                   <a href="#/storytelling-lab" className="lab-price-cta cta-button">
                     Únete al Storytelling Lab
                   </a>
-                </article>
 
-                <article className="lab-price-option">
-                  <p className="lab-price-badge lab-price-badge--pink">Más Flexible</p>
-                  <h3>Pago Mensual</h3>
-                  <p className="lab-price-installments">2 pagos de</p>
-                  <p className="lab-price-amount">
-                    <span>$</span>39 <small>dólares</small>
-                  </p>
-                  <a href="#/storytelling-lab" className="lab-price-cta cta-button">
-                    Únete al Storytelling Lab
-                  </a>
-                </article>
-              </div>
+                  <div className="lab-payment-strip" aria-label="Métodos de pago aceptados">
+                    <span>VISA</span>
+                    <span>●●</span>
+                    <span>DISCOVER</span>
+                    <span>AMEX</span>
+                    <span>Pay</span>
+                    <span>G Pay</span>
+                    <span>$</span>
+                    <span>affirm</span>
+                    <span>Klarna</span>
+                  </div>
+                </div>
 
-              <div className="lab-payment-strip" aria-label="Métodos de pago aceptados">
-                <span>VISA</span>
-                <span>●●</span>
-                <span>DISCOVER</span>
-                <span>AMEX</span>
-                <span>Pay</span>
-                <span>G Pay</span>
-                <span>$</span>
-                <span>affirm</span>
-                <span>Klarna</span>
-              </div>
+                <figure className="lab-price-illustration" aria-hidden="true">
+                  <span />
+                </figure>
+              </article>
             </div>
           </section>
 
           <section className="lab-faq">
             <div className="lab-faq-panel">
-              <h2>Tengo algunas preguntas...</h2>
-              <p className="lab-faq-kicker">Sobre el curso</p>
+              <div className="lab-faq-copy">
+                <h2>Tengo algunas preguntas...</h2>
+                <p>
+                  Estas son algunas de las preguntas más comunes que me llegan antes de que alguien entre al Lab.
+                </p>
+                <p>
+                  Y si todavía no estás segura o tienes alguna otra pregunta, escríbeme!
+                </p>
+                <a href="mailto:hola@socialsbycaro.com" className="lab-faq-cta cta-button">
+                  Escríbeme!
+                </a>
+              </div>
+
               <div className="lab-faq-list">
                 {FAQ_ITEMS.map((question, index) => (
                   <article
@@ -1181,7 +1132,9 @@ export default function TheLab() {
                       ))}
                     >
                       <span>{question}</span>
-                      <ChevronIcon className="lab-faq-chevron" />
+                      <span className="lab-faq-symbol" aria-hidden="true">
+                        {openFaqIndex === index ? "−" : "+"}
+                      </span>
                     </button>
                     <div
                       className="lab-faq-answer"
