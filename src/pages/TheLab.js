@@ -277,22 +277,28 @@ function buildMapThreadPath(points, width) {
   const [bet, protagonist, obstacles, compass, route] = points;
   const leftEdge = { x: -8, y: bet.y };
   const rightEdge = { x: width + 8, y: route.y + 6 };
-  const loop = {
-    x: compass.x + (route.x - compass.x) * 0.46,
-    y: Math.max(34, compass.y + 22)
+  const format = (value) => value.toFixed(1);
+  const loopRadius = 36;
+  const loopTop = {
+    x: Math.min(route.x - 88, compass.x + Math.max(142, (route.x - compass.x) * 0.68)),
+    y: Math.max(34, Math.min(compass.y, route.y) + 26)
   };
+  const loopCenterY = loopTop.y + loopRadius;
+  const loopKappa = loopRadius * 0.5523;
 
   return [
-    `M${leftEdge.x.toFixed(1)} ${leftEdge.y.toFixed(1)}`,
-    `C${(bet.x - 160).toFixed(1)} ${(bet.y - 10).toFixed(1)} ${(bet.x - 58).toFixed(1)} ${(bet.y - 8).toFixed(1)} ${bet.x.toFixed(1)} ${bet.y.toFixed(1)}`,
-    `C${(bet.x + 90).toFixed(1)} ${(bet.y + 2).toFixed(1)} ${(protagonist.x - 150).toFixed(1)} ${(protagonist.y - 78).toFixed(1)} ${protagonist.x.toFixed(1)} ${protagonist.y.toFixed(1)}`,
-    `C${(protagonist.x + 116).toFixed(1)} ${(protagonist.y - 126).toFixed(1)} ${(obstacles.x - 178).toFixed(1)} ${(obstacles.y - 112).toFixed(1)} ${obstacles.x.toFixed(1)} ${obstacles.y.toFixed(1)}`,
-    `C${(obstacles.x + 86).toFixed(1)} ${(obstacles.y - 68).toFixed(1)} ${(compass.x - 110).toFixed(1)} ${(compass.y - 10).toFixed(1)} ${compass.x.toFixed(1)} ${compass.y.toFixed(1)}`,
-    `C${(compass.x + 68).toFixed(1)} ${(compass.y + 4).toFixed(1)} ${(loop.x - 56).toFixed(1)} ${(loop.y - 34).toFixed(1)} ${loop.x.toFixed(1)} ${loop.y.toFixed(1)}`,
-    `C${(loop.x + 56).toFixed(1)} ${(loop.y + 28).toFixed(1)} ${(loop.x + 36).toFixed(1)} ${(loop.y + 84).toFixed(1)} ${(loop.x - 12).toFixed(1)} ${(loop.y + 66).toFixed(1)}`,
-    `C${(loop.x - 60).toFixed(1)} ${(loop.y + 48).toFixed(1)} ${(loop.x - 32).toFixed(1)} ${(loop.y - 16).toFixed(1)} ${(loop.x + 24).toFixed(1)} ${(loop.y + 4).toFixed(1)}`,
-    `C${(loop.x + 68).toFixed(1)} ${(loop.y + 20).toFixed(1)} ${(route.x - 92).toFixed(1)} ${(route.y - 44).toFixed(1)} ${route.x.toFixed(1)} ${route.y.toFixed(1)}`,
-    `C${(route.x + 74).toFixed(1)} ${(route.y + 38).toFixed(1)} ${(rightEdge.x - 180).toFixed(1)} ${(rightEdge.y - 6).toFixed(1)} ${rightEdge.x.toFixed(1)} ${rightEdge.y.toFixed(1)}`
+    `M${format(leftEdge.x)} ${format(leftEdge.y)}`,
+    `C${format(bet.x - 190)} ${format(bet.y - 8)} ${format(bet.x - 70)} ${format(bet.y - 6)} ${format(bet.x)} ${format(bet.y)}`,
+    `C${format(bet.x + 118)} ${format(bet.y + 2)} ${format(protagonist.x - 128)} ${format(protagonist.y)} ${format(protagonist.x)} ${format(protagonist.y)}`,
+    `C${format(protagonist.x + 128)} ${format(protagonist.y)} ${format(obstacles.x - 158)} ${format(obstacles.y)} ${format(obstacles.x)} ${format(obstacles.y)}`,
+    `C${format(obstacles.x + 132)} ${format(obstacles.y)} ${format(compass.x - 142)} ${format(compass.y)} ${format(compass.x)} ${format(compass.y)}`,
+    `C${format(compass.x + 80)} ${format(compass.y)} ${format(loopTop.x - 86)} ${format(loopTop.y)} ${format(loopTop.x)} ${format(loopTop.y)}`,
+    `C${format(loopTop.x + loopKappa)} ${format(loopTop.y)} ${format(loopTop.x + loopRadius)} ${format(loopCenterY - loopKappa)} ${format(loopTop.x + loopRadius)} ${format(loopCenterY)}`,
+    `C${format(loopTop.x + loopRadius)} ${format(loopCenterY + loopKappa)} ${format(loopTop.x + loopKappa)} ${format(loopCenterY + loopRadius)} ${format(loopTop.x)} ${format(loopCenterY + loopRadius)}`,
+    `C${format(loopTop.x - loopKappa)} ${format(loopCenterY + loopRadius)} ${format(loopTop.x - loopRadius)} ${format(loopCenterY + loopKappa)} ${format(loopTop.x - loopRadius)} ${format(loopCenterY)}`,
+    `C${format(loopTop.x - loopRadius)} ${format(loopCenterY - loopKappa)} ${format(loopTop.x - loopKappa)} ${format(loopTop.y)} ${format(loopTop.x)} ${format(loopTop.y)}`,
+    `C${format(loopTop.x + 72)} ${format(loopTop.y)} ${format(route.x - 94)} ${format(route.y - 4)} ${format(route.x)} ${format(route.y)}`,
+    `C${format(route.x + 82)} ${format(route.y + 28)} ${format(rightEdge.x - 188)} ${format(rightEdge.y - 2)} ${format(rightEdge.x)} ${format(rightEdge.y)}`
   ].join("");
 }
 
