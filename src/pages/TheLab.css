@@ -1770,15 +1770,15 @@ top: 174px;
   height: 210px;
 }
 
-.lab-footer-bottom p {
+.lab-footer-bottom h2 {
   position: absolute;
   left: 50%;
-  bottom: -38px;
+  bottom: -24px;
   transform: translateX(-50%);
   margin: 0;
   color: #fffbe8;
   font-family: 'Libre Caslon Text', 'Times New Roman', serif;
-  font-size: clamp(106px, 10.6vw, 205px);
+  font-size: clamp(76px, 8vw, 107px);
   font-weight: 400;
   line-height: 0.78;
   letter-spacing: var(--lab-tracking-reset);
@@ -2185,7 +2185,7 @@ top: 174px;
     height: 150px;
   }
 
-  .lab-footer-bottom p {
+  .lab-footer-bottom h2 {
     bottom: -18px;
     font-size: clamp(52px, 13.5vw, 92px);
     white-space: nowrap;

@@ -1296,7 +1296,7 @@ export default function TheLab() {
 
               <div className="lab-footer-bottom">
                 <small>© 2026 Socials by Caro</small>
-                <p>Storytelling Lab</p>
+                <h2>Storytelling Lab</h2>
                 <small>Todos los derechos reservados.</small>
               </div>
             </div>
