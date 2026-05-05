@@ -392,7 +392,6 @@ export default function TheLab() {
   const mapStackRef = useRef(null);
   const mapLineSvgRef = useRef(null);
   const mapLinePathRef = useRef(null);
-  const useCasesRef = useRef(null);
 
   const motionTweenRef = useRef(null);
   const mapLineTweenRef = useRef(null);
@@ -680,73 +679,6 @@ export default function TheLab() {
         });
       };
 
-      const useCases = useCasesRef.current;
-      let useCasesAnimation;
-      let useCasesObserver;
-
-      if (useCases) {
-        const paths = useCases.querySelectorAll(".lab-use-lines path");
-        const dots = useCases.querySelectorAll(".lab-use-dot");
-        const labels = useCases.querySelectorAll(".lab-use-label");
-        const shuffledLabels = gsap.utils.shuffle(Array.from(labels));
-
-        if (canAnimateSpiral() && window.innerWidth > 900) {
-          paths.forEach((path) => {
-            const pathLength = path.getTotalLength();
-
-            gsap.set(path, {
-              strokeDasharray: pathLength,
-              strokeDashoffset: pathLength
-            });
-          });
-
-          gsap.set(labels, { autoAlpha: 0, y: 12 });
-          gsap.set(dots, { autoAlpha: 0, scale: 0.5, transformOrigin: "center" });
-
-          useCasesAnimation = gsap.timeline({
-            defaults: { ease: "power2.out" },
-            paused: true
-          });
-
-          useCasesAnimation
-            .to(shuffledLabels, {
-              autoAlpha: 1,
-              y: 0,
-              duration: () => gsap.utils.random(0.42, 0.72),
-              stagger: () => gsap.utils.random(0.05, 0.22)
-            })
-            .to(paths, {
-              strokeDashoffset: 0,
-              duration: 1.35,
-              ease: "power1.inOut"
-            })
-            .to(dots, {
-              autoAlpha: 1,
-              scale: 1,
-              duration: 0.22,
-              stagger: 0.035
-            }, "-=0.28");
-
-          useCasesObserver = new IntersectionObserver((entries) => {
-            if (entries.some((entry) => entry.isIntersecting)) {
-              useCasesAnimation.play();
-              useCasesObserver.disconnect();
-            }
-          }, { rootMargin: "0px 0px -28% 0px", threshold: 0.12 });
-
-          useCasesObserver.observe(useCases);
-        } else {
-          paths.forEach((path) => {
-            gsap.set(path, {
-              strokeDasharray: path.getTotalLength(),
-              strokeDashoffset: 0
-            });
-          });
-          gsap.set(dots, { autoAlpha: 1, scale: 1, transformOrigin: "center" });
-          gsap.set(labels, { autoAlpha: 1, y: 0, clearProps: "transform" });
-        }
-      }
-
       const scheduleUpdate = () => {
         if (resizeRafRef.current) {
           cancelAnimationFrame(resizeRafRef.current);
@@ -814,14 +746,6 @@ export default function TheLab() {
           mapLineTweenRef.current.scrollTrigger?.kill();
           mapLineTweenRef.current.kill();
           mapLineTweenRef.current = null;
-        }
-
-        if (useCasesAnimation) {
-          useCasesAnimation.kill();
-        }
-
-        if (useCasesObserver) {
-          useCasesObserver.disconnect();
         }
 
         mapCardPinsRef.current.forEach((trigger) => trigger.kill());
