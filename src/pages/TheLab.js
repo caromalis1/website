@@ -824,7 +824,7 @@ export default function TheLab() {
                 que crear contenido deje de sentirse como jugar a las adivinanzas.
               </p>
               <div className="home-hero-actions">
-                <a className="home-hero-cta home-hero-cta--primary cta-button" href="#/storytelling-lab">
+                <a className="home-hero-cta home-hero-cta--primary cta-button" href="/storytelling-lab">
                   Únete al Storytelling Lab
                 </a>
                 <button
@@ -915,7 +915,7 @@ export default function TheLab() {
                   <p>
                     Es un espacio práctico y humano donde aprendes a ordenar tus ideas y convertirlas en contenido que se sienta TUYO. Vas a encontrar una ruta concreta y herramientas prácticas para que tus ideas dejen de dar vueltas en tu cabeza y empiecen a convertirse en contenido.
                   </p>
-                  <a className="lab-method-cta cta-button" href="#/storytelling-lab">
+                  <a className="lab-method-cta cta-button" href="/storytelling-lab">
                     Únete al Storytelling Lab
                   </a>
                 </div>
@@ -1176,7 +1176,7 @@ export default function TheLab() {
                     <p className="lab-price-badge">{selectedPaymentPlan.badge}</p>
                   </div>
 
-                  <a href="#/storytelling-lab" className="lab-price-cta cta-button">
+                  <a href="/storytelling-lab" className="lab-price-cta cta-button">
                     Únete al Storytelling Lab
                   </a>
 
@@ -1264,23 +1264,23 @@ export default function TheLab() {
                   <a href="mailto:hola@socialsbycaro.com" aria-label="Email">
                     <span>✉</span>
                   </a>
-                  <a href="#/instagram" aria-label="Instagram">
+                  <a href="/instagram" aria-label="Instagram">
                     <span>◎</span>
                   </a>
-                  <a href="#/pinterest" aria-label="Pinterest">
+                  <a href="/pinterest" aria-label="Pinterest">
                     <span>p</span>
                   </a>
-                  <a href="#/linkedin" aria-label="LinkedIn">
+                  <a href="/linkedin" aria-label="LinkedIn">
                     <span>in</span>
                   </a>
-                  <a href="#/facebook" aria-label="Facebook">
+                  <a href="/facebook" aria-label="Facebook">
                     <span>f</span>
                   </a>
                 </div>
                 <nav className="lab-footer-links" aria-label="Legal">
-                  <a href="#/terms">Términos y condiciones</a>
-                  <a href="#/privacy">Política de privacidad</a>
-                  <a href="#/contact">Contacto</a>
+                  <a href="/terms">Términos y condiciones</a>
+                  <a href="/privacy">Política de privacidad</a>
+                  <a href="/contact">Contacto</a>
                 </nav>
               </div>
 
