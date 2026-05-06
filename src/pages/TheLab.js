@@ -1,4 +1,5 @@
 import { useLayoutEffect, useRef, useState } from "react";
+import SiteFooter from "../components/SiteFooter";
 import SiteHeader from "../components/SiteHeader";
 import "./TheLab.css";
 
@@ -34,6 +35,16 @@ const FEATURES = [
     description: "Tu contenido se ve antes de que lo lean. Este módulo te ayuda a que lo visual y lo escrito cuenten la misma historia."
   }
 ];
+
+const LAB_ILLUSTRATION_IMAGES = {
+  map: "/storytelling-lab/lab-mapa-narrativo-placeholder.png",
+  workbook: "/storytelling-lab/lab-workbook-placeholder.png",
+  templates: "/storytelling-lab/lab-plantillas-placeholder.png",
+  modules: "/storytelling-lab/lab-modulos-placeholder.png",
+  visual: "/storytelling-lab/lab-identidad-visual-placeholder.png",
+  fit: "/storytelling-lab/lab-para-mi-placeholder.png",
+  price: "/storytelling-lab/lab-pago-placeholder.png"
+};
 
 const NARRATIVE_MAP_STEPS = [
   {
@@ -313,61 +324,7 @@ function ChevronIcon({ className }) {
 function LabFeatureIllustration({ type }) {
   return (
     <figure className={`lab-include-illustration lab-include-illustration--${type}`} aria-hidden="true">
-      <svg viewBox="0 0 180 150" focusable="false">
-        {type === "map" && (
-          <>
-            <path d="M34 105C51 70 72 47 105 36C125 30 143 30 156 38" />
-            <path d="M45 105L83 91L120 101L151 82" />
-            <circle cx="82" cy="91" r="8" />
-            <circle cx="121" cy="101" r="8" />
-            <path d="M54 58L70 82L56 112L39 86Z" />
-            <path d="M99 41L119 70L106 101L83 91Z" />
-          </>
-        )}
-        {type === "workbook" && (
-          <>
-            <path d="M48 36H125C135 36 142 43 142 53V119H60C53 119 48 114 48 107Z" />
-            <path d="M60 36V119" />
-            <path d="M76 58H121" />
-            <path d="M76 78H116" />
-            <path d="M76 98H105" />
-            <path d="M134 46C145 55 149 67 145 82" />
-          </>
-        )}
-        {type === "templates" && (
-          <>
-            <rect x="35" y="42" width="55" height="68" rx="5" />
-            <rect x="88" y="32" width="58" height="70" rx="5" />
-            <path d="M47 60H76" />
-            <path d="M47 78H70" />
-            <path d="M101 52H133" />
-            <path d="M101 71H127" />
-            <path d="M70 116C88 126 118 124 139 110" />
-          </>
-        )}
-        {type === "modules" && (
-          <>
-            <rect x="41" y="44" width="98" height="64" rx="7" />
-            <path d="M83 64L110 76L83 89Z" />
-            <path d="M51 122H129" />
-            <path d="M69 108L62 122" />
-            <path d="M111 108L118 122" />
-            <circle cx="143" cy="45" r="13" />
-            <path d="M143 38V52" />
-            <path d="M136 45H150" />
-          </>
-        )}
-        {type === "visual" && (
-          <>
-            <path d="M43 89C55 54 83 35 116 41C137 45 150 59 153 79" />
-            <path d="M43 89C70 119 117 122 153 79" />
-            <circle cx="97" cy="80" r="18" />
-            <circle cx="97" cy="80" r="6" />
-            <path d="M55 38C63 30 75 27 86 31" />
-            <path d="M128 113C139 111 149 105 156 96" />
-          </>
-        )}
-      </svg>
+      <img src={LAB_ILLUSTRATION_IMAGES[type]} alt="" loading="lazy" />
     </figure>
   );
 }
@@ -1004,7 +961,7 @@ export default function TheLab() {
                     <p>{selectedFit.description}</p>
                   </div>
                   <figure className="lab-fit-illustration" aria-hidden="true">
-                    <span />
+                    <img src={LAB_ILLUSTRATION_IMAGES.fit} alt="" loading="lazy" />
                   </figure>
                 </article>
               </div>
@@ -1194,7 +1151,7 @@ export default function TheLab() {
                 </div>
 
                 <figure className="lab-price-illustration" aria-hidden="true">
-                  <span />
+                  <img src={LAB_ILLUSTRATION_IMAGES.price} alt="" loading="lazy" />
                 </figure>
               </article>
             </div>
@@ -1253,44 +1210,7 @@ export default function TheLab() {
             </div>
           </section>
 
-          <footer className="lab-footer">
-            <svg className="lab-footer-wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
-              <path d="M0 38C184 24 335 34 493 45C681 58 823 65 1013 55C1177 47 1280 42 1440 30V0H0Z" />
-            </svg>
-
-            <div className="lab-footer-inner">
-              <div className="lab-footer-top">
-                <div className="lab-footer-socials" aria-label="Redes sociales">
-                  <a href="mailto:hola@socialsbycaro.com" aria-label="Email">
-                    <span>✉</span>
-                  </a>
-                  <a href="/instagram" aria-label="Instagram">
-                    <span>◎</span>
-                  </a>
-                  <a href="/pinterest" aria-label="Pinterest">
-                    <span>p</span>
-                  </a>
-                  <a href="/linkedin" aria-label="LinkedIn">
-                    <span>in</span>
-                  </a>
-                  <a href="/facebook" aria-label="Facebook">
-                    <span>f</span>
-                  </a>
-                </div>
-                <nav className="lab-footer-links" aria-label="Legal">
-                  <a href="/terms">Términos y condiciones</a>
-                  <a href="/privacy">Política de privacidad</a>
-                  <a href="/contact">Contacto</a>
-                </nav>
-              </div>
-
-              <div className="lab-footer-bottom">
-                <small>© 2026 Socials by Caro</small>
-                <h2>Storytelling Lab</h2>
-                <small>Todos los derechos reservados.</small>
-              </div>
-            </div>
-          </footer>
+          <SiteFooter />
           </main>
         </div>
       </div>

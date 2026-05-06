@@ -1,4 +1,5 @@
 import './Home.css';
+import SiteFooter from '../components/SiteFooter';
 import SiteHeader from '../components/SiteHeader';
 
 const SERVICES = [
@@ -136,6 +137,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <SiteFooter title="Caro Malis" />
     </main>
   );
 }

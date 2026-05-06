@@ -1,12 +1,7 @@
 import { useEffect, useState } from 'react';
 import Logo from './Logo';
+import { NAV_ITEMS, ROUTES } from '../routes';
 import './SiteHeader.css';
-
-const NAV_ITEMS = [
-  { href: '/', label: 'Home' },
-  { href: '/storytelling-lab', label: 'Storytelling Lab' },
-  { href: '/about', label: 'Sobre mi' }
-];
 
 export default function SiteHeader({ logoSublabel = 'Storytelling Lab' }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -26,7 +21,7 @@ export default function SiteHeader({ logoSublabel = 'Storytelling Lab' }) {
     <>
       <header className={`site-header${isScrolled ? ' is-scrolled' : ''}`}>
         <div className="site-header-inner">
-        <a href="/" className="brand" aria-label="Socials by Caro">
+          <a href={ROUTES.home} className="brand" aria-label="Socials by Caro">
             <Logo label="Caro Malis" sublabel={logoSublabel} />
           </a>
           <nav className="nav site-nav" aria-label="Primary">

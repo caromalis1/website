@@ -2,14 +2,7 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import Home from './pages/Home';
 import TheLab from './pages/TheLab';
-
-const getCurrentRoute = () => window.location.pathname || '/';
-
-const normalizeLegacyHashRoute = () => {
-  if (window.location.hash.startsWith('#/')) {
-    window.history.replaceState(null, '', window.location.hash.slice(1));
-  }
-};
+import { getCurrentRoute, normalizeLegacyHashRoute, normalizeRoutePath, ROUTES } from './routes';
 
 function App() {
   const [route, setRoute] = useState(() => {
@@ -21,9 +14,20 @@ function App() {
     const onPopState = () => setRoute(getCurrentRoute());
 
     const onDocumentClick = (event) => {
-      const link = event.target.closest('a[href]');
+      const link = event.target instanceof Element
+        ? event.target.closest('a[href]')
+        : null;
 
-      if (!link || event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+      if (
+        !link ||
+        event.defaultPrevented ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey ||
+        link.target ||
+        link.hasAttribute('download')
+      ) {
         return;
       }
 
@@ -37,9 +41,12 @@ function App() {
 
       event.preventDefault();
 
-      if (url.pathname !== window.location.pathname || url.search !== window.location.search) {
-        window.history.pushState(null, '', `${url.pathname}${url.search}${url.hash}`);
-        setRoute(url.pathname || '/');
+      const nextPath = normalizeRoutePath(url.pathname);
+      const currentPath = normalizeRoutePath(window.location.pathname);
+
+      if (nextPath !== currentPath || url.search !== window.location.search) {
+        window.history.pushState(null, '', `${nextPath}${url.search}${url.hash}`);
+        setRoute(nextPath);
       }
     };
 
@@ -75,28 +82,15 @@ function App() {
 
   const renderRoute = () => {
     switch (route) {
-      case '/storytelling-lab':
+      case ROUTES.storytellingLab:
         return <TheLab />;
       default:
         return <Home />;
     }
   };
-  const isStorytellingLabRoute = route === '/storytelling-lab';
-
   return (
     <div className="App">
       {renderRoute()}
-      {!isStorytellingLabRoute && (
-        <footer className="site-footer">
-          <div className="inner">
-            <small>© {new Date().getFullYear()} Socials by Caro</small>
-            <nav className="nav">
-              <a href="/" className="nav-link">Home</a>
-              <a href="/storytelling-lab" className="nav-link">Storytelling Lab</a>
-            </nav>
-          </div>
-        </footer>
-      )}
     </div>
   );
 }
