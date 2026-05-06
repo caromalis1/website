@@ -1138,15 +1138,29 @@ export default function TheLab() {
                   </a>
 
                   <div className="lab-payment-strip" aria-label="Métodos de pago aceptados">
-                    <span>VISA</span>
-                    <span>●●</span>
-                    <span>DISCOVER</span>
-                    <span>AMEX</span>
-                    <span>Pay</span>
-                    <span>G Pay</span>
-                    <span>$</span>
-                    <span>affirm</span>
-                    <span>Klarna</span>
+                    <span className="lab-payment-method" aria-label="Visa">
+                      <i className="fab fa-cc-visa" aria-hidden="true" />
+                    </span>
+                    <span className="lab-payment-method" aria-label="Mastercard">
+                      <i className="fab fa-cc-mastercard" aria-hidden="true" />
+                    </span>
+                    <span className="lab-payment-method" aria-label="Discover">
+                      <i className="fab fa-cc-discover" aria-hidden="true" />
+                    </span>
+                    <span className="lab-payment-method" aria-label="American Express">
+                      <i className="fab fa-cc-amex" aria-hidden="true" />
+                    </span>
+                    <span className="lab-payment-method" aria-label="Apple Pay">
+                      <i className="fab fa-apple-pay" aria-hidden="true" />
+                    </span>
+                    <span className="lab-payment-method" aria-label="Google Pay">
+                      <i className="fab fa-google-pay" aria-hidden="true" />
+                    </span>
+                    <span className="lab-payment-method lab-payment-method--cash" aria-label="Cash App">
+                      <i className="fas fa-dollar-sign" aria-hidden="true" />
+                    </span>
+                    <span className="lab-payment-method lab-payment-method--text">affirm</span>
+                    <span className="lab-payment-method lab-payment-method--text">Klarna</span>
                   </div>
                 </div>
 

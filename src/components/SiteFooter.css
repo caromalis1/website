@@ -68,9 +68,10 @@
   letter-spacing: 0;
 }
 
-.site-lab-footer-socials a:first-child span,
-.site-lab-footer-socials a:nth-child(4) span {
-  border-radius: 0;
+.site-lab-footer-socials i {
+  display: block;
+  font-size: 15px;
+  line-height: 1;
 }
 
 .site-lab-footer-links {

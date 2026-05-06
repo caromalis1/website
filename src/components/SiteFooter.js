@@ -11,19 +11,29 @@ export default function SiteFooter({ title = 'Storytelling Lab' }) {
         <div className="site-lab-footer-top">
           <div className="site-lab-footer-socials" aria-label="Redes sociales">
             <a href="mailto:hola@socialsbycaro.com" aria-label="Email">
-              <span>✉</span>
+              <span>
+                <i className="fas fa-envelope" aria-hidden="true" />
+              </span>
             </a>
             <a href="/instagram" aria-label="Instagram">
-              <span>◎</span>
+              <span>
+                <i className="fab fa-instagram" aria-hidden="true" />
+              </span>
             </a>
             <a href="/pinterest" aria-label="Pinterest">
-              <span>p</span>
+              <span>
+                <i className="fab fa-pinterest-p" aria-hidden="true" />
+              </span>
             </a>
             <a href="/linkedin" aria-label="LinkedIn">
-              <span>in</span>
+              <span>
+                <i className="fab fa-linkedin-in" aria-hidden="true" />
+              </span>
             </a>
             <a href="/facebook" aria-label="Facebook">
-              <span>f</span>
+              <span>
+                <i className="fab fa-facebook-f" aria-hidden="true" />
+              </span>
             </a>
           </div>
           <nav className="site-lab-footer-links" aria-label="Legal">
