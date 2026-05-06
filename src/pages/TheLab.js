@@ -1,5 +1,5 @@
 import { useLayoutEffect, useRef, useState } from "react";
-import Logo from "../components/Logo";
+import SiteHeader from "../components/SiteHeader";
 import "./TheLab.css";
 
 const FEATURES = [
@@ -806,21 +806,11 @@ export default function TheLab() {
   };
 
   return (
-    <div className="lab-scroll-wrapper" ref={smootherWrapperRef}>
-      <div className="lab-scroll-content" ref={smootherContentRef}>
-        <main className="lab">
-          <header className="site-header">
-            <div className="site-header-inner">
-              <a href="#/" className="brand" aria-label="Socials by Caro">
-                <Logo label="Caro Malis" sublabel="Storytelling Lab" />
-              </a>
-              <nav className="nav site-nav" aria-label="Primary">
-                <a href="#/" className="nav-link">Home</a>
-                <a href="#/storytelling-lab" className="nav-link">Storytelling Lab</a>
-                <a href="#/about" className="nav-link">Sobre mi</a>
-              </nav>
-            </div>
-          </header>
+    <>
+      <SiteHeader />
+      <div className="lab-scroll-wrapper" ref={smootherWrapperRef}>
+        <div className="lab-scroll-content" ref={smootherContentRef}>
+          <main className="lab">
 
           <section className="home-hero" ref={homeHeroRef}>
             <div className="home-hero-content">
@@ -1301,8 +1291,9 @@ export default function TheLab() {
               </div>
             </div>
           </footer>
-    </main>
+          </main>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

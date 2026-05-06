@@ -1,5 +1,5 @@
 import './Home.css';
-import Logo from '../components/Logo';
+import SiteHeader from '../components/SiteHeader';
 
 const SERVICES = [
   'Creative Content Production',
@@ -53,18 +53,7 @@ const FEATURED_WORK = [
 export default function Home() {
   return (
     <main className="portfolio-home">
-      <header className="site-header portfolio-header">
-        <div className="site-header-inner">
-          <a href="#/" className="brand" aria-label="Carolina Malis">
-            <Logo label="Caro Malis" sublabel="Content Studio" />
-          </a>
-          <nav className="nav site-nav" aria-label="Primary">
-            <a href="#/" className="nav-link">Home</a>
-            <a href="#/storytelling-lab" className="nav-link">Storytelling Lab</a>
-            <a href="#/about" className="nav-link">Sobre mi</a>
-          </nav>
-        </div>
-      </header>
+      <SiteHeader logoSublabel="Content Studio" />
 
       <section className="portfolio-hero">
         <div className="portfolio-hero-copy">
