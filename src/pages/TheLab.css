@@ -3009,18 +3009,18 @@ top: 174px;
 }
 
 .lab-price .lab-payment-strip {
-    width: 100%;
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: space-evenly;
-    /* gap: 2px; */
-    margin: 8px 0;
+  width: min(100%, 465px);
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 0.8vw, 12px);
+  margin: 8px 0 0;
 }
 
 .lab-price .lab-payment-method {
   flex: 0 0 auto;
-  width: 34px;
+  width: 28px;
   min-width: 0;
   min-height: 22px;
   padding: 0;
@@ -3041,13 +3041,13 @@ top: 174px;
 }
 
 .lab-price .lab-payment-method i {
-  font-size: 21px;
+  font-size: 19px;
 }
 
 .lab-price .lab-payment-method--text {
-  width: 54px;
+  width: 48px;
   min-width: 0;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .lab-price .lab-payment-method--cash {
@@ -3057,6 +3057,169 @@ top: 174px;
 .lab-price-illustration {
   --lab-illustration-height: auto;
   align-self: stretch;
+}
+
+.lab-modal-open,
+.lab-modal-open body {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+.lab-payment-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 28px;
+  background: rgba(28, 22, 18, 0.42);
+  backdrop-filter: blur(10px);
+  animation: lab-modal-fade-in 180ms ease forwards;
+}
+
+.lab-payment-dialog {
+  position: relative;
+  width: min(94vw, 1260px);
+  max-height: calc(100dvh - 48px);
+  display: block;
+  overflow: hidden;
+  overscroll-behavior: contain;
+  border-radius: 18px;
+  background: #fffdf7;
+  box-shadow: 0 28px 90px rgba(31, 20, 16, 0.24);
+  animation: lab-modal-rise-in 260ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.lab-payment-modal-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  z-index: 5;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(49, 40, 34, 0.16);
+  border-radius: 50%;
+  background: rgba(255, 253, 247, 0.92);
+  color: var(--lab-body);
+  cursor: pointer;
+  font-family: var(--paragraph-font);
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1;
+  box-shadow: 0 8px 22px rgba(31, 20, 16, 0.1);
+}
+
+.lab-payment-modal-close span {
+  display: block;
+  transform: translateY(-1px);
+}
+
+.lab-payment-modal-close:hover {
+  color: var(--lab-pink);
+}
+
+.lab-price--modal {
+  --lab-shell-narrow: min(100%, 1080px);
+  --lab-shell-wide: min(100%, 1200px);
+  --lab-panel-pad-x: clamp(28px, 3.2vw, 52px);
+  --lab-panel-pad-y: clamp(28px, 2.8vw, 38px);
+  --lab-card-gap: clamp(28px, 3vw, 48px);
+  padding: 32px 34px 34px;
+  background: #fffdf7;
+}
+
+.lab-price--modal .lab-price-panel {
+  width: 100%;
+}
+
+.lab-price--modal .lab-price-heading h2 {
+  width: calc(100% - 96px);
+  min-height: 56px;
+  font-size: clamp(32px, 3vw, 42px);
+}
+
+.lab-price--modal .lab-price-tabs {
+  margin: 14px auto 18px;
+}
+
+.lab-price--modal .lab-price-tabs button {
+  min-height: 32px;
+}
+
+.lab-price--modal .lab-price-offer {
+  min-height: 0;
+  background: var(--lab-panel);
+}
+
+.lab-price--modal .lab-price-copy h3 {
+  margin-bottom: 14px;
+  font-size: clamp(30px, 3vw, 42px);
+}
+
+.lab-price--modal .lab-price-copy li {
+  font-size: clamp(15px, 1.25vw, 19px);
+  line-height: 1.16;
+}
+
+.lab-price--modal .lab-price-summary {
+  margin-top: 24px;
+}
+
+.lab .lab-price--modal .lab-price-installments {
+  margin-bottom: 8px;
+  font-size: clamp(15px, 1.1vw, 18px);
+}
+
+.lab-price--modal .lab-price-amount span {
+  font-size: clamp(40px, 3.3vw, 52px);
+}
+
+.lab-price--modal .lab-price-amount small {
+  font-size: clamp(16px, 1.15vw, 19px);
+}
+
+.lab .lab-price--modal .lab-price-badge {
+  padding: 7px 20px;
+  font-size: clamp(15px, 1.1vw, 18px);
+}
+
+.lab-price--modal .lab-price-cta {
+  min-height: 48px;
+  margin-top: 22px;
+  font-size: clamp(16px, 1.2vw, 19px);
+}
+
+.lab-price--modal .lab-payment-strip {
+  margin: 6px 0 0;
+}
+
+.lab-price--modal .lab-price-illustration img {
+  width: min(58%, 180px);
+  height: min(58%, 180px);
+}
+
+@keyframes lab-modal-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes lab-modal-rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .lab-faq {
@@ -3430,6 +3593,30 @@ top: 174px;
     align-self: auto;
     height: 190px;
     order: -1;
+  }
+
+  .lab-payment-modal {
+    padding: 12px;
+  }
+
+  .lab-payment-dialog {
+    max-height: 92svh;
+    border-radius: 14px;
+  }
+
+  .lab-payment-modal-close {
+    top: 12px;
+    width: 38px;
+    height: 38px;
+    margin: 12px 12px -50px auto;
+  }
+
+  .lab-price--modal {
+    padding: 28px 14px 22px;
+  }
+
+  .lab-price--modal .lab-price-heading h2 {
+    width: calc(100% - 56px);
   }
 
   .lab-faq {

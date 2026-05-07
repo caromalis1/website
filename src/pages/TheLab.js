@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import SiteFooter from "../components/SiteFooter";
 import SiteHeader from "../components/SiteHeader";
 import "./TheLab.css";
@@ -254,9 +254,9 @@ const SPIRAL_VIEWBOX = {
 const SPIRAL_PATH_D =
   "M786 0C872 70 904 201 868 303C822 431 659 464 486 508C322 550 146 603 123 742C96 908 218 1015 394 1058C558 1098 682 1033 760 1112C825 1179 706 1218 750 1284C782 1333 894 1293 913 1374C957 1560 715 1692 505 1787C397 1836 313 1856 296 1938C282 2006 338 2070 423 2054C487 2041 505 1985 468 1958C425 1927 359 1962 370 2030C384 2119 526 2137 635 2096";
 const SPIRAL_SCROLL = {
-  start: "top 74%",
-  travelHeightScale: 0.86,
-  minTravelHeightScale: 1.2,
+  start: "top 44%",
+  travelHeightScale: 0.72,
+  minTravelHeightScale: 0.95,
   scrub: 0.55
 };
 const SMOOTHER_OPTIONS = {
@@ -335,6 +335,7 @@ export default function TheLab() {
   const [selectedFitIndex, setSelectedFitIndex] = useState(0);
   const [selectedPaymentIndex, setSelectedPaymentIndex] = useState(0);
   const [isFitCardVisible, setIsFitCardVisible] = useState(true);
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   const smootherWrapperRef = useRef(null);
   const smootherContentRef = useRef(null);
   const homeHeroRef = useRef(null);
@@ -737,6 +738,43 @@ export default function TheLab() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!isPaymentModalOpen) {
+      return undefined;
+    }
+
+    const smoother = smootherRef.current;
+    const previousHtmlOverflow = document.documentElement.style.overflow;
+    const previousOverflow = document.body.style.overflow;
+
+    if (smoother?.paused) {
+      smoother.paused(true);
+    }
+
+    document.documentElement.classList.add("lab-modal-open");
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setIsPaymentModalOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.documentElement.classList.remove("lab-modal-open");
+      document.documentElement.style.overflow = previousHtmlOverflow;
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+
+      if (smoother?.paused) {
+        smoother.paused(false);
+      }
+    };
+  }, [isPaymentModalOpen]);
+
   const selectedFit = LAB_FIT_CONTENT[selectedFitIndex];
   const selectedPaymentPlan = PAYMENT_PLANS[selectedPaymentIndex];
 
@@ -759,12 +797,101 @@ export default function TheLab() {
   };
 
   const scrollToStoryDetails = () => {
-    spiralSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    const target = spiralSectionRef.current;
+
+    if (!target) {
+      return;
+    }
+
+    if (smootherRef.current) {
+      smootherRef.current.scrollTo(target, true, "top top");
+      return;
+    }
+
+    window.scrollTo({
+      top: target.offsetTop,
+      behavior: "smooth"
+    });
   };
+
+  const renderPaymentTabs = (labelId) => (
+    <div className="lab-price-tabs" aria-label="Opciones de pago" aria-labelledby={labelId}>
+      {PAYMENT_PLANS.map((plan, index) => (
+        <button
+          className={selectedPaymentIndex === index ? "is-active" : ""}
+          type="button"
+          aria-pressed={selectedPaymentIndex === index}
+          key={plan.label}
+          onClick={() => setSelectedPaymentIndex(index)}
+        >
+          {plan.label}
+        </button>
+      ))}
+    </div>
+  );
+
+  const renderPaymentStrip = () => (
+    <div className="lab-payment-strip" aria-label="Métodos de pago aceptados">
+      <span className="lab-payment-method" aria-label="Visa">
+        <i className="fab fa-cc-visa" aria-hidden="true" />
+      </span>
+      <span className="lab-payment-method" aria-label="Mastercard">
+        <i className="fab fa-cc-mastercard" aria-hidden="true" />
+      </span>
+      <span className="lab-payment-method" aria-label="Discover">
+        <i className="fab fa-cc-discover" aria-hidden="true" />
+      </span>
+      <span className="lab-payment-method" aria-label="American Express">
+        <i className="fab fa-cc-amex" aria-hidden="true" />
+      </span>
+      <span className="lab-payment-method" aria-label="Apple Pay">
+        <i className="fab fa-apple-pay" aria-hidden="true" />
+      </span>
+      <span className="lab-payment-method" aria-label="Google Pay">
+        <i className="fab fa-google-pay" aria-hidden="true" />
+      </span>
+      <span className="lab-payment-method lab-payment-method--cash" aria-label="Cash App">
+        <i className="fas fa-dollar-sign" aria-hidden="true" />
+      </span>
+      <span className="lab-payment-method lab-payment-method--text">affirm</span>
+      <span className="lab-payment-method lab-payment-method--text">Klarna</span>
+    </div>
+  );
+
+  const renderPaymentOffer = (modifier = "") => (
+    <article className={`lab-price-offer${modifier}`}>
+      <div className="lab-price-copy">
+        <h3>Todo lo que incluye</h3>
+        <ul>
+          {PAYMENT_INCLUDES.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+
+        <div className="lab-price-summary">
+          <p className="lab-price-installments">{selectedPaymentPlan.eyebrow}</p>
+          <p className="lab-price-amount">
+            <span>{selectedPaymentPlan.amount}</span> <small>{selectedPaymentPlan.suffix}</small>
+          </p>
+          <p className="lab-price-badge">{selectedPaymentPlan.badge}</p>
+        </div>
+
+        <a href="/storytelling-lab" className="lab-price-cta cta-button">
+          Únete al Storytelling Lab
+        </a>
+
+        {renderPaymentStrip()}
+      </div>
+
+      <figure className="lab-price-illustration" aria-hidden="true">
+        <img src={LAB_ILLUSTRATION_IMAGES.price} alt="" loading="lazy" />
+      </figure>
+    </article>
+  );
 
   return (
     <>
-      <SiteHeader />
+      <SiteHeader contentFadeRgb="251, 250, 246" />
       <div className="lab-scroll-wrapper" ref={smootherWrapperRef}>
         <div className="lab-scroll-content" ref={smootherContentRef}>
           <main className="lab">
@@ -781,9 +908,13 @@ export default function TheLab() {
                 que crear contenido deje de sentirse como jugar a las adivinanzas.
               </p>
               <div className="home-hero-actions">
-                <a className="home-hero-cta home-hero-cta--primary cta-button" href="/storytelling-lab">
+                <button
+                  className="home-hero-cta home-hero-cta--primary cta-button"
+                  type="button"
+                  onClick={() => setIsPaymentModalOpen(true)}
+                >
                   Únete al Storytelling Lab
-                </a>
+                </button>
                 <button
                   className="home-hero-cta home-hero-cta--secondary cta-button"
                   type="button"
@@ -1099,75 +1230,11 @@ export default function TheLab() {
           <section className="lab-price">
             <div className="lab-price-panel">
               <div className="lab-price-heading">
-                <h2>Dos formas de entrar al Lab</h2>
+                <h2 id="lab-price-heading">Dos formas de entrar al Lab</h2>
               </div>
 
-              <div className="lab-price-tabs" aria-label="Opciones de pago">
-                {PAYMENT_PLANS.map((plan, index) => (
-                  <button
-                    className={selectedPaymentIndex === index ? "is-active" : ""}
-                    type="button"
-                    aria-pressed={selectedPaymentIndex === index}
-                    key={plan.label}
-                    onClick={() => setSelectedPaymentIndex(index)}
-                  >
-                    {plan.label}
-                  </button>
-                ))}
-              </div>
-
-              <article className="lab-price-offer">
-                <div className="lab-price-copy">
-                  <h3>Todo lo que incluye</h3>
-                  <ul>
-                    {PAYMENT_INCLUDES.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-
-                  <div className="lab-price-summary">
-                    <p className="lab-price-installments">{selectedPaymentPlan.eyebrow}</p>
-                    <p className="lab-price-amount">
-                      <span>{selectedPaymentPlan.amount}</span> <small>{selectedPaymentPlan.suffix}</small>
-                    </p>
-                    <p className="lab-price-badge">{selectedPaymentPlan.badge}</p>
-                  </div>
-
-                  <a href="/storytelling-lab" className="lab-price-cta cta-button">
-                    Únete al Storytelling Lab
-                  </a>
-
-                  <div className="lab-payment-strip" aria-label="Métodos de pago aceptados">
-                    <span className="lab-payment-method" aria-label="Visa">
-                      <i className="fab fa-cc-visa" aria-hidden="true" />
-                    </span>
-                    <span className="lab-payment-method" aria-label="Mastercard">
-                      <i className="fab fa-cc-mastercard" aria-hidden="true" />
-                    </span>
-                    <span className="lab-payment-method" aria-label="Discover">
-                      <i className="fab fa-cc-discover" aria-hidden="true" />
-                    </span>
-                    <span className="lab-payment-method" aria-label="American Express">
-                      <i className="fab fa-cc-amex" aria-hidden="true" />
-                    </span>
-                    <span className="lab-payment-method" aria-label="Apple Pay">
-                      <i className="fab fa-apple-pay" aria-hidden="true" />
-                    </span>
-                    <span className="lab-payment-method" aria-label="Google Pay">
-                      <i className="fab fa-google-pay" aria-hidden="true" />
-                    </span>
-                    <span className="lab-payment-method lab-payment-method--cash" aria-label="Cash App">
-                      <i className="fas fa-dollar-sign" aria-hidden="true" />
-                    </span>
-                    <span className="lab-payment-method lab-payment-method--text">affirm</span>
-                    <span className="lab-payment-method lab-payment-method--text">Klarna</span>
-                  </div>
-                </div>
-
-                <figure className="lab-price-illustration" aria-hidden="true">
-                  <img src={LAB_ILLUSTRATION_IMAGES.price} alt="" loading="lazy" />
-                </figure>
-              </article>
+              {renderPaymentTabs("lab-price-heading")}
+              {renderPaymentOffer()}
             </div>
           </section>
 
@@ -1228,6 +1295,38 @@ export default function TheLab() {
           </main>
         </div>
       </div>
+      {isPaymentModalOpen && (
+        <div
+          className="lab-payment-modal"
+          role="presentation"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) {
+              setIsPaymentModalOpen(false);
+            }
+          }}
+        >
+          <section
+            className="lab lab-price lab-price--modal lab-payment-dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Opciones de pago para entrar al Lab"
+          >
+            <button
+              className="lab-payment-modal-close"
+              type="button"
+              aria-label="Cerrar opciones de pago"
+              onClick={() => setIsPaymentModalOpen(false)}
+            >
+              <span aria-hidden="true">×</span>
+            </button>
+
+            <div className="lab-price-panel">
+              {renderPaymentTabs(undefined)}
+              {renderPaymentOffer()}
+            </div>
+          </section>
+        </div>
+      )}
     </>
   );
 }

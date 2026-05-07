@@ -3,7 +3,10 @@ import Logo from './Logo';
 import { NAV_ITEMS, ROUTES } from '../routes';
 import './SiteHeader.css';
 
-export default function SiteHeader({ logoSublabel = 'Storytelling Lab' }) {
+export default function SiteHeader({
+  logoSublabel = 'Storytelling Lab',
+  contentFadeRgb = '246, 241, 240'
+}) {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -33,6 +36,11 @@ export default function SiteHeader({ logoSublabel = 'Storytelling Lab' }) {
           </nav>
         </div>
       </header>
+      <div
+        className={`site-header-content-fade${isScrolled ? ' is-visible' : ''}`}
+        style={{ '--site-header-fade-rgb': contentFadeRgb }}
+        aria-hidden="true"
+      />
       <div className="site-header-spacer" aria-hidden="true" />
     </>
   );

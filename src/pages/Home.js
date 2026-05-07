@@ -54,7 +54,7 @@ const FEATURED_WORK = [
 export default function Home() {
   return (
     <main className="portfolio-home">
-      <SiteHeader logoSublabel="Content Studio" />
+      <SiteHeader logoSublabel="Content Studio" contentFadeRgb="251, 242, 235" />
 
       <section className="portfolio-hero">
         <div className="portfolio-hero-copy">
