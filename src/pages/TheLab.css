@@ -2154,9 +2154,9 @@ top: 174px;
 }
 
 .lab .home-hero-title {
-  font-size: clamp(44px, 3.6vw, 54px);
-  line-height: 0.88;
-  letter-spacing: var(--lab-tracking-reset);
+  font-size: clamp(57px, 3.6vw, 54px);
+  line-height: 1.03;
+  letter-spacing: -4px;
 }
 
 .lab .home-hero-subtitle {
