@@ -36,28 +36,6 @@
   letter-spacing: var(--lab-tracking-reset);
 }
 
-.home-hero {
-  order: 2;
-  min-height: 100svh;
-  box-sizing: border-box;
-  padding: 96px 24px 72px;
-  background: var(--lab-bg);
-  display: grid;
-  place-items: center;
-}
-
-.home-hero-content {
-  position: relative;
-  z-index: 5;
-  max-width: 820px;
-  margin: 0 auto;
-  padding: 0;
-  text-align: center;
-  opacity: 0;
-  transform: translateY(14px);
-  animation: hero-content-in 760ms cubic-bezier(0.22, 1, 0.36, 1) 120ms forwards;
-}
-
 .lab .home-hero-title {
   margin: 0;
   color: #181615;
@@ -155,15 +133,6 @@
   bottom: 40px;
   background: radial-gradient(circle, rgba(245, 137, 84, 0.3), transparent 66%);
   animation-delay: -2s;
-}
-
-.home-hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0;
 }
 
 .home-hero-bloom,
@@ -1457,31 +1426,6 @@ top: 174px;
   color: #431047;
 }
 
-.lab-faq {
-  position: relative;
-  z-index: 7;
-  padding: 96px 24px 132px;
-  background: #f6f1ef;
-}
-
-.lab-faq-panel {
-  width: min(100%, 1210px);
-  margin: 0 auto;
-  padding: 166px 176px 112px;
-  border-radius: 16px;
-  background: #c67a80;
-}
-
-.lab-faq-panel h2 {
-  margin: 0;
-  color: #fff6ee;
-  text-align: center;
-  font-family: 'Libre Caslon Text', 'Times New Roman', serif;
-  font-size: clamp(42px, 3.6vw, 68px);
-  font-weight: 400;
-  line-height: var(--lab-lh-tight);
-  letter-spacing: var(--lab-tracking-reset);
-}
 
 .lab-faq-list {
   width: min(100%, 860px);
@@ -2097,32 +2041,27 @@ top: 174px;
 }
 
 .home-hero {
-  position: relative;
-  display: flex;
-  align-items: flex-start;
-  place-items: initial;
-  min-height: clamp(1080px, 88svh, 1240px);
-  overflow: hidden;
-  padding: clamp(280px, 25vh, 360px) clamp(28px, 7.4vw, 128px) clamp(120px, 11vh, 180px);
-  background: var(--lab-bg);
-}
-
-.home-hero::before {
-  opacity: 1;
-  background: var(--lab-bg);
+    position: relative;
+    display: flex;
+    /* align-items: flex-start; */
+    /* place-items: initial; */
+    /* min-height: clamp(1080px, 88svh, 1240px); */
+    overflow: hidden;
+    padding: clamp(280px, 25vh, 360px) clamp(28px, 7.4vw, 128px) clamp(120px, 11vh, 180px);
+    /* background: var(--lab-bg); */
 }
 
 .home-hero::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 -5.5vw;
-  z-index: 1;
-  height: min(68vw, 78vh);
-  min-height: 430px;
-  pointer-events: none;
-  background: var(--lab-hero-art) center bottom / 100% auto no-repeat;
-  transform: translateY(94px);
-  animation: hero-art-in 1100ms 280ms ease both;
+    content: "";
+    position: absolute;
+    inset: auto 0 -9vw;
+    z-index: 1;
+    height: 100%;
+    min-height: 430px;
+    pointer-events: none;
+    background: var(--lab-hero-art) center bottom / 100% auto no-repeat;
+    /* transform: translateY(94px); */
+    animation: hero-art-in 1100ms 280ms ease both;
 }
 
 .home-hero-content {
@@ -2404,11 +2343,11 @@ top: 174px;
 }
 
 .lab-method-copy h2 {
-  margin: 0 auto;
-  color: #fffdfc;
-  font-size: clamp(40px, 3.2vw, 62px);
-  line-height: 1.05;
-  letter-spacing: var(--lab-tracking-reset);
+    /* margin: 0 auto; */
+    color: #fffdfc;
+    font-size: clamp(40px, 3vw, 62px);
+    line-height: 1.1;
+    /* letter-spacing: var(--lab-tracking-reset); */
 }
 
 .lab .lab-method-copy > p:last-of-type {
@@ -3377,36 +3316,22 @@ top: 174px;
 }
 
 .lab-faq-panel {
-  width: min(100%, 1010px);
-  display: grid;
-  grid-template-columns: 390px minmax(0, 560px);
-  gap: 120px;
-  align-items: start;
-  margin: 0 auto;
-  padding: 0;
-  border-radius: 0;
-  background: transparent;
+    display: grid;
+    grid-template-columns: 505px 505px;
+    gap: 120px;
+    justify-content: center;
 }
 
 .lab-faq-copy h2 {
-  margin: 0 0 104px;
-  color: #fffdfc;
-  text-align: left;
-  font-family: 'Libre Caslon Text', 'Times New Roman', serif;
-  font-size: clamp(34px, 3vw, 50px);
-  font-weight: 400;
-  line-height: var(--lab-lh-tight);
-  letter-spacing: var(--lab-tracking-reset);
+    color: #fffdfc;
+    font-size: clamp(34px, 3vw, 50px);
+    text-wrap: nowrap;
 }
 
 .lab .lab-faq-copy p {
-  max-width: 270px;
-  margin: 0;
-  color: #fffdfc;
-  font-family: 'Libre Caslon Text', 'Times New Roman', serif;
-  font-size: 21px;
-  line-height: 1.04;
-  letter-spacing: var(--lab-tracking-reset);
+    color: #fffdfc;
+    font-family: 'Libre Caslon Text', 'Times New Roman', serif;
+    font-size: 21px;
 }
 
 .lab .lab-faq-copy p + p {
