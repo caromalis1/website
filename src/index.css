@@ -32,32 +32,40 @@ code {
   --content-wide: 1360px;
   --content-default: 1120px;
 
-  /* Autumn palette */
-  --cream: #f4ede4;
-  --parchment: #f7f1e8;
-  --rose: #f3d8d3;
-  --sage: #a8b9a4;
-  --ink: #1a1618;
-  --plum: #2b1e24;
-  --burgundy: #5b2333;
-  --pumpkin: #e48f3d;
-  --brass: #c89b3c;
-  --accent-strong: #d94888;
+  /* 2026 brand palette */
+  --white: #fffdfc;
+  --pink: #ef91b0;
+  --salmon: #ef8573;
+  --sky: #4ea1cf;
+  --blue: #0673be;
+  --tan: #c19570;
+  --charcoal: #323232;
 
-  --surface-page: #f6f1ef;
-  --surface-paper: rgba(255, 255, 253, 0.94);
-  --surface-paper-soft: rgba(255, 255, 253, 0.86);
-  --text-strong: #1f1917;
-  --text-body: #4f453f;
-  --text-heading: #4a403b;
-  --text-red: #63140f;
-  --accent-red: #d24b46;
-  --accent-coral: #e05b55;
-  --accent-yellow: #fbf3aa;
-  --border-ink: rgba(48, 33, 28, 0.72);
-  --border-soft: rgba(68, 51, 44, 0.1);
-  --shadow-panel: 0 28px 70px rgba(83, 61, 55, 0.05);
-  --shadow-card: 0 1px 0 rgba(68, 51, 44, 0.03);
+  --cream: var(--white);
+  --parchment: #fff7f3;
+  --rose: var(--pink);
+  --sage: #b4c7c8;
+  --ink: var(--charcoal);
+  --plum: #323232;
+  --burgundy: #b64857;
+  --pumpkin: var(--salmon);
+  --brass: var(--tan);
+  --accent-strong: var(--blue);
+
+  --surface-page: var(--white);
+  --surface-paper: rgba(255, 253, 252, 0.94);
+  --surface-paper-soft: rgba(255, 253, 252, 0.86);
+  --text-strong: var(--charcoal);
+  --text-body: #3f3f3f;
+  --text-heading: var(--charcoal);
+  --text-red: #7d2d34;
+  --accent-red: var(--salmon);
+  --accent-coral: var(--salmon);
+  --accent-yellow: #fff4a9;
+  --border-ink: rgba(50, 50, 50, 0.72);
+  --border-soft: rgba(50, 50, 50, 0.12);
+  --shadow-panel: 0 28px 70px rgba(50, 50, 50, 0.06);
+  --shadow-card: 0 1px 0 rgba(50, 50, 50, 0.04);
   --radius-xs: 4px;
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -66,7 +74,7 @@ code {
   --radius-pill: 999px;
 }
 
-html, body, #root { height: 100%; background: #f6f1f0; }
+html, body, #root { height: 100%; background: var(--surface-page); }
 
 * { box-sizing: border-box; }
 

@@ -29,7 +29,7 @@ const FEATURES = [
     description: "Todo el recorrido, desde entender el storytelling y cómo aplicarlo paso a paso, hasta cómo elegir una idea, escribir un guión y crear contenido con tu voz."
   },
   {
-    title: "Tu universo visual",
+    title: "Tu narrativa visual",
     label: "Identidad estética",
     illustration: "visual",
     description: "Tu contenido se ve antes de que lo lean. Este módulo te ayuda a que lo visual y lo escrito cuenten la misma historia."
@@ -37,30 +37,30 @@ const FEATURES = [
 ];
 
 const LAB_ILLUSTRATION_IMAGES = {
-  map: "/storytelling-lab/lab-mapa-narrativo-placeholder.png",
-  workbook: "/storytelling-lab/lab-workbook-placeholder.png",
-  templates: "/storytelling-lab/lab-plantillas-placeholder.png",
-  modules: "/storytelling-lab/lab-modulos-placeholder.png",
-  visual: "/storytelling-lab/lab-identidad-visual-placeholder.png",
-  fit: "/storytelling-lab/lab-para-mi-placeholder.png",
-  price: "/storytelling-lab/lab-pago-placeholder.png"
+  map: "/img/4-SL-Tu%20Mapa%20Narrativo.png",
+  workbook: "/img/5-SL-El%20Storytelling%20Lab%20Workbook.png",
+  templates: "/img/6-SL-Plantillas%2C%20ejemplos%20e%20ideas.png",
+  modules: "/img/7-SL-6%20mo%CC%81dulos%2C%2020%20lecciones.png",
+  visual: "/img/8-SL-Tu%20narrativa%20visual.png",
+  fit: "/img/10-servicios.png",
+  price: "/img/9-productos.png"
 };
 
 const NARRATIVE_MAP_STEPS = [
   {
     title: "Tu protagonista",
-    description: "Quién es tu audiencia de verdad"
+    description: "Quién es tu audiencia y qué desea"
   },
   {
     title: "Sus obstáculos",
-    description: "Qué la frena por fuera y por dentro"
+    description: "Qué le frena por fuera y por dentro"
   },
   {
-    title: "La brújula",
-    description: "Tu historia de origen y tu autoridad"
+    title: "La Brújula",
+    description: "tu historia de origen y tu rol en la historia de tu audiencia"
   },
   {
-    title: "La ruta",
+    title: "La Ruta",
     description: "Cómo se ve tu proceso paso a paso"
   },
   {
@@ -73,31 +73,37 @@ const LAB_FIT_CONTENT = [
   {
     label: "Servicios",
     title: "Para proveedoras de servicios",
+    image: "/img/10-servicios.png",
     description: "Si ofreces un servicio, probablemente sabes que el reto no es solo decir “esto hago”. También es mostrar tu proceso, tu criterio y qué hace distinto tu enfoque. El Storytelling Lab te ayuda a convertir todo eso en contenido más claro, más humano y mucho más fácil de sostener."
   },
   {
     label: "Productos",
     title: "Para marcas de productos",
+    image: "/img/9-productos.png",
     description: "Convierte detalles, usos, materiales y momentos cotidianos en historias simples que ayuden a entender por qué tu producto importa y cómo entra en la vida de tus clientes."
   },
   {
     label: "Marcas personales",
     title: "Para marcas personales",
+    image: "/img/11-marcas%20personales.png",
     description: "Ordena tus ideas, tu experiencia y tu punto de vista para que tu contenido tenga una voz reconocible, sin depender de tendencias que no se sienten tuyas."
-  },
-  {
-    label: "Educadoras",
-    title: "Para educadoras y mentoras",
-    description: "Transforma conceptos, ejemplos y frameworks en piezas narrativas, claras y fáciles de seguir, para que enseñar no se sienta como repetir lo mismo de mil formas."
   },
   {
     label: "Negocios locales",
     title: "Para negocios locales",
+    image: "/img/12-Negocios%20locales.png",
     description: "Cuenta lo que pasa detrás de tu negocio, muestra tus diferencias y convierte la experiencia diaria de tu marca en contenido cercano."
+  },
+  {
+    label: "Educadoras",
+    title: "Para educadoras y mentoras",
+    image: "/img/13-Educadoras.png",
+    description: "Transforma conceptos, ejemplos y frameworks en piezas narrativas, claras y fáciles de seguir, para que enseñar no se sienta como repetir lo mismo de mil formas."
   },
   {
     label: "Negocios creativos",
     title: "Para negocios creativos",
+    image: "/img/14-Negocios%20creativos.png",
     description: "Dale estructura a tus ideas sin quitarles personalidad, y convierte inspiración, referencias y procesos en contenido publicable."
   }
 ];
@@ -107,43 +113,43 @@ const TESTIMONIALS = [
     quote: "Por fin pude explicar lo que hago sin sentir que estaba copiando una fórmula ajena.",
     name: "Camila R.",
     role: "Diseñadora de marca",
-    avatar: "CR"
+    avatar: "/img/15-Testimonials-1.png"
   },
   {
     quote: "El mapa narrativo me ordenó la cabeza. Ahora sé desde dónde escribir cada pieza de contenido.",
     name: "Valentina M.",
     role: "Mentora creativa",
-    avatar: "VM"
+    avatar: "/img/15-Testimonials-2.png"
   },
   {
     quote: "Dejé de publicar por cumplir. Mis captions volvieron a sonar como yo.",
     name: "Paula S.",
     role: "Fotógrafa",
-    avatar: "PS"
+    avatar: "/img/15-Testimonials-3.png"
   },
   {
     quote: "Me ayudó a convertir ideas sueltas en una narrativa clara para mi lanzamiento.",
     name: "Mariana F.",
     role: "Consultora",
-    avatar: "MF"
+    avatar: "/img/15-Testimonials-4.png"
   },
   {
     quote: "Nunca había sentido que un curso de contenido entendiera tan bien mi manera de trabajar.",
     name: "Daniela L.",
     role: "Ceramista",
-    avatar: "DL"
+    avatar: "/img/15-Testimonials-5.png"
   },
   {
     quote: "Volví a mirar mi historia como una herramienta, no como algo que tenía que esconder.",
     name: "Sofía G.",
     role: "Psicóloga",
-    avatar: "SG"
+    avatar: "/img/15-Testimonials-6.png"
   },
   {
     quote: "Reescribí todo mi calendario en una tarde. Se sintió más humano y mucho más sostenible.",
     name: "D. Mejía",
     role: "Fundadora",
-    avatar: "DM"
+    avatar: "/img/15-Testimonials-7.png"
   }
 ];
 
@@ -252,7 +258,7 @@ const SPIRAL_VIEWBOX = {
   height: 2200
 };
 const SPIRAL_PATH_D =
-  "M786 0C872 70 904 201 868 303C822 431 659 464 486 508C322 550 146 603 123 742C96 908 218 1015 394 1058C558 1098 682 1033 760 1112C825 1179 706 1218 750 1284C782 1333 894 1293 913 1374C957 1560 715 1692 505 1787C397 1836 313 1856 296 1938C282 2006 338 2070 423 2054C487 2041 505 1985 468 1958C425 1927 359 1962 370 2030C384 2119 526 2137 635 2096";
+  "M786 0C872 70 904 201 868 303C822 431 659 464 486 508C322 550 146 603 123 742C96 908 218 1015 394 1058C558 1098 682 1033 760 1112C825 1179 706 1218 750 1284C782 1333 894 1293 913 1374C866 1436 805 1490 711 1476C638 1464 631 1592 705 1614C792 1640 829 1485 740 1468C651 1452 583 1550 628 1640C684 1752 538 1832 438 1788C336 1742 425 1612 371 1558C312 1497 265 1660 205 1694C138 1732 58 1714 48 1662C39 1613 106 1584 151 1608C204 1636 161 1732 218 1766C296 1810 326 1678 270 1628C217 1582 122 1648 144 1732C170 1830 351 1800 455 1728C598 1628 681 1708 725 1810C772 1918 820 1966 900 1914C963 1874 950 1768 881 1778C810 1788 810 1907 886 1978C970 2056 988 2138 918 2188";
 const SPIRAL_SCROLL = {
   start: "top 44%",
   travelHeightScale: 0.72,
@@ -285,9 +291,9 @@ function buildMapThreadPath(points, width) {
     return "";
   }
 
-  const [bet, protagonist, obstacles, compass, route] = points;
-  const leftEdge = { x: -8, y: bet.y };
-  const rightEdge = { x: width + 8, y: route.y + 6 };
+  const [protagonist, obstacles, compass, route, bet] = points;
+  const leftEdge = { x: -8, y: protagonist.y + 2 };
+  const rightEdge = { x: width + 8, y: bet.y - 82 };
   const format = (value) => value.toFixed(1);
   const loopRadius = 36;
   const loopTop = {
@@ -299,8 +305,7 @@ function buildMapThreadPath(points, width) {
 
   return [
     `M${format(leftEdge.x)} ${format(leftEdge.y)}`,
-    `C${format(bet.x - 190)} ${format(bet.y - 8)} ${format(bet.x - 70)} ${format(bet.y - 6)} ${format(bet.x)} ${format(bet.y)}`,
-    `C${format(bet.x + 118)} ${format(bet.y + 2)} ${format(protagonist.x - 128)} ${format(protagonist.y)} ${format(protagonist.x)} ${format(protagonist.y)}`,
+    `C${format(protagonist.x - 210)} ${format(protagonist.y - 32)} ${format(protagonist.x - 88)} ${format(protagonist.y - 34)} ${format(protagonist.x)} ${format(protagonist.y)}`,
     `C${format(protagonist.x + 128)} ${format(protagonist.y)} ${format(obstacles.x - 158)} ${format(obstacles.y)} ${format(obstacles.x)} ${format(obstacles.y)}`,
     `C${format(obstacles.x + 132)} ${format(obstacles.y)} ${format(compass.x - 142)} ${format(compass.y)} ${format(compass.x)} ${format(compass.y)}`,
     `C${format(compass.x + 80)} ${format(compass.y)} ${format(loopTop.x - 86)} ${format(loopTop.y)} ${format(loopTop.x)} ${format(loopTop.y)}`,
@@ -309,7 +314,8 @@ function buildMapThreadPath(points, width) {
     `C${format(loopTop.x - loopKappa)} ${format(loopCenterY + loopRadius)} ${format(loopTop.x - loopRadius)} ${format(loopCenterY + loopKappa)} ${format(loopTop.x - loopRadius)} ${format(loopCenterY)}`,
     `C${format(loopTop.x - loopRadius)} ${format(loopCenterY - loopKappa)} ${format(loopTop.x - loopKappa)} ${format(loopTop.y)} ${format(loopTop.x)} ${format(loopTop.y)}`,
     `C${format(loopTop.x + 72)} ${format(loopTop.y)} ${format(route.x - 94)} ${format(route.y - 4)} ${format(route.x)} ${format(route.y)}`,
-    `C${format(route.x + 82)} ${format(route.y + 28)} ${format(rightEdge.x - 188)} ${format(rightEdge.y - 2)} ${format(rightEdge.x)} ${format(rightEdge.y)}`
+    `C${format(route.x + 132)} ${format(route.y + 8)} ${format(bet.x - 156)} ${format(bet.y - 2)} ${format(bet.x)} ${format(bet.y)}`,
+    `C${format(bet.x + 122)} ${format(bet.y + 4)} ${format(rightEdge.x - 210)} ${format(rightEdge.y - 10)} ${format(rightEdge.x)} ${format(rightEdge.y)}`
   ].join("");
 }
 
@@ -891,17 +897,22 @@ export default function TheLab() {
 
   return (
     <>
-      <SiteHeader contentFadeRgb="251, 250, 246" />
+      <SiteHeader contentFadeRgb="255, 253, 252" />
       <div className="lab-scroll-wrapper" ref={smootherWrapperRef}>
         <div className="lab-scroll-content" ref={smootherContentRef}>
-          <main className="lab">
+          <main
+            className="lab"
+            style={{ "--lab-blue-gradient": `url("${process.env.PUBLIC_URL}/img/blue_gradient.png")` }}
+          >
 
-          <section className="home-hero" ref={homeHeroRef}>
+          <section
+            className="home-hero"
+            ref={homeHeroRef}
+            style={{ "--lab-hero-art": `url("${process.env.PUBLIC_URL}/img/1-Header.png")` }}
+          >
             <div className="home-hero-content">
               <h1 className="home-hero-title">
-                Tu forma de ver el mundo es única.
-                <br />
-                Tu contenido también debería serlo.
+                Tu forma de ver el mundo es única. Tu contenido también debería serlo.
               </h1>
               <p className="home-hero-subtitle">
                 El Storytelling Lab te ayuda a encontrar tu forma natural de comunicarte para
@@ -924,23 +935,6 @@ export default function TheLab() {
                 </button>
               </div>
             </div>
-            <div className="home-hero-bloom home-hero-bloom--pink" aria-hidden="true" />
-            <div className="home-hero-bloom home-hero-bloom--peach" aria-hidden="true" />
-            <svg className="home-hero-paths" viewBox="0 0 1440 520" aria-hidden="true" preserveAspectRatio="none">
-              <path className="hero-path hero-path--red" d="M0 360 C115 310 245 372 360 360 C505 346 610 430 780 420" />
-              <path className="hero-path hero-path--coral" d="M710 398 C835 402 1010 384 1165 392" />
-              <path className="hero-path hero-path--gold" d="M1015 330 C1124 332 1230 312 1320 260 C1364 236 1406 232 1440 234" />
-              <path className="hero-path hero-path--pink" d="M1190 270 C1300 302 1390 346 1440 392" />
-              <path className="hero-path hero-path--brown" d="M1360 150 C1390 140 1414 146 1440 142" />
-            </svg>
-            <div className="home-hero-figures" aria-hidden="true">
-              <span className="hero-figure hero-figure--one" />
-              <span className="hero-figure hero-figure--two" />
-              <span className="hero-figure hero-figure--three" />
-              <span className="hero-figure hero-figure--four" />
-              <span className="hero-figure hero-figure--five" />
-              <span className="hero-figure hero-figure--six" />
-            </div>
           </section>
 
           <section className="lab-storyline" ref={spiralSectionRef}>
@@ -962,9 +956,7 @@ export default function TheLab() {
               </article>
 
               <figure className="lab-sketch lab-sketch--runner" aria-hidden="true">
-                <span className="lab-sketch-runner-head" />
-                <span className="lab-sketch-runner-body" />
-                <span className="lab-sketch-runner-hair" />
+                <img src="/img/2-Doodle%201.png" alt="" loading="lazy" />
               </figure>
 
               <article className="lab-storyline-copy lab-storyline-copy--second">
@@ -977,19 +969,25 @@ export default function TheLab() {
               </article>
 
               <figure className="lab-sketch lab-sketch--knitter" aria-hidden="true">
-                <span className="lab-sketch-knitter-head" />
-                <span className="lab-sketch-knitter-body" />
-                <span className="lab-sketch-knitter-thread" />
+                <img src="/img/3-Doodle%202.png" alt="" loading="lazy" />
               </figure>
 
               <article className="lab-storyline-copy lab-storyline-copy--final">
                 <p>
-                  Pero la idea no es convertirte en un gurú de las redes sociales. Es aprender a crear desde lo que ya tienes:
+                  Pero la idea no es convertirte en un gurú de las redes sociales.
+                  <br />
+                  Es aprender a crear desde lo que ya tienes:
                 </p>
               </article>
 
-              <div className="lab-storyline-knot" aria-hidden="true" />
-              <span className="lab-storyline-person" aria-hidden="true" />
+              <div className="lab-storyline-word-field" aria-label="Elementos desde donde crear contenido">
+                <span className="lab-storyline-word lab-storyline-word--errors">Tus errores</span>
+                <span className="lab-storyline-word lab-storyline-word--moves">Lo que te<br />mueve</span>
+                <span className="lab-storyline-word lab-storyline-word--opinions">Lo que opinas</span>
+                <span className="lab-storyline-word lab-storyline-word--awkward">Tus trágame tierra</span>
+                <span className="lab-storyline-word lab-storyline-word--voice">Tu voz</span>
+                <span className="lab-storyline-word lab-storyline-word--history">Tu historia</span>
+              </div>
             </div>
           </section>
 
@@ -998,11 +996,8 @@ export default function TheLab() {
               <div className="lab-method-panel surface-panel">
                 <div className="lab-method-copy">
                   <h2>
-                    El Storytelling Lab nació justamente para eso. No como un curso de marketing tradicional ni una colección de fórmulas genéricas para "hacer contenido para el algoritmo".
+                    El Storytelling Lab nació para eso. No como un curso de marketing tradicional ni una colección de fórmulas genéricas. Sino como un espacio con una ruta concreta y herramientas prácticas para aprender a ordenar tus ideas y convertirlas en contenido que se sienta tuyo.
                   </h2>
-                  <p>
-                    Es un espacio práctico y humano donde aprendes a ordenar tus ideas y convertirlas en contenido que se sienta TUYO. Vas a encontrar una ruta concreta y herramientas prácticas para que tus ideas dejen de dar vueltas en tu cabeza y empiecen a convertirse en contenido.
-                  </p>
                   <a className="lab-method-cta cta-button" href="/storytelling-lab">
                     Únete al Storytelling Lab
                   </a>
@@ -1092,7 +1087,7 @@ export default function TheLab() {
                     <p>{selectedFit.description}</p>
                   </div>
                   <figure className="lab-fit-illustration" aria-hidden="true">
-                    <img src={LAB_ILLUSTRATION_IMAGES.fit} alt="" loading="lazy" />
+                    <img src={selectedFit.image} alt="" loading="lazy" />
                   </figure>
                 </article>
               </div>
@@ -1113,9 +1108,7 @@ export default function TheLab() {
                     className="lab-testimonial-card"
                     aria-hidden={index >= TESTIMONIALS.length}
                   >
-                    <span className="lab-testimonial-avatar" aria-hidden="true">
-                      {item.avatar}
-                    </span>
+                    <img src={item.avatar} alt="" loading="lazy" />
                     <p className="lab-quote">{item.quote}</p>
                     <p className="lab-meta">
                       {item.name}, {item.role}
@@ -1179,23 +1172,12 @@ export default function TheLab() {
             </div>
           </section>
 
-          <section className="lab-about">
+          <section className="lab-about" id="about">
             <div className="lab-about-inner">
               <h2>Hola! Soy Carolina</h2>
               <div className="lab-about-card">
                 <div className="lab-about-photos" aria-label="Fotos de Carolina">
-                  <figure className="lab-about-photo lab-about-photo--one">
-                    <span />
-                  </figure>
-                  <figure className="lab-about-photo lab-about-photo--two">
-                    <span />
-                  </figure>
-                  <figure className="lab-about-photo lab-about-photo--three">
-                    <span />
-                  </figure>
-                  <figure className="lab-about-photo lab-about-photo--four">
-                    <span />
-                  </figure>
+                  <img src="/img/16-Bio.png" alt="" loading="lazy" />
                 </div>
 
                 <div className="lab-about-copy">

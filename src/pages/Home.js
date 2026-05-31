@@ -83,7 +83,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="portfolio-intro content-shell">
+      <section className="portfolio-intro content-shell" id="about">
         <p className="portfolio-kicker">Hi! I'm Carolina</p>
         <h2>Let's create something remarkable together.</h2>
         <p>

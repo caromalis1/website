@@ -1,9 +1,9 @@
 body {
-  background: #f6f1f0;
+  background: var(--surface-page);
 }
 
 .App {
   min-height: 100%;
-  background: #f6f1f0;
-  color: #141111;
+  background: var(--surface-page);
+  color: var(--text-strong);
 }
