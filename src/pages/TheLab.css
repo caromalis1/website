@@ -1477,10 +1477,9 @@
 }
 
 .lab-includes {
-  margin-top: 0;
-  padding: 0 24px 210px;
-  background: transparent;
-  box-shadow: none;
+    margin-top: 0;
+    background: transparent;
+    box-shadow: none;
 }
 
 .lab-includes::before {
@@ -1492,24 +1491,20 @@
 }
 
 .lab-feature-grid {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 118px;
-  margin-top: 0;
+    position: relative;
+    display: grid;
+    grid-template-columns: 0.8fr;
+    justify-content: center;
 }
 
 .lab-include-card {
-  min-height: 445px;
-  display: grid;
-  grid-template-columns: minmax(0, 420px) minmax(360px, 560px);
-  align-items: center;
-  justify-content: space-between;
-  gap: clamp(70px, 9vw, 170px);
-  padding: 0;
-  background: transparent;
-  border-radius: 0;
-  box-shadow: none;
+    min-height: 445px;
+    display: grid;
+    grid-template-columns: minmax(0, 420px) minmax(360px, 560px);
+    justify-content: space-between;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
 }
 
 .lab-include-card:nth-child(odd) {
@@ -1536,6 +1531,10 @@
 
 .lab-include-card:nth-child(5) .lab-include-illustration {
   transform: rotate(5deg);
+}
+
+.lab-include-copy{
+  margin: auto 0;
 }
 
 .lab-include-copy span {
@@ -1573,12 +1572,12 @@
 }
 
 .lab-include-illustration {
-  width: min(100%, 560px);
-  aspect-ratio: 16 / 9;
-  display: grid;
-  place-items: center;
-  margin: 0;
-  color: #fffdfc;
+    width: min(100%, 560px);
+    aspect-ratio: 16 / 9;
+    display: grid;
+    place-items: center;
+    margin: auto 0;
+    color: #fffdfc;
 }
 
 .lab-include-illustration img {
