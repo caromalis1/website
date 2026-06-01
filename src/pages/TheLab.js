@@ -283,6 +283,7 @@ const FAQ_ITEMS = [
 const SPIRAL_MATCH = {
   reducedMotion: "(prefers-reduced-motion: no-preference)"
 };
+const LAB_DESKTOP_MOTION_QUERY = "(min-width: 901px)";
 const SPIRAL_VIEWBOX = {
   width: 1000,
   height: 2200
@@ -619,14 +620,20 @@ export default function TheLab() {
   const resizeObserverRef = useRef(null);
   const resizeRafRef = useRef(0);
   const storylineWordDragRef = useRef(null);
-  const storylineTouchRef = useRef(null);
   const spiralPathD = buildStorylineWordLinePath(spiralLineCommands);
 
   useLayoutEffect(() => {
     let isActive = true;
     let cleanupMotion = () => {};
+    let motionRunId = 0;
+    const desktopMotionQuery = window.matchMedia(LAB_DESKTOP_MOTION_QUERY);
 
-    const initMotion = async () => {
+    const cleanupActiveMotion = () => {
+      cleanupMotion();
+      cleanupMotion = () => {};
+    };
+
+    const initMotion = async (runId) => {
       const [
         gsapModule,
         { ScrollSmoother },
@@ -637,10 +644,8 @@ export default function TheLab() {
         import("gsap/ScrollTrigger")
       ]);
 
-      if (!isActive) {
-        if (!document.documentElement.classList.contains("lab-pin-sections")) {
-          return;
-        }
+      if (!isActive || runId !== motionRunId || !desktopMotionQuery.matches) {
+        return;
       }
 
       const gsap = gsapModule.gsap || gsapModule.default || gsapModule;
@@ -1228,15 +1233,32 @@ export default function TheLab() {
       };
     };
 
-    initMotion().catch((error) => {
-      if (isActive) {
-        console.error("Unable to initialize Lab motion.", error);
+    const syncMotionForViewport = () => {
+      motionRunId += 1;
+      cleanupActiveMotion();
+
+      if (!desktopMotionQuery.matches) {
+        return;
       }
-    });
+
+      initMotion(motionRunId).catch((error) => {
+        if (isActive) {
+          console.error("Unable to initialize Lab motion.", error);
+        }
+      });
+    };
+
+    const cleanupDesktopMotionQuery = createMotionPathMediaListener(
+      desktopMotionQuery,
+      syncMotionForViewport
+    );
+
+    syncMotionForViewport();
 
     return () => {
       isActive = false;
-      cleanupMotion();
+      cleanupDesktopMotionQuery();
+      cleanupActiveMotion();
     };
   }, [spiralPathD]);
 
@@ -1276,100 +1298,6 @@ export default function TheLab() {
       }
     };
   }, [isPaymentModalOpen]);
-
-  useEffect(() => {
-    document.documentElement.classList.add("lab-storyline-snap");
-
-    const mobileMatch = window.matchMedia("(max-width: 900px)");
-
-    const getStorylinePanels = () => (
-      Array.from(document.querySelectorAll(".lab-storyline-panel"))
-    );
-
-    const scrollToStorylinePanel = (panel) => {
-      if (smootherRef.current?.scrollTo) {
-        smootherRef.current.scrollTo(panel, true, "top top");
-        return;
-      }
-
-      window.scrollTo({
-        top: panel.getBoundingClientRect().top + window.scrollY,
-        behavior: "smooth"
-      });
-    };
-
-    const getNearestPanelIndex = (panels, scrollTop) => {
-      const viewportCenter = scrollTop + window.innerHeight / 2;
-
-      return panels.reduce((nearestIndex, panel, index) => {
-        const panelTop = panel.getBoundingClientRect().top + window.scrollY;
-        const panelCenter = panelTop + panel.getBoundingClientRect().height / 2;
-        const nearestPanel = panels[nearestIndex];
-        const nearestTop = nearestPanel.getBoundingClientRect().top + window.scrollY;
-        const nearestCenter = nearestTop + nearestPanel.getBoundingClientRect().height / 2;
-
-        return Math.abs(panelCenter - viewportCenter) < Math.abs(nearestCenter - viewportCenter)
-          ? index
-          : nearestIndex;
-      }, 0);
-    };
-
-    const handleTouchStart = (event) => {
-      const target = event.target instanceof Element ? event.target : null;
-
-      if (!mobileMatch.matches || !target?.closest(".lab-storyline")) {
-        storylineTouchRef.current = null;
-        return;
-      }
-
-      storylineTouchRef.current = {
-        y: event.touches[0]?.clientY ?? 0,
-        scrollY: window.scrollY
-      };
-    };
-
-    const handleTouchEnd = (event) => {
-      const touchStart = storylineTouchRef.current;
-      storylineTouchRef.current = null;
-
-      if (!mobileMatch.matches || !touchStart) {
-        return;
-      }
-
-      const endY = event.changedTouches[0]?.clientY ?? touchStart.y;
-      const deltaY = touchStart.y - endY;
-
-      if (Math.abs(deltaY) < 42) {
-        return;
-      }
-
-      const panels = getStorylinePanels();
-      if (!panels.length) {
-        return;
-      }
-
-      const currentIndex = getNearestPanelIndex(panels, touchStart.scrollY);
-      const targetIndex = Math.max(0, Math.min(
-        panels.length - 1,
-        currentIndex + (deltaY > 0 ? 1 : -1)
-      ));
-
-      if (targetIndex === currentIndex) {
-        return;
-      }
-
-      scrollToStorylinePanel(panels[targetIndex]);
-    };
-
-    window.addEventListener("touchstart", handleTouchStart, { passive: true });
-    window.addEventListener("touchend", handleTouchEnd, { passive: true });
-
-    return () => {
-      document.documentElement.classList.remove("lab-storyline-snap");
-      window.removeEventListener("touchstart", handleTouchStart);
-      window.removeEventListener("touchend", handleTouchEnd);
-    };
-  }, []);
 
   useEffect(() => {
     if (!isStorylineEditorOpen) {

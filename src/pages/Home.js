@@ -2,20 +2,6 @@ import './Home.css';
 import SiteFooter from '../components/SiteFooter';
 import SiteHeader from '../components/SiteHeader';
 
-const WHAT_I_DO = [
-  'Blog Posts',
-  'Editorial Content',
-  'Body Copy',
-  'Social Strategy',
-  'Website Copy',
-  'Campaign Brief',
-  'Website Copywriting',
-  'Social Media Content',
-  'Newsletters',
-  'Feature Articles',
-  'Brand Consulting'
-];
-
 const SERVICE_DETAILS = [
   {
     title: 'Creative Content Production',
