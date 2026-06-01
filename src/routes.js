@@ -7,7 +7,7 @@ export const ROUTES = {
 export const NAV_ITEMS = [
   { href: ROUTES.home, label: 'Home' },
   { href: ROUTES.storytellingLab, label: 'Storytelling Lab' },
-  { href: '#about', label: 'Sobre mi' }
+  // { href: '#about', label: 'Sobre mi' }
 ];
 
 export const normalizeRoutePath = (path) => {

@@ -49,12 +49,12 @@ export default function Home() {
             audience.
           </p>
           <div className="portfolio-actions">
-            <a className="portfolio-button portfolio-button--primary" href="#featured-work">
-              Projects
-            </a>
-            <a className="portfolio-button" href="#what-i-do">
+        <a className="portfolio-intro-link" href="/storytelling-lab">
+          Explore the Storytelling Lab
+        </a>
+            {/* <a className="portfolio-button" href="#what-i-do">
               What I do
-            </a>
+            </a> */}
           </div>
         </div>
 
@@ -69,7 +69,6 @@ export default function Home() {
       </section>
 
       <section className="portfolio-intro content-shell" id="about">
-        <p className="portfolio-kicker">Hi! I'm Carolina</p>
         <h2>Let's create something remarkable together.</h2>
         <p>
           Specializing in engaging narratives, strategic social media planning, and impactful
@@ -80,7 +79,7 @@ export default function Home() {
           Explore the Storytelling Lab
         </a>
       </section>
-      <section className="portfolio-what content-shell" id="what-i-do">
+      {/* <section className="portfolio-what content-shell" id="what-i-do">
         <div>
           <p className="portfolio-kicker">What I do</p>
           <h2>Content that connects strategy with voice.</h2>
@@ -90,7 +89,7 @@ export default function Home() {
             <span key={item}>{item}</span>
           ))}
         </div>
-      </section>
+      </section> */}
 
       <section className="portfolio-details content-shell">
         {SERVICE_DETAILS.map((item, index) => (

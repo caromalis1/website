@@ -1349,19 +1349,18 @@ h2 {
 }
 
 .lab-storyline-panel--first {
-  grid-template-columns: minmax(300px, 0.9fr) minmax(360px, 0.95fr);
-  align-items: center;
-  justify-content: center;
-  gap: clamp(10px, 2.6vw, 34px);
-  width: min(78vw, 980px);
+    grid-template-columns: minmax(300px, 0.9fr) minmax(360px, 0.95fr);
+    align-items: center;
+    justify-content: center;
 }
 
 .lab-storyline-panel--second {
-  align-content: center;
-  justify-items: center;
-  gap: clamp(28px, 4.5vw, 54px);
-  width: var(--lab-storyline-content-width);
-  text-align: center;
+    align-content: center;
+    justify-items: center;
+    /* gap: clamp(28px, 4.5vw, 54px); */
+    width: var(--lab-storyline-content-width);
+    text-align: center;
+    margin-right: -5px;
 }
 
 .lab-storyline-panel--final {
@@ -1377,7 +1376,7 @@ h2 {
 }
 
 .lab-storyline-panel--final::before {
-  content: "";
+  content: none;
   position: absolute;
   inset: 0 auto 0 50%;
   z-index: 0;

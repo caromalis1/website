@@ -11,13 +11,13 @@ const FEATURES = [
     description: "La base de todo lo que vas a crear. Una ruta clara que te ayuda a entender a tu audiencia, qué necesita escuchar, qué la frena, tu rol en su historia, y cómo crear contenido que les hable."
   },
   {
-    title: "Storytelling Lab Workbook",
+    title: "El Storytelling Lab Workbook",
     label: "Tu hub de trabajo",
     illustration: "workbook",
     description: "Más de 150 ejercicios para convertir tus ideas en posts, reels y stories usando estructuras probadas, para pasar de improvisar semana a semana a tener una ruta que te guía."
   },
   {
-    title: "Banco de plantillas, ejemplos e ideas",
+    title: "Plantillas, ejemplos e ideas",
     label: "Tu banco de recursos",
     illustration: "templates",
     description: "Para cuando tienes algo que decir pero la pantalla en blanco gana. Estructuras narrativas editables para abrir conversación, educar, compartir tus procesos y vender desde lo humano."
@@ -26,7 +26,7 @@ const FEATURES = [
     title: "6 módulos, 20 lecciones",
     label: "Curso on-demand",
     illustration: "modules",
-    description: "Todo el recorrido, desde entender el storytelling y cómo aplicarlo paso a paso, hasta cómo elegir una idea, escribir un guión y crear contenido con tu voz."
+    description: "Todo el recorrido, desde entender el storytelling y cómo aplicarlo paso a paso, hasta cómo elegir una idea, escribir un guión y crear contenido con tu voz. A tu ritmo, sin fechas límite. Y con todas las actualizaciones incluidas."
   },
   {
     title: "Tu narrativa visual",
@@ -74,37 +74,37 @@ const LAB_FIT_CONTENT = [
     label: "Servicios",
     title: "Para proveedoras de servicios",
     image: "/img/10-servicios.png",
-    description: "Si ofreces un servicio, probablemente sabes que el reto no es solo decir “esto hago”. También es mostrar tu proceso, tu criterio y qué hace distinto tu enfoque. El Storytelling Lab te ayuda a convertir todo eso en contenido más claro, más humano y mucho más fácil de sostener."
+    description: "Cuando lo que vendes es invisible (una consultoría, un servicio, una transformación), traducirlo a contenido se puede hacer difícil. El Lab te ayuda a mostrar cómo piensas, cómo trabajas y qué hace distinto tu enfoque, para que la gente correcta entienda lo que haces y quiera trabajar contigo."
   },
   {
     label: "Productos",
-    title: "Para marcas de productos",
+    title: "Para proveedores de productos",
     image: "/img/9-productos.png",
-    description: "Convierte detalles, usos, materiales y momentos cotidianos en historias simples que ayuden a entender por qué tu producto importa y cómo entra en la vida de tus clientes."
+    description: "Tienes algo hermoso que vender, pero es fácil caer en crear contenido que se enfoca en la foto del producto, precios y promociones. El Lab te ayuda a construir la historia y el contexto detrás de lo que haces. Para que la gente no solo compre el producto, sino lo que significa."
   },
   {
     label: "Marcas personales",
     title: "Para marcas personales",
     image: "/img/11-marcas%20personales.png",
-    description: "Ordena tus ideas, tu experiencia y tu punto de vista para que tu contenido tenga una voz reconocible, sin depender de tendencias que no se sienten tuyas."
+    description: "Cuando eres tú el centro de tu contenido, la presión de 'mostrarte' es constante. ¿Cuánto cuento? ¿Qué muestro? ¿Hasta dónde llego? El Lab te ayuda a encontrar tu forma de comunicarte, para que puedas mostrarte sin sentir que tienes que exponerte de más ni inventarte un personaje."
   },
   {
     label: "Negocios locales",
     title: "Para negocios locales",
     image: "/img/12-Negocios%20locales.png",
-    description: "Cuenta lo que pasa detrás de tu negocio, muestra tus diferencias y convierte la experiencia diaria de tu marca en contenido cercano."
+    description: "Tu negocio se siente diferente en persona, pero eso es casi imposible de transmitir en un post. El Lab te ayuda a traducir la atmósfera y la experiencia de lo que haces, para que la gente pueda sentir y entender tu espacio incluso antes de visitarlo."
   },
   {
     label: "Educadoras",
-    title: "Para educadoras y mentoras",
+    title: "Para los que tienen algo que enseñar",
     image: "/img/13-Educadoras.png",
-    description: "Transforma conceptos, ejemplos y frameworks en piezas narrativas, claras y fáciles de seguir, para que enseñar no se sienta como repetir lo mismo de mil formas."
+    description: "Eres experta en algo y quieres compartir eso con el mundo, el problema es como hacerlo de una manera que se sienta genuina para tus redes. El Lab te ayuda a encontrar ese punto medio, para que tu contenido educativo se entienda, conecte y no pierda tu voz en el camino."
   },
   {
     label: "Negocios creativos",
     title: "Para negocios creativos",
     image: "/img/14-Negocios%20creativos.png",
-    description: "Dale estructura a tus ideas sin quitarles personalidad, y convierte inspiración, referencias y procesos en contenido publicable."
+    description: "Tu trabajo está directamente conectado a tu creatividad, y eso a veces puede ser difícil de traducir en contenido de redes sociales. El Lab te ayuda a ponerle palabras y crearle un mundo a lo que haces, para que lo que publicas tenga la misma personalidad que lo que creas."
   }
 ];
 
@@ -162,32 +162,38 @@ const COURSE_MODULES = [
   {
     title: "Módulo 2: Los Fundamentos del Storytelling",
     meta: "3 lecciones",
-    lessons: ["Qué hace que una historia conecte", "La diferencia entre informar y narrar", "Placeholder: práctica guiada de fundamentos"]
+    lessons: ["¿Qué es el storytelling?", "La conexión como clave emocional para tu contenido", "¿Qué le ofrece tu contenido a tu audiencia?"]
   },
   {
     title: "Módulo 3: Tu Mapa Narrativo",
     meta: "8 lecciones",
-    lessons: ["Tu protagonista y sus obstáculos", "Tu punto de vista como brújula", "Placeholder: ejercicios para ordenar tu narrativa", "Placeholder: revisión de ejemplos aplicados"]
+    lessons: ["Tu Mapa Narrativo: la estructura central del curso", "Tu Protagonista: a quién le estás hablando de verdad", "Las 3 Capas del Obstáculo: qué la frena por fuera y por dentro", "El Monstruo: el patrón que está causando el problema","La Brújula: tu historia de origen + tu autoridad","La Ruta: cómo se ve tu proceso paso a paso","La Apuesta: qué está en juego si no cambia nada","Cómo aplicar tu Mapa Narrativo a tu contenido"]
   },
   {
     title: "Módulo 4: Recursos Prácticos",
     meta: "5 lecciones",
-    lessons: ["Puertas de entrada para nuevas ideas", "Estructuras para captions y carruseles", "Placeholder: banco de prompts editables"]
+    lessons: [
+      "Intro al Laboratorio Creativo: cómo usar los recursos para crear", 
+      "Elegir una idea: qué decir cuando no sabes por dónde partir",
+      "Las Puertas de Entrada: puntos de partida para empezar a escribir",
+    "Escribir un guión de principio a fin",
+    "Tu Universo Visual: traduciendo tu mensaje a lo visual"
+  ]
   },
   {
     title: "Módulo 5: Recursos Prácticos",
     meta: "1 lección",
-    lessons: ["Placeholder: cómo convertir ideas sueltas en contenido publicable"]
+    lessons: ["Apps y Recursos: mis herramientas recomendadas"]
   },
   {
     title: "Módulo 6: Cierre",
     meta: "1 lección",
-    lessons: ["Placeholder: cómo sostener tu sistema después del Lab"]
+    lessons: ["Cierre"]
   },
   {
     title: "Módulo 7: Storytelling Lab Workbook",
-    meta: "7 capítulos",
-    lessons: ["Placeholder: ejercicios de claridad", "Placeholder: plantillas de campaña", "Placeholder: checklist para publicar con intención"]
+    meta: "Recurso completo",
+    lessons: ["Acceso completo al Storytelling Lab Workbook: tu hub creativo con más de 50 ejercicios, más de 40 ideas de contenido y más de 70 plantillas editables."]
   }
 ];
 
@@ -258,7 +264,7 @@ const SPIRAL_VIEWBOX = {
 // Storyline thread coordinates use SPIRAL_VIEWBOX. Keep the final point aligned
 // with the first word-field segment so the long thread hands off into "Tu historia".
 const SPIRAL_PATH_D =
-  "M631 -24C902 56 933 164 913 316C906 377 840 558 763 567C504 666 99 549 114 942C130 1136 208 1409 429 1376C457 1376 776 1297 819 1431C768 1461 172 989 900 1584";
+  "M631 -24C902 56 933 164 913 316C906 377 840 558 763 567C504 666 99 549 114 942C130 1136 208 1409 429 1376C457 1376 776 1297 819 1431C902 1634 864 1958 814 2008C780 2044 754 2068 712 2065";
 const CURRICULUM_LEFT_PATH_D =
   "M0 132C72 140 92 142 128 126C170 108 178 72 158 58C138 44 112 60 120 91C130 131 192 136 254 124C336 108 394 84 506 78C626 72 608 120 675 126";
 const CURRICULUM_RIGHT_PATH_D =
@@ -330,10 +336,6 @@ function buildMapThreadPath(points, width) {
 }
 
 const STORYLINE_WORD_LINE_COMMANDS = [
-  [
-    { type: "M", x: 1324, y: -264 },
-    { type: "C", x1: 1695, y1: 412, x2: 1326, y2: 677, x: 1245, y: 603 }
-  ],
   [
     { type: "M", x: 1178, y: 534 },
     { type: "C", x1: 1118, y1: 433, x2: 1262, y2: -149, x: 1050, y: 68 }

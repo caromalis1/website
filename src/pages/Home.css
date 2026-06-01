@@ -216,7 +216,7 @@
 
 .portfolio-intro > p:last-of-type {
   max-width: 780px;
-  margin: 30px auto 0;
+  margin: 30px auto;
   color: var(--portfolio-ink);
   font-size: clamp(18px, 1.45vw, 24px);
   line-height: 1.38;
