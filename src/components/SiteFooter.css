@@ -2,6 +2,7 @@
     position: relative;
     z-index: 8;
     overflow: hidden;
+    --site-footer-icon-color: var(--lab-footer-brown, #c19570);
     background: var(--charcoal);
     color: var(--white);
 }
@@ -37,29 +38,34 @@
 }
 
 .site-lab-footer-socials {
+  width: max-content;
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
 }
 
 .site-lab-footer-socials a {
-  width: 38px;
-  height: 38px;
-  display: grid;
-  place-items: center;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--white);
   color: var(--white);
   text-decoration: none;
 }
 
 .site-lab-footer-socials span {
-  width: 38px;
-  height: 38px;
-  display: grid;
-  place-items: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: 0;
   border-radius: 0;
   font-family: var(--paragraph-font);
-  font-size: 30px;
+  font-size: 34px;
   font-weight: 900;
   line-height: 1;
   letter-spacing: 0;
@@ -67,8 +73,32 @@
 
 .site-lab-footer-socials i {
   display: block;
-  font-size: 32px;
+  width: 1em;
+  color: var(--site-footer-icon-color);
+  font-size: 18px;
   line-height: 1;
+  text-align: center;
+}
+
+.site-lab-footer-socials a:nth-child(1) i {
+  font-size: 18px;
+}
+
+.site-lab-footer-socials a:nth-child(2) i {
+  font-size: 20px;
+}
+
+.site-lab-footer-socials a:nth-child(3) i {
+  font-size: 19px;
+}
+
+.site-lab-footer-socials a:nth-child(4) i {
+  font-size: 18px;
+  transform: translateY(0);
+}
+
+.site-lab-footer-socials a:nth-child(5) i {
+  font-size: 19px;
 }
 
 .site-lab-footer-links {
@@ -135,18 +165,35 @@
   }
 
   .site-lab-footer-socials {
-    gap: 10px;
+    gap: 9px;
   }
 
   .site-lab-footer-socials a,
   .site-lab-footer-socials span {
-    width: 30px;
-    height: 30px;
+    width: 31px;
+    height: 31px;
   }
 
   .site-lab-footer-socials span,
   .site-lab-footer-socials i {
-    font-size: 26px;
+    font-size: 16px;
+  }
+
+  .site-lab-footer-socials a:nth-child(1) i,
+  .site-lab-footer-socials a:nth-child(4) i {
+    font-size: 16px;
+  }
+
+  .site-lab-footer-socials a:nth-child(2) i {
+    font-size: 18px;
+  }
+
+  .site-lab-footer-socials a:nth-child(3) i {
+    font-size: 17px;
+  }
+
+  .site-lab-footer-socials a:nth-child(5) i {
+    font-size: 17px;
   }
 
   .site-lab-footer-links a {

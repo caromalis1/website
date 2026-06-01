@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import SiteFooter from "../components/SiteFooter";
 import SiteHeader from "../components/SiteHeader";
 import "./TheLab.css";
@@ -195,11 +195,9 @@ const CAROLINA_FACTS = [
   "Soy Chilena",
   "Viví en New York por 10 años",
   "Ahora vivo en Londres",
-  "No tengo un perrito, pero quiero un perrito",
-  "Amo los días nublados",
+  "No tengo un perrito (pero quiero uno)",
   "Siempre llego temprano a todo",
-  "Ya tengo pensado el nombre del perrito",
-  "Soy adicta a las flores y plantas"
+  "Soy fan de las flores y plantas"
 ];
 
 const PAYMENT_PLANS = [
@@ -258,7 +256,11 @@ const SPIRAL_VIEWBOX = {
   height: 2200
 };
 const SPIRAL_PATH_D =
-  "M786 0C872 70 904 201 868 303C822 431 659 464 486 508C322 550 146 603 123 742C96 908 218 1015 394 1058C558 1098 682 1033 760 1112C825 1179 706 1218 750 1284C782 1333 894 1293 913 1374C866 1436 805 1490 711 1476C638 1464 631 1592 705 1614C792 1640 829 1485 740 1468C651 1452 583 1550 628 1640C684 1752 538 1832 438 1788C336 1742 425 1612 371 1558C312 1497 265 1660 205 1694C138 1732 58 1714 48 1662C39 1613 106 1584 151 1608C204 1636 161 1732 218 1766C296 1810 326 1678 270 1628C217 1582 122 1648 144 1732C170 1830 351 1800 455 1728C598 1628 681 1708 725 1810C772 1918 820 1966 900 1914C963 1874 950 1768 881 1778C810 1788 810 1907 886 1978C970 2056 988 2138 918 2188";
+  "M631 -24C895 57 904 201 943 312C1006 476 946 519 763 567C396 637 99 549 103 744C96 1006 175 1146 374 1181C402 1181 898 1178 958 1238C986 1260 975 1298 943 1360C866 1436 805 1490 711 1476C638 1464 631 1592 705 1614C792 1640 829 1485 740 1468C651 1452 583 1550 628 1640C684 1752 538 1832 438 1788C336 1742 425 1612 371 1558C312 1497 265 1660 205 1694C138 1732 58 1714 48 1662C39 1613 106 1584 151 1608C204 1636 161 1732 218 1766C296 1810 326 1678 270 1628C217 1582 122 1648 144 1732C170 1830 351 1800 455 1728C598 1628 681 1708 725 1810C772 1918 820 1966 900 1914C963 1874 950 1768 881 1778C810 1788 810 1907 886 1978C970 2056 988 2138 918 2188";
+const CURRICULUM_LEFT_PATH_D =
+  "M0 132C72 140 92 142 128 126C170 108 178 72 158 58C138 44 112 60 120 91C130 131 192 136 254 124C336 108 394 84 506 78C626 72 608 120 675 126";
+const CURRICULUM_RIGHT_PATH_D =
+  "M93 132C202 137 408 66 285 58C211 47 222 116 304 143C412 178 538 154 580 103C604 75 586 54 572 72C556 94 576 148 660 196C740 242 820 224 880 224";
 const SPIRAL_SCROLL = {
   start: "top 44%",
   travelHeightScale: 0.72,
@@ -319,10 +321,197 @@ function buildMapThreadPath(points, width) {
   ].join("");
 }
 
+const STORYLINE_WORD_LINE_COMMANDS = [
+  [
+    { type: "M", x: 653, y: 499 },
+    { type: "C", x1: 552, y1: 89, x2: 722, y2: 99, x: 743, y: 202 },
+    { type: "C", x1: 769, y1: 282, x2: 602, y2: 126, x: 559, y: 190 }
+  ],
+  [
+    { type: "M", x: 890, y: 278 },
+    { type: "C", x1: 889, y1: 216, x2: 964, y2: 224, x: 997, y: 181 }
+  ],
+  [
+    { type: "M", x: 867, y: 339 },
+    { type: "C", x1: 728, y1: 497, x2: 943, y2: 365, x: 785, y: 390 },
+    { type: "C", x1: 710, y1: 406, x2: 764, y2: 456, x: 707, y: 507 },
+    { type: "M", x: 1225, y: 496 },
+    { type: "C", x1: 1112, y1: 351, x2: 1252, y2: 327, x: 1178, y: 213 },
+    { type: "C", x1: 962, y1: -32, x2: 1275, y2: 48, x: 1077, y: 133 }
+  ],
+  [
+    { type: "M", x: 1378, y: 17 },
+    { type: "C", x1: 1318, y1: 171, x2: 1342, y2: 347, x: 1400, y: 433 },
+    { type: "C", x1: 1604, y1: 726, x2: 1349, y2: 653, x: 1289, y: 568 }
+  ],
+  [
+    { type: "M", x: 452, y: 264 },
+    { type: "C", x1: 394, y1: 341, x2: 313, y2: 327, x: 263, y: 371 },
+    { type: "C", x1: 206, y1: 218, x2: 452, y2: 347, x: 134, y: 326 },
+    { type: "C", x1: -5, y1: 321, x2: -36, y2: 369, x: -70, y: 416 }
+  ]
+];
+
+const STORYLINE_WORD_ANCHOR_POINTS = {
+  M: [{ id: "end", label: "point", keys: ["x", "y"] }],
+  C: [
+    { id: "control-1", label: "control", keys: ["x1", "y1"] },
+    { id: "control-2", label: "control", keys: ["x2", "y2"] },
+    { id: "end", label: "point", keys: ["x", "y"] }
+  ]
+};
+
+function cloneStorylineWordLineCommands(commands) {
+  return commands.map((line) => line.map((command) => ({ ...command })));
+}
+
+function buildStorylineWordLinePath(commands) {
+  return commands
+    .map((command) => {
+      if (command.type === "M") {
+        return `M${command.x} ${command.y}`;
+      }
+
+      return `C${command.x1} ${command.y1} ${command.x2} ${command.y2} ${command.x} ${command.y}`;
+    })
+    .join("");
+}
+
+function parseEditablePathData(pathData) {
+  const tokens = pathData.match(/[MC]|-?\d*\.?\d+/g) || [];
+  const commands = [];
+
+  for (let index = 0; index < tokens.length;) {
+    const type = tokens[index];
+    index += 1;
+
+    if (type === "M") {
+      commands.push({
+        type,
+        x: Number(tokens[index]),
+        y: Number(tokens[index + 1])
+      });
+      index += 2;
+      continue;
+    }
+
+    if (type === "C") {
+      commands.push({
+        type,
+        x1: Number(tokens[index]),
+        y1: Number(tokens[index + 1]),
+        x2: Number(tokens[index + 2]),
+        y2: Number(tokens[index + 3]),
+        x: Number(tokens[index + 4]),
+        y: Number(tokens[index + 5])
+      });
+      index += 6;
+      continue;
+    }
+
+    break;
+  }
+
+  return commands;
+}
+
+function updateEditableLineCommand(commands, commandIndex, keys, x, y) {
+  return commands.map((command, index) => {
+    if (index !== commandIndex) {
+      return command;
+    }
+
+    return {
+      ...command,
+      [keys[0]]: x,
+      [keys[1]]: y
+    };
+  });
+}
+
+function updateEditableGroupedLineCommand(commands, lineIndex, commandIndex, keys, x, y) {
+  return commands.map((line, index) => {
+    if (index !== lineIndex) {
+      return line;
+    }
+
+    return updateEditableLineCommand(line, commandIndex, keys, x, y);
+  });
+}
+
+function findNearestEditableCommandIndex(commands, x, y) {
+  return commands.reduce((nearestIndex, command, commandIndex) => {
+    const nearest = commands[nearestIndex];
+    const nearestDistance = Math.hypot(nearest.x - x, nearest.y - y);
+    const commandDistance = Math.hypot(command.x - x, command.y - y);
+
+    return commandDistance < nearestDistance ? commandIndex : nearestIndex;
+  }, 0);
+}
+
+function insertEditableLineCommand(commands, commandIndex, x, y) {
+  const safeIndex = Math.max(0, Math.min(commandIndex, commands.length - 1));
+  const start = commands[safeIndex];
+  const nextCommand = {
+    type: "C",
+    x1: Math.round(start.x + (x - start.x) * 0.35),
+    y1: Math.round(start.y + (y - start.y) * 0.35),
+    x2: Math.round(start.x + (x - start.x) * 0.72),
+    y2: Math.round(start.y + (y - start.y) * 0.72),
+    x: Math.round(x),
+    y: Math.round(y)
+  };
+
+  return [
+    ...commands.slice(0, safeIndex + 1),
+    nextCommand,
+    ...commands.slice(safeIndex + 1)
+  ];
+}
+
+function deleteEditableLineCommand(commands, commandIndex) {
+  if (commands[commandIndex]?.type !== "C") {
+    return commands;
+  }
+
+  return commands.filter((_, index) => index !== commandIndex);
+}
+
+function updateEditableGroupedLines(commands, lineIndex, updater) {
+  return commands.map((line, index) => (index === lineIndex ? updater(line) : line));
+}
+
+function getStorylineEditorEnabled() {
+  if (typeof window === "undefined") {
+    return false;
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  return params.get("editStoryline") === "1" || window.localStorage.getItem("storylineWordEdit") === "1";
+}
+
 function ChevronIcon({ className }) {
   return (
     <svg className={`${className} ui-chevron`} viewBox="0 0 24 24" aria-hidden="true">
       <path d="M6.5 9.5L12 15l5.5-5.5" />
+    </svg>
+  );
+}
+
+function CurriculumMetaIcon({ type }) {
+  if (type === "book") {
+    return (
+      <svg className="lab-curriculum-meta-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4.5 5.5h6.25c1.25 0 2.25 1 2.25 2.25v10.75c0-1.15-.95-2.1-2.1-2.1H4.5V5.5Z" />
+        <path d="M19.5 5.5h-6.25C12 5.5 11 6.5 11 7.75v10.75c0-1.15.95-2.1 2.1-2.1h6.4V5.5Z" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg className="lab-curriculum-meta-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="3.5" y="7" width="12" height="10" rx="2" />
+      <path d="M15.5 10.25 20.5 7.5v9l-5-2.75" />
     </svg>
   );
 }
@@ -342,6 +531,20 @@ export default function TheLab() {
   const [selectedPaymentIndex, setSelectedPaymentIndex] = useState(0);
   const [isFitCardVisible, setIsFitCardVisible] = useState(true);
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
+  const [isStorylineEditorOpen] = useState(getStorylineEditorEnabled);
+  const [spiralLineCommands, setSpiralLineCommands] = useState(() =>
+    parseEditablePathData(SPIRAL_PATH_D)
+  );
+  const [curriculumLeftLineCommands, setCurriculumLeftLineCommands] = useState(() =>
+    parseEditablePathData(CURRICULUM_LEFT_PATH_D)
+  );
+  const [curriculumRightLineCommands, setCurriculumRightLineCommands] = useState(() =>
+    parseEditablePathData(CURRICULUM_RIGHT_PATH_D)
+  );
+  const [storylineWordLineCommands, setStorylineWordLineCommands] = useState(() =>
+    cloneStorylineWordLineCommands(STORYLINE_WORD_LINE_COMMANDS)
+  );
+  const [selectedStorylineNode, setSelectedStorylineNode] = useState(null);
   const smootherWrapperRef = useRef(null);
   const smootherContentRef = useRef(null);
   const homeHeroRef = useRef(null);
@@ -356,16 +559,27 @@ export default function TheLab() {
   const mapStackRef = useRef(null);
   const mapLineSvgRef = useRef(null);
   const mapLinePathRef = useRef(null);
+  const curriculumTitleRef = useRef(null);
+  const curriculumLeftPathRef = useRef(null);
+  const curriculumRightPathRef = useRef(null);
+  const storylineWordLinesRef = useRef(null);
+  const depthStickyCtaRef = useRef(null);
 
   const motionTweenRef = useRef(null);
   const mapLineTweenRef = useRef(null);
+  const curriculumLineTweenRef = useRef(null);
+  const storylineWordLineTweenRef = useRef(null);
   const depthPinRef = useRef(null);
+  const includeCardPinsRef = useRef([]);
+  const includeStackTweensRef = useRef([]);
+  const depthStickyCtaPinRef = useRef(null);
   const mapCopyPinRef = useRef(null);
   const mapCardPinsRef = useRef([]);
   const fitFadeTimeoutRef = useRef(null);
   const smootherRef = useRef(null);
   const resizeObserverRef = useRef(null);
   const resizeRafRef = useRef(0);
+  const storylineWordDragRef = useRef(null);
 
   useLayoutEffect(() => {
     let isActive = true;
@@ -411,6 +625,7 @@ export default function TheLab() {
       const updatePathAndTween = () => {
         const spiralSection = spiralSectionRef.current;
         const pathElement = spiralPathRef.current;
+        const isEditing = spiralSvgRef.current?.dataset.editing === "true";
 
         if (!spiralSection || !pathElement) {
           return;
@@ -419,10 +634,6 @@ export default function TheLab() {
         const svg = spiralSvgRef.current;
         if (svg) {
           svg.setAttribute("viewBox", `0 0 ${SPIRAL_VIEWBOX.width} ${SPIRAL_VIEWBOX.height}`);
-        }
-
-        if (pathElement.getAttribute("d") !== SPIRAL_PATH_D) {
-          pathElement.setAttribute("d", SPIRAL_PATH_D);
         }
 
         const sectionRect = spiralSection.getBoundingClientRect();
@@ -436,10 +647,10 @@ export default function TheLab() {
 
         gsap.set(pathElement, {
           strokeDasharray: totalLength,
-          strokeDashoffset: canAnimateSpiral() ? totalLength : 0
+          strokeDashoffset: canAnimateSpiral() && !isEditing ? totalLength : 0
         });
 
-        if (!canAnimateSpiral()) {
+        if (!canAnimateSpiral() || isEditing) {
           return;
         }
 
@@ -570,6 +781,122 @@ export default function TheLab() {
         });
       };
 
+      const updateIncludeStackPins = () => {
+        const includesSection = includesSectionRef.current;
+        const stickyCta = depthStickyCtaRef.current;
+        const includeCards = Array.from(includesSection?.querySelectorAll(".lab-include-card") || []);
+
+        includeCardPinsRef.current.forEach((trigger) => trigger.kill());
+        includeCardPinsRef.current = [];
+        includeStackTweensRef.current.forEach((tween) => {
+          tween.scrollTrigger?.kill();
+          tween.kill();
+        });
+        includeStackTweensRef.current = [];
+
+        if (depthStickyCtaPinRef.current) {
+          depthStickyCtaPinRef.current.kill();
+          depthStickyCtaPinRef.current = null;
+        }
+
+        includeCards.forEach((card) => {
+          gsap.set(card, { clearProps: "position,top,left,width,maxWidth,zIndex,transform,opacity,visibility,scale" });
+        });
+
+        gsap.set(depthStackRef.current, {
+          "--lab-depth-top": "#3f96c9",
+          "--lab-depth-mid": "#57a8d4",
+          "--lab-depth-bottom": "#74b9dc",
+          "--lab-depth-glow": 0.2,
+          "--lab-depth-swirl-a-x": "18%",
+          "--lab-depth-swirl-a-y": "12%",
+          "--lab-depth-swirl-b-x": "82%",
+          "--lab-depth-swirl-b-y": "34%",
+          "--lab-depth-swirl-c-x": "36%",
+          "--lab-depth-swirl-c-y": "80%"
+        });
+
+        if (stickyCta) {
+          gsap.set(stickyCta, { clearProps: "all" });
+        }
+
+        if (!includesSection || includeCards.length === 0 || window.innerWidth <= 760) {
+          return;
+        }
+
+        const cardPinTop = Math.max(150, Math.round(window.innerHeight * 0.16));
+
+        includeCards.forEach((card, index) => {
+          gsap.set(card, { zIndex: index + 1 });
+
+          includeCardPinsRef.current.push(
+            ScrollTrigger.create({
+              trigger: card,
+              start: () => `top ${cardPinTop}`,
+              endTrigger: includesSection,
+              end: () => `bottom ${cardPinTop + card.offsetHeight}`,
+              pin: true,
+              pinSpacing: false,
+              anticipatePin: 1,
+              invalidateOnRefresh: true
+            })
+          );
+
+          if (index < includeCards.length - 1) {
+            includeStackTweensRef.current.push(
+              gsap.to(card, {
+                autoAlpha: 0,
+                scale: 0.985,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: includeCards[index + 1],
+                  start: () => `top ${cardPinTop + 260}`,
+                  end: () => `top ${cardPinTop + 24}`,
+                  scrub: true,
+                  invalidateOnRefresh: true
+                }
+              })
+            );
+          }
+        });
+
+        includeStackTweensRef.current.push(
+          gsap.to(depthStackRef.current, {
+            "--lab-depth-top": "#469dcd",
+            "--lab-depth-mid": "#63aed7",
+            "--lab-depth-bottom": "#82c1e0",
+            "--lab-depth-glow": 0.25,
+            "--lab-depth-swirl-a-x": "74%",
+            "--lab-depth-swirl-a-y": "18%",
+            "--lab-depth-swirl-b-x": "24%",
+            "--lab-depth-swirl-b-y": "56%",
+            "--lab-depth-swirl-c-x": "68%",
+            "--lab-depth-swirl-c-y": "86%",
+            ease: "none",
+            scrollTrigger: {
+              trigger: depthStackRef.current,
+              start: "top top",
+              end: "bottom bottom",
+              scrub: 0.7,
+              invalidateOnRefresh: true
+            }
+          })
+        );
+
+        if (stickyCta) {
+          depthStickyCtaPinRef.current = ScrollTrigger.create({
+            trigger: stickyCta,
+            start: "top 88px",
+            endTrigger: depthStackRef.current,
+            end: "bottom top",
+            pin: true,
+            pinSpacing: false,
+            anticipatePin: 1,
+            invalidateOnRefresh: true
+          });
+        }
+      };
+
       const updateMapLine = () => {
         const mapStack = mapStackRef.current;
         const svgElement = mapLineSvgRef.current;
@@ -643,6 +970,106 @@ export default function TheLab() {
         });
       };
 
+      const updateCurriculumLines = () => {
+        const titleElement = curriculumTitleRef.current;
+        const linePaths = [
+          curriculumLeftPathRef.current,
+          curriculumRightPathRef.current
+        ].filter(Boolean);
+        const isEditing = titleElement?.dataset.editing === "true";
+
+        if (curriculumLineTweenRef.current) {
+          curriculumLineTweenRef.current.scrollTrigger?.kill();
+          curriculumLineTweenRef.current.kill();
+          curriculumLineTweenRef.current = null;
+        }
+
+        if (!titleElement || linePaths.length < 2) {
+          return;
+        }
+
+        linePaths.forEach((pathElement) => {
+          const pathLength = pathElement.getTotalLength();
+
+          gsap.set(pathElement, {
+            strokeDasharray: pathLength,
+            strokeDashoffset: canAnimateSpiral() && !isEditing ? pathLength : 0
+          });
+        });
+
+        if (!canAnimateSpiral() || isEditing) {
+          return;
+        }
+
+        curriculumLineTweenRef.current = gsap.timeline({
+          scrollTrigger: {
+            trigger: titleElement,
+            start: "top 78%",
+            end: "bottom 42%",
+            scrub: 0.8,
+            invalidateOnRefresh: true
+          }
+        });
+
+        curriculumLineTweenRef.current
+          .to(linePaths[0], {
+            strokeDashoffset: 0,
+            duration: 0.58,
+            ease: "none"
+          }, 0)
+          .to(linePaths[1], {
+            strokeDashoffset: 0,
+            duration: 0.58,
+            ease: "none"
+          }, 0.42);
+      };
+
+      const updateStorylineWordLines = () => {
+        const svgElement = storylineWordLinesRef.current;
+        const linePaths = Array.from(svgElement?.querySelectorAll("path") || []);
+        const isEditing = svgElement?.dataset.editing === "true";
+
+        if (storylineWordLineTweenRef.current) {
+          storylineWordLineTweenRef.current.scrollTrigger?.kill();
+          storylineWordLineTweenRef.current.kill();
+          storylineWordLineTweenRef.current = null;
+        }
+
+        if (!svgElement || linePaths.length === 0) {
+          return;
+        }
+
+        linePaths.forEach((pathElement) => {
+          const pathLength = pathElement.getTotalLength();
+
+          gsap.set(pathElement, {
+            strokeDasharray: pathLength,
+            strokeDashoffset: canAnimateSpiral() && !isEditing ? pathLength : 0
+          });
+        });
+
+        if (!canAnimateSpiral() || isEditing) {
+          return;
+        }
+
+        storylineWordLineTweenRef.current = gsap.timeline({
+          scrollTrigger: {
+            trigger: svgElement,
+            start: "top 78%",
+            end: "bottom 46%",
+            scrub: 0.8,
+            invalidateOnRefresh: true
+          }
+        });
+
+        storylineWordLineTweenRef.current.to(linePaths, {
+          strokeDashoffset: 0,
+          duration: 1,
+          ease: "none",
+          stagger: 0.18
+        });
+      };
+
       const scheduleUpdate = () => {
         if (resizeRafRef.current) {
           cancelAnimationFrame(resizeRafRef.current);
@@ -652,8 +1079,11 @@ export default function TheLab() {
           resizeRafRef.current = 0;
           updatePathAndTween();
           updateDepthPin();
+          updateIncludeStackPins();
           updateMapCardPins();
           updateMapLine();
+          updateCurriculumLines();
+          updateStorylineWordLines();
         });
       };
 
@@ -670,6 +1100,14 @@ export default function TheLab() {
 
       if (homeHeroRef.current) {
         resizeObserver.observe(homeHeroRef.current);
+      }
+
+      if (curriculumTitleRef.current) {
+        resizeObserver.observe(curriculumTitleRef.current);
+      }
+
+      if (storylineWordLinesRef.current) {
+        resizeObserver.observe(storylineWordLinesRef.current);
       }
 
       const reduceMq = window.matchMedia(SPIRAL_MATCH.reducedMotion);
@@ -701,6 +1139,20 @@ export default function TheLab() {
           depthPinRef.current = null;
         }
 
+        includeCardPinsRef.current.forEach((trigger) => trigger.kill());
+        includeCardPinsRef.current = [];
+
+        includeStackTweensRef.current.forEach((tween) => {
+          tween.scrollTrigger?.kill();
+          tween.kill();
+        });
+        includeStackTweensRef.current = [];
+
+        if (depthStickyCtaPinRef.current) {
+          depthStickyCtaPinRef.current.kill();
+          depthStickyCtaPinRef.current = null;
+        }
+
         if (mapCopyPinRef.current) {
           mapCopyPinRef.current.kill();
           mapCopyPinRef.current = null;
@@ -710,6 +1162,18 @@ export default function TheLab() {
           mapLineTweenRef.current.scrollTrigger?.kill();
           mapLineTweenRef.current.kill();
           mapLineTweenRef.current = null;
+        }
+
+        if (curriculumLineTweenRef.current) {
+          curriculumLineTweenRef.current.scrollTrigger?.kill();
+          curriculumLineTweenRef.current.kill();
+          curriculumLineTweenRef.current = null;
+        }
+
+        if (storylineWordLineTweenRef.current) {
+          storylineWordLineTweenRef.current.scrollTrigger?.kill();
+          storylineWordLineTweenRef.current.kill();
+          storylineWordLineTweenRef.current = null;
         }
 
         mapCardPinsRef.current.forEach((trigger) => trigger.kill());
@@ -781,8 +1245,345 @@ export default function TheLab() {
     };
   }, [isPaymentModalOpen]);
 
+  useEffect(() => {
+    if (!isStorylineEditorOpen) {
+      return undefined;
+    }
+
+    const updateDraggedPoint = (event) => {
+      const drag = storylineWordDragRef.current;
+      const svgElement = drag?.svgElement;
+
+      if (!drag || !svgElement) {
+        return;
+      }
+
+      const svgMatrix = svgElement.getScreenCTM();
+
+      if (!svgMatrix) {
+        return;
+      }
+
+      const point = svgElement.createSVGPoint();
+      point.x = event.clientX;
+      point.y = event.clientY;
+      const svgPoint = point.matrixTransform(svgMatrix.inverse());
+      const nextX = Math.round(svgPoint.x);
+      const nextY = Math.round(svgPoint.y);
+
+      if (drag.group === "spiral") {
+        setSpiralLineCommands((currentCommands) =>
+          updateEditableLineCommand(currentCommands, drag.commandIndex, drag.keys, nextX, nextY)
+        );
+        return;
+      }
+
+      if (drag.group === "curriculumLeft") {
+        setCurriculumLeftLineCommands((currentCommands) =>
+          updateEditableLineCommand(currentCommands, drag.commandIndex, drag.keys, nextX, nextY)
+        );
+        return;
+      }
+
+      if (drag.group === "curriculumRight") {
+        setCurriculumRightLineCommands((currentCommands) =>
+          updateEditableLineCommand(currentCommands, drag.commandIndex, drag.keys, nextX, nextY)
+        );
+        return;
+      }
+
+      setStorylineWordLineCommands((currentCommands) =>
+        updateEditableGroupedLineCommand(currentCommands, drag.lineIndex, drag.commandIndex, drag.keys, nextX, nextY)
+      );
+    };
+
+    const stopDragging = () => {
+      storylineWordDragRef.current = null;
+
+      if (smootherRef.current?.paused) {
+        smootherRef.current.paused(false);
+      }
+    };
+
+    window.addEventListener("pointermove", updateDraggedPoint);
+    window.addEventListener("pointerup", stopDragging);
+    window.addEventListener("pointercancel", stopDragging);
+
+    return () => {
+      window.removeEventListener("pointermove", updateDraggedPoint);
+      window.removeEventListener("pointerup", stopDragging);
+      window.removeEventListener("pointercancel", stopDragging);
+    };
+  }, [isStorylineEditorOpen]);
+
+  useEffect(() => {
+    if (!isStorylineEditorOpen) {
+      return;
+    }
+
+    const animationFrame = requestAnimationFrame(() => {
+      const linePaths = [
+        spiralPathRef.current,
+        curriculumLeftPathRef.current,
+        curriculumRightPathRef.current,
+        ...Array.from(storylineWordLinesRef.current?.querySelectorAll("path") || [])
+      ].filter(Boolean);
+
+      linePaths.forEach((pathElement) => {
+        const pathLength = pathElement.getTotalLength();
+        pathElement.style.strokeDasharray = `${pathLength}`;
+        pathElement.style.strokeDashoffset = "0";
+      });
+    });
+
+    return () => {
+      cancelAnimationFrame(animationFrame);
+    };
+  }, [
+    isStorylineEditorOpen,
+    spiralLineCommands,
+    curriculumLeftLineCommands,
+    curriculumRightLineCommands,
+    storylineWordLineCommands
+  ]);
+
   const selectedFit = LAB_FIT_CONTENT[selectedFitIndex];
   const selectedPaymentPlan = PAYMENT_PLANS[selectedPaymentIndex];
+  const storylineEditorJson = JSON.stringify({
+    spiral: spiralLineCommands,
+    storylineWords: storylineWordLineCommands,
+    curriculumLeft: curriculumLeftLineCommands,
+    curriculumRight: curriculumRightLineCommands
+  }, null, 2);
+  const selectedStorylineCommands = selectedStorylineNode?.group === "spiral"
+    ? spiralLineCommands
+    : selectedStorylineNode?.group === "curriculumLeft"
+      ? curriculumLeftLineCommands
+      : selectedStorylineNode?.group === "curriculumRight"
+        ? curriculumRightLineCommands
+        : selectedStorylineNode?.group === "storylineWords"
+          ? storylineWordLineCommands[selectedStorylineNode.lineIndex]
+          : null;
+  const selectedStorylineCommand = selectedStorylineCommands?.[selectedStorylineNode?.commandIndex];
+  const canDeleteSelectedStorylineNode = selectedStorylineCommand?.type === "C";
+
+  const getEditableSvgPoint = (event, svgElement) => {
+    const svgMatrix = svgElement?.getScreenCTM();
+
+    if (!svgMatrix || !svgElement) {
+      return null;
+    }
+
+    const point = svgElement.createSVGPoint();
+    point.x = event.clientX;
+    point.y = event.clientY;
+    return point.matrixTransform(svgMatrix.inverse());
+  };
+
+  const updateEditableLineGroup = useCallback((group, lineIndex, updater) => {
+    if (group === "spiral") {
+      setSpiralLineCommands(updater);
+      return;
+    }
+
+    if (group === "curriculumLeft") {
+      setCurriculumLeftLineCommands(updater);
+      return;
+    }
+
+    if (group === "curriculumRight") {
+      setCurriculumRightLineCommands(updater);
+      return;
+    }
+
+    setStorylineWordLineCommands((currentCommands) =>
+      updateEditableGroupedLines(currentCommands, lineIndex, updater)
+    );
+  }, []);
+
+  const handleStorylineAnchorPointerDown = (event, group, lineIndex, commandIndex, keys) => {
+    event.preventDefault();
+    event.stopPropagation();
+    event.currentTarget.setPointerCapture?.(event.pointerId);
+    setSelectedStorylineNode({ group, lineIndex, commandIndex });
+
+    if (smootherRef.current?.paused) {
+      smootherRef.current.paused(true);
+    }
+
+    storylineWordDragRef.current = {
+      group,
+      lineIndex,
+      commandIndex,
+      keys,
+      svgElement: event.currentTarget.ownerSVGElement
+    };
+  };
+
+  const handleEditablePathPointerDown = (event, group, lineIndex, commands) => {
+    if (!event.altKey) {
+      return;
+    }
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    const svgPoint = getEditableSvgPoint(event, event.currentTarget.ownerSVGElement);
+
+    if (!svgPoint) {
+      return;
+    }
+
+    const x = Math.round(svgPoint.x);
+    const y = Math.round(svgPoint.y);
+    const commandIndex = findNearestEditableCommandIndex(commands, x, y);
+
+    updateEditableLineGroup(group, lineIndex, (currentCommands) =>
+      insertEditableLineCommand(currentCommands, commandIndex, x, y)
+    );
+
+    setSelectedStorylineNode({ group, lineIndex, commandIndex: commandIndex + 1 });
+  };
+
+  const handleAddStorylineNode = () => {
+    if (!selectedStorylineNode || !selectedStorylineCommand) {
+      return;
+    }
+
+    const newX = selectedStorylineCommand.x + 80;
+    const newY = selectedStorylineCommand.y;
+
+    updateEditableLineGroup(selectedStorylineNode.group, selectedStorylineNode.lineIndex, (currentCommands) =>
+      insertEditableLineCommand(currentCommands, selectedStorylineNode.commandIndex, newX, newY)
+    );
+
+    setSelectedStorylineNode({
+      ...selectedStorylineNode,
+      commandIndex: selectedStorylineNode.commandIndex + 1
+    });
+  };
+
+  const handleDeleteStorylineNode = useCallback(() => {
+    if (!selectedStorylineNode || !canDeleteSelectedStorylineNode) {
+      return;
+    }
+
+    updateEditableLineGroup(selectedStorylineNode.group, selectedStorylineNode.lineIndex, (currentCommands) =>
+      deleteEditableLineCommand(currentCommands, selectedStorylineNode.commandIndex)
+    );
+
+    setSelectedStorylineNode({
+      ...selectedStorylineNode,
+      commandIndex: Math.max(0, selectedStorylineNode.commandIndex - 1)
+    });
+  }, [
+    canDeleteSelectedStorylineNode,
+    selectedStorylineNode,
+    updateEditableLineGroup
+  ]);
+
+  useEffect(() => {
+    if (!isStorylineEditorOpen) {
+      return undefined;
+    }
+
+    const handleKeyDown = (event) => {
+      const tagName = event.target?.tagName?.toLowerCase();
+
+      if (tagName === "textarea" || tagName === "input") {
+        return;
+      }
+
+      if (event.key === "Delete" || event.key === "Backspace") {
+        handleDeleteStorylineNode();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isStorylineEditorOpen, selectedStorylineNode, canDeleteSelectedStorylineNode, handleDeleteStorylineNode]);
+
+  const handleCopyStorylineJson = async () => {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(storylineEditorJson);
+      return;
+    }
+
+    window.prompt("Copy Storyline path JSON", storylineEditorJson);
+  };
+
+  const handleResetStorylineLines = () => {
+    setSpiralLineCommands(parseEditablePathData(SPIRAL_PATH_D));
+    setCurriculumLeftLineCommands(parseEditablePathData(CURRICULUM_LEFT_PATH_D));
+    setCurriculumRightLineCommands(parseEditablePathData(CURRICULUM_RIGHT_PATH_D));
+    setStorylineWordLineCommands(cloneStorylineWordLineCommands(STORYLINE_WORD_LINE_COMMANDS));
+    setSelectedStorylineNode(null);
+  };
+
+  const renderEditablePathAnchors = (commands, group, lineIndex = 0) => {
+    if (!isStorylineEditorOpen) {
+      return null;
+    }
+
+    return (
+      <g className="lab-storyline-word-anchor-group">
+        {commands.flatMap((command, commandIndex) =>
+          STORYLINE_WORD_ANCHOR_POINTS[command.type].map((anchor) => {
+            const anchorX = command[anchor.keys[0]];
+            const anchorY = command[anchor.keys[1]];
+
+            return (
+              <g key={`${group}-${lineIndex}-${commandIndex}-${anchor.id}`}>
+                <circle
+                  className="lab-storyline-word-anchor-hit"
+                  cx={anchorX}
+                  cy={anchorY}
+                  r={20}
+                  onPointerDown={(event) => handleStorylineAnchorPointerDown(event, group, lineIndex, commandIndex, anchor.keys)}
+                />
+                <circle
+                  className={`lab-storyline-word-anchor lab-storyline-word-anchor--${anchor.label}${
+                    selectedStorylineNode?.group === group &&
+                    selectedStorylineNode?.lineIndex === lineIndex &&
+                    selectedStorylineNode?.commandIndex === commandIndex
+                      ? " is-selected"
+                      : ""
+                  }`}
+                  cx={anchorX}
+                  cy={anchorY}
+                  r={anchor.label === "control" ? 6 : 8}
+                  onPointerDown={(event) => handleStorylineAnchorPointerDown(event, group, lineIndex, commandIndex, anchor.keys)}
+                />
+              </g>
+            );
+          })
+        )}
+      </g>
+    );
+  };
+
+  const renderStorylineEditorPanel = () => {
+    if (!isStorylineEditorOpen) {
+      return null;
+    }
+
+    return (
+      <div className="lab-storyline-editor-panel" role="group" aria-label="Storyline path editor">
+        <strong>Storyline line editor</strong>
+        <p>Click a node to select it. Drag handles, Alt-click a line to add a node, or use Add/Delete below.</p>
+        <div className="lab-storyline-editor-actions">
+          <button type="button" onClick={handleCopyStorylineJson}>Copy SVG JSON</button>
+          <button type="button" onClick={handleAddStorylineNode} disabled={!selectedStorylineNode}>Add node</button>
+          <button type="button" onClick={handleDeleteStorylineNode} disabled={!canDeleteSelectedStorylineNode}>Delete node</button>
+          <button type="button" onClick={handleResetStorylineLines}>Reset</button>
+        </div>
+        <textarea value={storylineEditorJson} readOnly aria-label="Storyline path JSON" />
+      </div>
+    );
+  };
 
   const handleFitSelect = (index) => {
     if (index === selectedFitIndex) {
@@ -888,10 +1689,6 @@ export default function TheLab() {
 
         {renderPaymentStrip()}
       </div>
-
-      <figure className="lab-price-illustration" aria-hidden="true">
-        <img src={LAB_ILLUSTRATION_IMAGES.price} alt="" loading="lazy" />
-      </figure>
     </article>
   );
 
@@ -941,12 +1738,19 @@ export default function TheLab() {
             <div className="lab-storyline-inner" ref={spiralInnerRef}>
               <svg
                 ref={spiralSvgRef}
-                className="lab-storyline-line"
+                className={`lab-storyline-line${isStorylineEditorOpen ? " is-editing" : ""}`}
                 viewBox={`0 0 ${SPIRAL_VIEWBOX.width} ${SPIRAL_VIEWBOX.height}`}
                 aria-hidden="true"
                 preserveAspectRatio="none"
+                data-editing={isStorylineEditorOpen ? "true" : undefined}
               >
-                <path ref={spiralPathRef} d={SPIRAL_PATH_D} />
+                <path
+                  ref={spiralPathRef}
+                  className={isStorylineEditorOpen ? "lab-editable-path" : undefined}
+                  d={buildStorylineWordLinePath(spiralLineCommands)}
+                  onPointerDown={(event) => handleEditablePathPointerDown(event, "spiral", 0, spiralLineCommands)}
+                />
+                {renderEditablePathAnchors(spiralLineCommands, "spiral")}
               </svg>
 
               <article className="lab-storyline-copy lab-storyline-copy--first">
@@ -981,6 +1785,29 @@ export default function TheLab() {
               </article>
 
               <div className="lab-storyline-word-field" aria-label="Elementos desde donde crear contenido">
+                <svg
+                  ref={storylineWordLinesRef}
+                  className={`lab-storyline-word-lines${isStorylineEditorOpen ? " is-editing" : ""}`}
+                  viewBox="0 0 1440 700"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                  data-editing={isStorylineEditorOpen ? "true" : undefined}
+                >
+                  {storylineWordLineCommands.map((lineCommands, lineIndex) => (
+                    <path
+                      key={`storyline-word-line-${lineIndex}`}
+                      className={isStorylineEditorOpen ? "lab-editable-path" : undefined}
+                      d={buildStorylineWordLinePath(lineCommands)}
+                      onPointerDown={(event) => handleEditablePathPointerDown(event, "storylineWords", lineIndex, lineCommands)}
+                    />
+                  ))}
+
+                  {isStorylineEditorOpen && storylineWordLineCommands.map((lineCommands, lineIndex) => (
+                    <g key={`storyline-word-editor-${lineIndex}`}>
+                      {renderEditablePathAnchors(lineCommands, "storylineWords", lineIndex)}
+                    </g>
+                  ))}
+                </svg>
                 <span className="lab-storyline-word lab-storyline-word--errors">Tus errores</span>
                 <span className="lab-storyline-word lab-storyline-word--moves">Lo que te<br />mueve</span>
                 <span className="lab-storyline-word lab-storyline-word--opinions">Lo que opinas</span>
@@ -998,7 +1825,7 @@ export default function TheLab() {
                   <h2>
                     El Storytelling Lab nació para eso. No como un curso de marketing tradicional ni una colección de fórmulas genéricas. Sino como un espacio con una ruta concreta y herramientas prácticas para aprender a ordenar tus ideas y convertirlas en contenido que se sienta tuyo.
                   </h2>
-                  <a className="lab-method-cta cta-button" href="/storytelling-lab">
+                  <a className="lab-method-cta cta-button" href="/storytelling-lab" ref={depthStickyCtaRef}>
                     Únete al Storytelling Lab
                   </a>
                 </div>
@@ -1008,8 +1835,11 @@ export default function TheLab() {
             <section className="lab-includes" ref={includesSectionRef}>
               <div className="lab-includes-inner content-shell">
                 <div className="lab-feature-grid">
-                  {FEATURES.map((feature) => (
-                    <article key={feature.title} className="lab-include-card surface-card">
+                  {FEATURES.map((feature, index) => (
+                    <article
+                      key={feature.title}
+                      className={`lab-include-card surface-card${index % 2 === 1 ? " lab-include-card--reverse" : ""}`}
+                    >
                       <div className="lab-include-copy">
                         <span>{feature.label}</span>
                         <h3>{feature.title}</h3>
@@ -1027,9 +1857,7 @@ export default function TheLab() {
             <div className="lab-map-inner content-shell">
               <div className="lab-map-copy" ref={mapCopyRef}>
                 <h2>
-                  El Mapa Narrativo: la
-                  <br />
-                  brújula de todo tu contenido
+                  El Mapa Narrativo: la brújula de todo tu contenido
                 </h2>
                 <p>
                   La mayoría de las emprendedoras empiezan a crear contenido a mitad de camino:
@@ -1120,16 +1948,41 @@ export default function TheLab() {
           </section>
 
           <section className="lab-curriculum">
-            <div className="lab-curriculum-title" aria-label="El contenido del curso">
-              <span className="lab-curriculum-word lab-curriculum-word--el">El</span>
-              <span className="lab-curriculum-word lab-curriculum-word--contenido">contenido</span>
-              <span className="lab-curriculum-word lab-curriculum-word--del">del</span>
-              <span className="lab-curriculum-word lab-curriculum-word--curso">curso</span>
-              <svg className="lab-curriculum-line" viewBox="0 0 520 360" aria-hidden="true">
-                <path d="M190 46C250 38 334 38 386 69C431 96 429 132 397 152" />
-                <path d="M185 130C122 131 72 138 64 170C58 194 80 206 103 210" />
-                <path d="M125 232C161 270 247 287 307 266C363 247 354 193 294 192C229 190 203 236 214 286C221 317 232 336 250 352" />
+            <div
+              className="lab-curriculum-title"
+              ref={curriculumTitleRef}
+              aria-label="El contenido del curso"
+              data-editing={isStorylineEditorOpen ? "true" : undefined}
+            >
+              <svg
+                className={`lab-curriculum-line lab-curriculum-line--left${isStorylineEditorOpen ? " is-editing" : ""}`}
+                viewBox="0 0 760 260"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+              >
+                <path
+                  ref={curriculumLeftPathRef}
+                  className={isStorylineEditorOpen ? "lab-editable-path" : undefined}
+                  d={buildStorylineWordLinePath(curriculumLeftLineCommands)}
+                  onPointerDown={(event) => handleEditablePathPointerDown(event, "curriculumLeft", 0, curriculumLeftLineCommands)}
+                />
+                {renderEditablePathAnchors(curriculumLeftLineCommands, "curriculumLeft")}
               </svg>
+              <svg
+                className={`lab-curriculum-line lab-curriculum-line--right${isStorylineEditorOpen ? " is-editing" : ""}`}
+                viewBox="0 0 880 260"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+              >
+                <path
+                  ref={curriculumRightPathRef}
+                  className={isStorylineEditorOpen ? "lab-editable-path" : undefined}
+                  d={buildStorylineWordLinePath(curriculumRightLineCommands)}
+                  onPointerDown={(event) => handleEditablePathPointerDown(event, "curriculumRight", 0, curriculumRightLineCommands)}
+                />
+                {renderEditablePathAnchors(curriculumRightLineCommands, "curriculumRight")}
+              </svg>
+              <h2>El contenido del curso</h2>
             </div>
 
             <div className="lab-curriculum-list" aria-label="Contenido del curso">
@@ -1149,7 +2002,10 @@ export default function TheLab() {
                   >
                     <span>
                       <h3>{module.title}</h3>
-                      <p>{module.meta}</p>
+                      <p className="lab-curriculum-meta">
+                        <CurriculumMetaIcon type={module.meta.includes("capítulo") ? "book" : "video"} />
+                        <span>{module.meta}</span>
+                      </p>
                     </span>
                     <ChevronIcon className="lab-curriculum-chevron" />
                   </button>
@@ -1162,7 +2018,10 @@ export default function TheLab() {
                     <div className="lab-curriculum-panel-inner">
                       <ul>
                         {module.lessons.map((lesson) => (
-                          <li key={lesson}>{lesson}</li>
+                          <li key={lesson}>
+                            <span className="lab-curriculum-lesson-icon" aria-hidden="true" />
+                            <span>{lesson}</span>
+                          </li>
                         ))}
                       </ul>
                     </div>
@@ -1170,6 +2029,12 @@ export default function TheLab() {
                 </article>
               ))}
             </div>
+          </section>
+
+          <section className="lab-reels" aria-label="Instagram reels">
+            <figure className="lab-reels-strip">
+              <img src="/img/17-IG%20Reels.png" alt="" loading="lazy" />
+            </figure>
           </section>
 
           <section className="lab-about" id="about">
@@ -1182,15 +2047,17 @@ export default function TheLab() {
 
                 <div className="lab-about-copy">
                   <p>
-                    Yo también pasé por la etapa de seguir las reglas invisibles del marketing:
-                    publicar porque “hay que hacerlo”, repetir fórmulas, perseguir tendencias,
-                    y sentir que lo que salía no era mío.
+                    Y yo también pasé por la etapa de seguir todas esas reglas invisibles del marketing
                   </p>
                   <p>
-                    Así que decidí dejar de buscar “la fórmula mágica” y volví a lo único que
-                    siempre me había hecho sentido: las historias. He pasado por varias esquinas
-                    de las comunicaciones: estudié comunicación escénica, he escrito por años
-                    para revistas, y he creado contenido para marcas y emprendimientos.
+                    Publicar porque “hay que hacerlo”, repetir fórmulas, perseguir tendencias,
+                    y sentir que lo que salía no era mío. Así que decidí dejar de buscar “la
+                    fórmula mágica” y volví a lo único que siempre me había hecho sentido: las
+                    historias. He pasado por varias esquinas de las comunicaciones: estudié
+                    comunicación escénica, he escrito por años para revistas, y he creado contenido
+                    para marcas y emprendimientos. Y después de vivir y trabajar 12 años en New York
+                    y Londres, confirmé algo que se repetía en cada proyecto: cuando una marca
+                    encuentra su historia, todo se ordena.
                   </p>
                   <p>
                     El Storytelling Lab nació desde ahí. No para que aprendas a “hacer mejor
@@ -1277,6 +2144,7 @@ export default function TheLab() {
           </main>
         </div>
       </div>
+      {renderStorylineEditorPanel()}
       {isPaymentModalOpen && (
         <div
           className="lab-payment-modal"
