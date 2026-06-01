@@ -752,7 +752,7 @@ export default function TheLab() {
         }
 
         const pinDistance = Math.max(
-          includesSection.offsetTop - window.innerHeight * 0.08,
+          includesSection.offsetTop - window.innerHeight * 0.22,
           window.innerHeight * 0.9
         );
 

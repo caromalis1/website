@@ -80,7 +80,7 @@
 }
 
 .site-header .brand-logo {
-  width: clamp(128px, 12vw, 180px);
+  width: clamp(146px, 12.6vw, 224px);
   line-height: 0;
 }
 
@@ -257,7 +257,7 @@
   }
 
   .site-header .brand-logo {
-    width: clamp(122px, 38vw, 154px);
+    width: clamp(118px, 33.6vw, 151px);
   }
 
   .site-nav {
