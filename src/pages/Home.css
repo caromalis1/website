@@ -358,7 +358,7 @@
   margin-top: clamp(92px, 12vw, 152px);
   margin-bottom: -120px;
   padding: clamp(92px, 11vw, 146px) var(--page-gutter) calc(clamp(92px, 11vw, 146px) + 120px);
-  background: #57a8d4 url("../../public/img/blue_gradient.png") center center / cover no-repeat;
+  background: #57a8d4 url("../../public/img/blue-gradient.png") center center / cover no-repeat;
   color: var(--portfolio-bg);
 }
 

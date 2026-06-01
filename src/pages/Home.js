@@ -45,7 +45,7 @@ export default function Home() {
         </div>
 
         <div className="portfolio-hero-visual" aria-hidden="true">
-          <img className="portfolio-hero-bio" src="/img/16-Bio.png" alt="" />
+          <img className="portfolio-hero-bio" src="/img/16-bio.png" alt="" />
           <svg viewBox="0 0 620 520" role="img">
             <path className="portfolio-line portfolio-line--one" d="M94 92C184 40 319 59 394 105C481 158 515 266 451 331C386 397 250 373 218 294C194 236 252 185 323 199C390 212 419 286 377 334C329 389 207 388 139 334" />
             <path className="portfolio-line portfolio-line--two" d="M103 353C151 430 271 457 385 427C490 400 558 319 529 250" />
@@ -88,7 +88,7 @@ export default function Home() {
       </section>
 
         <div className="portfolio-reels-strip" aria-hidden="true">
-          <img src="/img/17-IG%20Reels.png" alt="" />
+          <img src="/img/17-ig-reels.png" alt="" />
         </div>
 
       <SiteFooter title="Caro Malis" />

@@ -2862,7 +2862,7 @@ h2 {
   margin: 40px clamp(20px, 4.55vw, 86px);
   padding: 118px 24px;
   border-radius: var(--lab-radius-panel);
-  background: #57a8d4 url("../../public/img/blue_gradient.png") center center / cover no-repeat;
+  background: #57a8d4 url("../../public/img/blue-gradient.png") center center / cover no-repeat;
 }
 
 .lab-faq-panel {

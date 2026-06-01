@@ -37,11 +37,11 @@ const FEATURES = [
 ];
 
 const LAB_ILLUSTRATION_IMAGES = {
-  map: "/img/4-SL-Tu%20Mapa%20Narrativo.png",
-  workbook: "/img/5-SL-El%20Storytelling%20Lab%20Workbook.png",
-  templates: "/img/6-SL-Plantillas%2C%20ejemplos%20e%20ideas.png",
-  modules: "/img/7-SL-6%20mo%CC%81dulos%2C%2020%20lecciones.png",
-  visual: "/img/8-SL-Tu%20narrativa%20visual.png",
+  map: "/img/4-sl-tu-mapa-narrativo.png",
+  workbook: "/img/5-sl-el-storytelling-lab-workbook.png",
+  templates: "/img/6-sl-plantillas-ejemplos-e-ideas.png",
+  modules: "/img/7-sl-6-modulos-20-lecciones.png",
+  visual: "/img/8-sl-tu-narrativa-visual.png",
   fit: "/img/10-servicios.png",
   price: "/img/9-productos.png"
 };
@@ -85,25 +85,25 @@ const LAB_FIT_CONTENT = [
   {
     label: "Marcas personales",
     title: "Para marcas personales",
-    image: "/img/11-marcas%20personales.png",
+    image: "/img/11-marcas-personales.png",
     description: "Cuando eres tú el centro de tu contenido, la presión de 'mostrarte' es constante. ¿Cuánto cuento? ¿Qué muestro? ¿Hasta dónde llego? El Lab te ayuda a encontrar tu forma de comunicarte, para que puedas mostrarte sin sentir que tienes que exponerte de más ni inventarte un personaje."
   },
   {
     label: "Negocios locales",
     title: "Para negocios locales",
-    image: "/img/12-Negocios%20locales.png",
+    image: "/img/12-negocios-locales.png",
     description: "Tu negocio se siente diferente en persona, pero eso es casi imposible de transmitir en un post. El Lab te ayuda a traducir la atmósfera y la experiencia de lo que haces, para que la gente pueda sentir y entender tu espacio incluso antes de visitarlo."
   },
   {
     label: "Educadoras",
     title: "Para los que tienen algo que enseñar",
-    image: "/img/13-Educadoras.png",
+    image: "/img/13-educadoras.png",
     description: "Eres experta en algo y quieres compartir eso con el mundo, el problema es como hacerlo de una manera que se sienta genuina para tus redes. El Lab te ayuda a encontrar ese punto medio, para que tu contenido educativo se entienda, conecte y no pierda tu voz en el camino."
   },
   {
     label: "Negocios creativos",
     title: "Para negocios creativos",
-    image: "/img/14-Negocios%20creativos.png",
+    image: "/img/14-negocios-creativos.png",
     description: "Tu trabajo está directamente conectado a tu creatividad, y eso a veces puede ser difícil de traducir en contenido de redes sociales. El Lab te ayuda a ponerle palabras y crearle un mundo a lo que haces, para que lo que publicas tenga la misma personalidad que lo que creas."
   }
 ];
@@ -113,43 +113,43 @@ const TESTIMONIALS = [
     quote: "Por fin pude explicar lo que hago sin sentir que estaba copiando una fórmula ajena.",
     name: "Camila R.",
     role: "Diseñadora de marca",
-    avatar: "/img/15-Testimonials-1.png"
+    avatar: "/img/15-testimonials-1.png"
   },
   {
     quote: "El mapa narrativo me ordenó la cabeza. Ahora sé desde dónde escribir cada pieza de contenido.",
     name: "Valentina M.",
     role: "Mentora creativa",
-    avatar: "/img/15-Testimonials-2.png"
+    avatar: "/img/15-testimonials-2.png"
   },
   {
     quote: "Dejé de publicar por cumplir. Mis captions volvieron a sonar como yo.",
     name: "Paula S.",
     role: "Fotógrafa",
-    avatar: "/img/15-Testimonials-3.png"
+    avatar: "/img/15-testimonials-3.png"
   },
   {
     quote: "Me ayudó a convertir ideas sueltas en una narrativa clara para mi lanzamiento.",
     name: "Mariana F.",
     role: "Consultora",
-    avatar: "/img/15-Testimonials-4.png"
+    avatar: "/img/15-testimonials-4.png"
   },
   {
     quote: "Nunca había sentido que un curso de contenido entendiera tan bien mi manera de trabajar.",
     name: "Daniela L.",
     role: "Ceramista",
-    avatar: "/img/15-Testimonials-5.png"
+    avatar: "/img/15-testimonials-5.png"
   },
   {
     quote: "Volví a mirar mi historia como una herramienta, no como algo que tenía que esconder.",
     name: "Sofía G.",
     role: "Psicóloga",
-    avatar: "/img/15-Testimonials-6.png"
+    avatar: "/img/15-testimonials-6.png"
   },
   {
     quote: "Reescribí todo mi calendario en una tarde. Se sintió más humano y mucho más sostenible.",
     name: "D. Mejía",
     role: "Fundadora",
-    avatar: "/img/15-Testimonials-7.png"
+    avatar: "/img/15-testimonials-7.png"
   }
 ];
 
@@ -1754,13 +1754,13 @@ export default function TheLab() {
         <div className="lab-scroll-content" ref={smootherContentRef}>
           <main
             className="lab"
-            style={{ "--lab-blue-gradient": `url("${process.env.PUBLIC_URL}/img/blue_gradient.png")` }}
+            style={{ "--lab-blue-gradient": `url("${process.env.PUBLIC_URL}/img/blue-gradient.png")` }}
           >
 
           <section
             className="home-hero"
             ref={homeHeroRef}
-            style={{ "--lab-hero-art": `url("${process.env.PUBLIC_URL}/img/1-Header.png")` }}
+            style={{ "--lab-hero-art": `url("${process.env.PUBLIC_URL}/img/1-header.png")` }}
           >
             <div className="home-hero-content">
               <h1 className="home-hero-title">
@@ -1816,7 +1816,7 @@ export default function TheLab() {
                 </article>
 
                 <figure className="lab-sketch lab-sketch--runner" aria-hidden="true">
-                  <img src="/img/2-Doodle%201.png" alt="" loading="lazy" />
+                  <img src="/img/2-doodle-1.png" alt="" loading="lazy" />
                 </figure>
               </div>
 
@@ -1831,7 +1831,7 @@ export default function TheLab() {
                 </article>
 
                 <figure className="lab-sketch lab-sketch--knitter" aria-hidden="true">
-                  <img src="/img/3-Doodle%202.png" alt="" loading="lazy" />
+                  <img src="/img/3-doodle-2.png" alt="" loading="lazy" />
                 </figure>
               </div>
 
@@ -2109,7 +2109,7 @@ export default function TheLab() {
 
           <section className="lab-reels" aria-label="Instagram reels">
             <figure className="lab-reels-strip">
-              <img src="/img/17-IG%20Reels.png" alt="" loading="lazy" />
+              <img src="/img/17-ig-reels.png" alt="" loading="lazy" />
             </figure>
           </section>
 
@@ -2118,7 +2118,7 @@ export default function TheLab() {
               <h2>Hola! Soy Carolina</h2>
               <div className="lab-about-card">
                 <div className="lab-about-photos" aria-label="Fotos de Carolina">
-                  <img src="/img/16-Bio.png" alt="" loading="lazy" />
+                  <img src="/img/16-bio.png" alt="" loading="lazy" />
                 </div>
 
                 <div className="lab-about-copy">
