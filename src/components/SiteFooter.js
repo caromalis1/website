@@ -10,31 +10,33 @@ export default function SiteFooter({ title = 'Storytelling Lab' }) {
       <div className="site-lab-footer-inner">
         <div className="site-lab-footer-top">
           <div className="site-lab-footer-socials" aria-label="Redes sociales">
-            <a href="mailto:hola@socialsbycaro.com" aria-label="Email">
+            <a href="mailto:hola@caromalis.com" aria-label="Email">
               <span>
                 <i className="fas fa-envelope" aria-hidden="true" />
               </span>
             </a>
-            <a href="/instagram" aria-label="Instagram">
+            <a href="https://www.instagram.com/socialsbycaro/
+" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
               <span>
                 <i className="fab fa-instagram" aria-hidden="true" />
               </span>
             </a>
-            <a href="/pinterest" aria-label="Pinterest">
+            {/* <a href="/pinterest" aria-label="Pinterest">
               <span>
                 <i className="fab fa-pinterest-p" aria-hidden="true" />
               </span>
-            </a>
-            <a href="/linkedin" aria-label="LinkedIn">
+            </a> */}
+            <a href=" https://www.linkedin.com/in/carolina-malis/
+" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
               <span>
                 <i className="fab fa-linkedin-in" aria-hidden="true" />
               </span>
             </a>
-            <a href="/facebook" aria-label="Facebook">
+            {/* <a href="/facebook" aria-label="Facebook">
               <span>
                 <i className="fab fa-facebook-f" aria-hidden="true" />
               </span>
-            </a>
+            </a> */}
           </div>
           <nav className="site-lab-footer-links" aria-label="Legal">
             <a href="/terms">Términos y condiciones</a>

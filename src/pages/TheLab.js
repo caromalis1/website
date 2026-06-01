@@ -234,24 +234,50 @@ const PAYMENT_INCLUDES = [
 ];
 
 const FAQ_ITEMS = [
-  "¿Cuánto tiempo me tomará hacer el Lab?",
-  "¿Necesito experiencia en marketing o creación de contenido?",
-  "¿Necesito tener un negocio avanzado para aprovechar el Lab?",
-  "¿Por cuánto tiempo tengo acceso al curso?",
-  "¿Es un curso teórico?",
-  "¿Para qué tipo de negocio es este curso?",
-  "¿Necesito saber usar Notion para aprovechar el workbook?",
-  "¿Es solo para Instagram?",
-  "¿Cuánto tiempo necesito para hacerlo?",
-  "¿Necesito ser creativa para hacer este curso?",
-  "¿El Lab sirve si ya he tomado otros cursos de contenido?",
-  "¿Hay soporte si me quedo con dudas?",
-  "¿El acceso de por vida incluye futuras actualizaciones?",
-  "¿Ofrecen reembolsos?",
-  "¿Puedo hacer el curso desde el teléfono?",
-  "Metodos de pago*******",
-  "El curso aparece en dolares*****",
-  "Si no puedo pagar en mi moneda*****"
+  {
+    question: "¿Cuánto tiempo me tomará hacer el Lab?",
+    answer: "Depende de tu ritmo! Hay personas que lo hacen en un par de días, otras avanzan un módulo por semana. No hay fechas límite ni presión. Avanzas cuando puedas y vuelves cuando quieras. Tienes acceso para siempre."
+  },
+  {
+    question: "¿El acceso de por vida incluye futuras actualizaciones?",
+    answer: "Sí. Tu lifetime access incluye también cualquier actualización o nuevo recurso que se agregue dentro del Lab en el futuro, sin tener que pagar extra."
+  },
+  {
+    question: "¿Necesito experiencia en marketing o creación de contenido?",
+    answer: "¡Para nada! Este curso está diseñado especialmente para emprendedores que quieren aprender a contar lo que hacen con claridad y autenticidad. Solo necesitas animarte a probar nuevas formas de comunicarte."
+  },
+  {
+    question: "¿Necesito tener un negocio avanzado para aprovechar el Lab?",
+    answer: "No. Te sirve estés donde estés: si recién partes, te ayuda a construir tu base; si ya llevas tiempo, te ayuda a ordenar tu mensaje y recalibrar tu narrativa."
+  },
+  {
+    question: "¿El Lab sirve si ya he tomado otros cursos de contenido?",
+    answer: "Sí. De hecho, muchas alumnas vienen de cursos tradicionales que no se sintieron auténticos. El Lab baja esa teoría al mundo real: tu voz, tu mensaje y tu comunidad."
+  },
+  {
+    question: "¿Es un curso teórico?",
+    answer: "El Storytelling Lab tiene teoría, sí, pero su foco principal es que pongas en práctica lo que aprendes. Cada módulo viene con ejercicios, ejemplos y recursos para ayudarte a aplicar todo a tu contenido real."
+  },
+  {
+    question: "¿Necesito saber usar Notion para aprovechar el workbook?",
+    answer: "Para nada. Aunque el workbook está en Notion, no necesitas tener experiencia previa. Al empezar el curso, vas a encontrar una guía paso a paso para usarlo sin complicaciones."
+  },
+  {
+    question: "¿Hay soporte si me quedo con dudas?",
+    answer: "Sí. Si te surge una pregunta mientras avanzas, me puedes escribir por mail o DM. No es un programa con soporte en vivo, pero sí tienes un canal directo para destrabarte cuando lo necesites."
+  },
+  {
+    question: "¿Qué métodos de pago hay?",
+    answer: "Puedes pagar con tarjeta de crédito o débito directamente en el checkout. De manera alternativa, también puedes hacer el pago por PayPal."
+  },
+  {
+    question: "¿Qué pasa si no puedo pagar en dólares o si necesito otra alternativa de pago?",
+    answer: "Escríbeme a hola@caromalis.com. A veces es tema de banco/tarjeta, a veces es PayPal, y a veces hay otra solución simple, pero prefiero que me hables y lo resolvemos caso a caso."
+  },
+  {
+    question: "¿Ofrecen reembolsos?",
+    answer: "Como es un curso digital con acceso inmediato a todo el material, no es posible ofrecer reembolsos."
+  }
 ];
 
 const SPIRAL_MATCH = {
@@ -261,10 +287,11 @@ const SPIRAL_VIEWBOX = {
   width: 1000,
   height: 2200
 };
+const SPIRAL_DRAW_LENGTH = 5288;
 // Storyline thread coordinates use SPIRAL_VIEWBOX. Keep the final point aligned
 // with the first word-field segment so the long thread hands off into "Tu historia".
 const SPIRAL_PATH_D =
-  "M631 -24C902 56 933 164 913 316C906 377 840 558 763 567C504 666 99 549 114 942C130 1136 208 1409 429 1376C457 1376 776 1297 819 1431C902 1634 864 1958 814 2008C780 2044 754 2068 712 2065";
+  "M631 -24C902 56 933 164 917 317C856 763 99 549 114 942C130 1136 208 1409 429 1376C457 1376 776 1297 881 1585C902 1634 955 1928 923 2003C877 2123 760 2048 745 2019";
 const CURRICULUM_LEFT_PATH_D =
   "M0 132C72 140 92 142 128 126C170 108 178 72 158 58C138 44 112 60 120 91C130 131 192 136 254 124C336 108 394 84 506 78C626 72 608 120 675 126";
 const CURRICULUM_RIGHT_PATH_D =
@@ -337,29 +364,30 @@ function buildMapThreadPath(points, width) {
 
 const STORYLINE_WORD_LINE_COMMANDS = [
   [
-    { type: "M", x: 1178, y: 534 },
-    { type: "C", x1: 1118, y1: 433, x2: 1262, y2: -149, x: 1050, y: 68 }
+    { type: "M", x: 1200, y: 541 },
+    { type: "C", x1: 1122, y1: 372, x2: 1553, y2: -160, x: 1090, y: 75 }
   ],
   [
-    { type: "M", x: 985, y: 141 },
-    { type: "C", x1: 970, y1: 200, x2: 873, y2: 243, x: 817, y: 186 },
-    { type: "C", x1: 768, y1: 87, x2: 920, y2: 172, x: 907, y: 255 }
+    { type: "M", x: 1014, y: 133 },
+    { type: "C", x1: 949, y1: 192, x2: 766, y2: 251, x: 774, y: 163 },
+    { type: "C", x1: 768, y1: 67, x2: 920, y2: 172, x: 909, y: 258 }
   ],
   [
     { type: "M", x: 923, y: 325 },
-    { type: "C", x1: 1071, y1: 705, x2: 594, y2: 714, x: 632, y: 550 }
+    { type: "C", x1: 970, y1: 703, x2: 657, y2: 734, x: 645, y: 542 }
   ],
   [
-    { type: "M", x: 629, y: 451 },
-    { type: "C", x1: 700, y1: 262, x2: 655, y2: -63, x: 493, y: 138 }
+    { type: "M", x: 650, y: 454 },
+    { type: "C", x1: 739, y1: -17, x2: 506, y2: -61, x: 482, y: 132 }
   ],
   [
-    { type: "M", x: 466, y: 241 },
-    { type: "C", x1: 543, y1: 410, x2: 386, y2: 619, x: 309, y: 439 }
+    { type: "M", x: 481, y: 239 },
+    { type: "C", x1: 503, y1: 427, x2: 386, y2: 619, x: 309, y: 439 }
   ],
   [
     { type: "M", x: 245, y: 370 },
-    { type: "C", x1: 204, y1: 237, x2: 41, y2: 473, x: -280, y: 450 }
+    { type: "C", x1: 105, y1: 216, x2: 107, y2: 481, x: 239, y: 319 },
+    { type: "C", x1: 362, y1: 142, x2: -340, y2: 413, x: -611, y: 412 }
   ]
 ];
 
@@ -592,6 +620,7 @@ export default function TheLab() {
   const resizeRafRef = useRef(0);
   const storylineWordDragRef = useRef(null);
   const storylineTouchRef = useRef(null);
+  const spiralPathD = buildStorylineWordLinePath(spiralLineCommands);
 
   useLayoutEffect(() => {
     let isActive = true;
@@ -649,7 +678,9 @@ export default function TheLab() {
         }
 
         const sectionRect = spiralSection.getBoundingClientRect();
-        const totalLength = pathElement.getTotalLength();
+        const totalLength = Math.ceil(pathElement.getTotalLength());
+        const dashLength = Math.max(totalLength, SPIRAL_DRAW_LENGTH);
+        const dashValue = `${dashLength} ${dashLength}`;
 
         if (motionTweenRef.current) {
           motionTweenRef.current.scrollTrigger?.kill();
@@ -658,8 +689,8 @@ export default function TheLab() {
         }
 
         gsap.set(pathElement, {
-          strokeDasharray: totalLength,
-          strokeDashoffset: canAnimateSpiral() && !isEditing ? totalLength : 0
+          strokeDasharray: dashValue,
+          strokeDashoffset: canAnimateSpiral() && !isEditing ? dashLength : 0
         });
 
         if (!canAnimateSpiral() || isEditing) {
@@ -1207,7 +1238,7 @@ export default function TheLab() {
       isActive = false;
       cleanupMotion();
     };
-  }, []);
+  }, [spiralPathD]);
 
   useEffect(() => {
     if (!isPaymentModalOpen) {
@@ -1425,8 +1456,8 @@ export default function TheLab() {
       ].filter(Boolean);
 
       linePaths.forEach((pathElement) => {
-        const pathLength = pathElement.getTotalLength();
-        pathElement.style.strokeDasharray = `${pathLength}`;
+        const pathLength = Math.ceil(pathElement.getTotalLength());
+        pathElement.style.strokeDasharray = `${pathLength} ${pathLength}`;
         pathElement.style.strokeDashoffset = "0";
       });
     });
@@ -1778,7 +1809,8 @@ export default function TheLab() {
           <p className="lab-price-badge">{selectedPaymentPlan.badge}</p>
         </div>
 
-        <a href="/storytelling-lab" className="lab-price-cta cta-button">
+        <a href="https://caromalis.mykajabi.com/offers/LX9BuUBo/checkout 
+" className="lab-price-cta cta-button">
           Únete al Storytelling Lab
         </a>
 
@@ -1842,7 +1874,7 @@ export default function TheLab() {
                 <path
                   ref={spiralPathRef}
                   className={isStorylineEditorOpen ? "lab-editable-path" : undefined}
-                  d={buildStorylineWordLinePath(spiralLineCommands)}
+                  d={spiralPathD}
                   onPointerDown={(event) => handleEditablePathPointerDown(event, "spiral", 0, spiralLineCommands)}
                 />
                 {renderEditablePathAnchors(spiralLineCommands, "spiral")}
@@ -2216,10 +2248,10 @@ export default function TheLab() {
               </div>
 
               <div className="lab-faq-list">
-                {FAQ_ITEMS.map((question, index) => (
+                {FAQ_ITEMS.map((item, index) => (
                   <article
                     className={`lab-faq-item${openFaqIndex === index ? " is-open" : ""}`}
-                    key={question}
+                    key={item.question}
                   >
                     <button
                       className="lab-faq-trigger"
@@ -2230,7 +2262,7 @@ export default function TheLab() {
                         currentIndex === index ? -1 : index
                       ))}
                     >
-                      <span>{question}</span>
+                      <span>{item.question}</span>
                       <span className="lab-faq-symbol" aria-hidden="true">
                         {openFaqIndex === index ? "−" : "+"}
                       </span>
@@ -2241,10 +2273,7 @@ export default function TheLab() {
                       hidden={openFaqIndex !== index}
                     >
                       <div className="lab-faq-answer-inner">
-                        <p>
-                          Placeholder: aquí irá una respuesta clara y breve para esta pregunta.
-                          La idea es resolver la duda sin sonar técnica ni prometer de más.
-                        </p>
+                        <p>{item.answer}</p>
                       </div>
                     </div>
                   </article>

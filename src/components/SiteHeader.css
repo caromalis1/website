@@ -80,23 +80,12 @@
 }
 
 .site-header .brand-logo {
-  width: auto;
-  line-height: 1;
+  width: clamp(128px, 12vw, 180px);
+  line-height: 0;
 }
 
 .site-header .brand-logo img {
-  display: none;
-}
-
-.site-header .brand-logo::before {
-  content: "LOGO";
-  color: var(--charcoal);
-  font-family: var(--paragraph-font);
-  font-size: clamp(24px, 2.2vw, 34px);
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: 0;
-  text-shadow: none;
+  display: block;
 }
 
 .site-nav {
