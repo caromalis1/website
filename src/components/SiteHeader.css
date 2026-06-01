@@ -138,7 +138,10 @@
 
 @media (max-width: 760px) {
   .site-header {
-    padding: 18px 18px 0;
+    left: 50%;
+    width: 100vw;
+    padding: 18px 24px 0;
+    transform: translateX(-50%);
   }
 
   .site-header-spacer {
@@ -150,6 +153,7 @@
   }
 
   .site-header-inner {
+    width: 100%;
     min-height: auto;
     position: relative;
     flex-wrap: nowrap;
@@ -249,7 +253,7 @@
 
 @media (max-width: 420px) {
   .site-header {
-    padding-inline: 14px;
+    padding-inline: 24px;
   }
 
   .site-header-spacer {
