@@ -1872,7 +1872,7 @@ export default function TheLab() {
                     ))}
                   </svg>
                   <span className="lab-storyline-word lab-storyline-word--errors">Tus errores</span>
-                  <span className="lab-storyline-word lab-storyline-word--moves">Lo que te<br />mueve</span>
+                  <span className="lab-storyline-word lab-storyline-word--moves">Lo que te mueve</span>
                   <span className="lab-storyline-word lab-storyline-word--opinions">Lo que opinas</span>
                   <span className="lab-storyline-word lab-storyline-word--awkward">Tus trágame tierra</span>
                   <span className="lab-storyline-word lab-storyline-word--voice">Tu voz</span>
@@ -2214,6 +2214,15 @@ export default function TheLab() {
           </main>
         </div>
       </div>
+      {!isPaymentModalOpen && (
+        <button
+          className="lab-floating-cta cta-button"
+          type="button"
+          onClick={() => setIsPaymentModalOpen(true)}
+        >
+          Únete al Lab
+        </button>
+      )}
       {renderStorylineEditorPanel()}
       {isPaymentModalOpen && (
         <div

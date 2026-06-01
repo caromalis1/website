@@ -230,17 +230,12 @@
   }
 
   .site-lab-footer-bottom h2 {
-    min-width: 0;
-    max-width: 72vw;
-    overflow: hidden;
-    font-size: clamp(54px, 18vw, 78px);
-    line-height: 0.78 !important;
-    white-space: nowrap;
+    display: none;
   }
 
   .site-lab-footer-bottom small {
-    flex: 0 0 auto;
-    max-width: 74px;
+    flex: 1 1 0;
+    max-width: 140px;
     line-height: 1.05;
   }
 }
