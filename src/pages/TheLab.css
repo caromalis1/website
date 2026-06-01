@@ -103,16 +103,19 @@
     overflow: hidden;
     padding: clamp(280px, 25vh, 360px) clamp(28px, 7.4vw, 128px) clamp(120px, 11vh, 180px);
     height: 107vh;
+    min-height: 820px;
 }
 
 .home-hero::after {
     content: "";
     position: absolute;
-    inset: auto 0 -9vw;
+    right: 0;
+    bottom: clamp(-120px, -6vw, -72px);
+    left: 0;
     z-index: 1;
-    height: 100%;
+    height: min(82vw, 760px);
     pointer-events: none;
-    background: var(--lab-hero-art) center bottom / 100% auto no-repeat;
+    background: var(--lab-hero-art) center bottom / min(100vw, 1920px) auto no-repeat;
 }
 
 .home-hero-content {
@@ -648,9 +651,11 @@
 }
 
 .lab-method {
+  z-index: 5;
   min-height: 610px;
   padding: 150px 24px 16px;
   display: block;
+  pointer-events: none;
 }
 
 .lab-method-panel {
@@ -687,6 +692,8 @@
 }
 
 .lab-method-cta {
+  position: relative;
+  z-index: 2;
   min-height: var(--lab-button-min-h);
   display: inline-flex;
   align-items: center;
@@ -707,6 +714,7 @@
   text-transform: uppercase;
   text-wrap: nowrap;
   cursor: pointer;
+  pointer-events: auto;
 }
 
 .lab-includes {
@@ -2762,7 +2770,10 @@ button.lab-floating-cta.cta-button {
   }
 
   .home-hero-content {
+    width: min(100%, 342px);
     max-width: 100%;
+    margin-inline: auto;
+    text-align: left;
   }
 
   .lab .home-hero-title {
@@ -3116,38 +3127,88 @@ button.lab-floating-cta.cta-button {
     margin: 2px auto 0;
   }
 
+  .lab-storyline-panel--final {
+    gap: 18px;
+  }
+
   .lab-storyline-word-field {
-    width: 100%;
-    min-height: 0;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
-    pointer-events: auto;
+    display: block;
+    width: min(100%, 370px);
+    min-height: clamp(500px, 136vw, 590px);
+    margin: 0 auto;
+    pointer-events: none;
   }
 
   .lab-storyline-word-lines {
     display: none;
+    top: 3%;
+    left: -64%;
+    width: 228%;
+    height: 92%;
+    opacity: 0.82;
+    transform: rotate(-3deg);
   }
 
   .lab-storyline-word {
-    position: static;
-    width: 100%;
-    max-width: none;
-    min-height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 16px;
-    border: 1px solid rgba(6, 115, 190, 0.28);
-    border-radius: var(--lab-radius-sm);
-    background: rgba(255, 253, 252, 0.7);
+    position: absolute;
+    display: block;
+    width: max-content;
+    max-width: 58vw;
+    min-height: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
     color: var(--lab-ink);
-    font-size: clamp(21px, 6.2vw, 28px);
-    line-height: 1.05;
-    letter-spacing: -0.5px;
-    text-align: center;
+    font-size: clamp(26px, 9vw, 38px);
+    line-height: 0.94;
+    letter-spacing: -1.4px;
+    text-align: left;
     white-space: normal;
-    text-shadow: none;
+    text-shadow:
+      0 0 8px var(--lab-bg),
+      0 0 14px var(--lab-bg),
+      0 0 20px var(--lab-bg);
+  }
+
+  .lab-storyline-word--errors {
+    top: 4%;
+    left: 1%;
+  }
+
+  .lab-storyline-word--moves {
+    top: 18%;
+    right: 0;
+    left: auto;
+    max-width: 46vw;
+    text-align: right;
+  }
+
+  .lab-storyline-word--opinions {
+    top: 36%;
+    left: 7%;
+  }
+
+  .lab-storyline-word--awkward {
+    top: 51%;
+    right: 2%;
+    left: auto;
+    max-width: 55vw;
+    text-align: right;
+  }
+
+  .lab-storyline-word--voice {
+    top: 69%;
+    left: 4%;
+    max-width: 34vw;
+  }
+
+  .lab-storyline-word--history {
+    top: 83%;
+    right: 4%;
+    left: auto;
+    max-width: 52vw;
+    text-align: right;
   }
 
   .lab-storyline-word--moves br {
@@ -3231,12 +3292,12 @@ button.lab-floating-cta.cta-button {
   }
 
   .lab-storyline-word {
-    max-width: 46vw;
-    font-size: clamp(19px, 5.7vw, 23px);
+    max-width: 58vw;
+    font-size: clamp(25px, 8.6vw, 36px);
   }
 
   .lab-storyline-word--voice {
-    max-width: 34vw;
+    max-width: 36vw;
   }
 
   .lab-fit-pills button {

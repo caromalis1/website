@@ -1760,7 +1760,7 @@ export default function TheLab() {
           <section
             className="home-hero"
             ref={homeHeroRef}
-            style={{ "--lab-hero-art": `url("${process.env.PUBLIC_URL}/img/1-header.png")` }}
+            style={{ "--lab-hero-art": `url("${process.env.PUBLIC_URL}/img/1-Header.png")` }}
           >
             <div className="home-hero-content">
               <h1 className="home-hero-title">
