@@ -258,16 +258,16 @@ const SPIRAL_VIEWBOX = {
 // Storyline thread coordinates use SPIRAL_VIEWBOX. Keep the final point aligned
 // with the first word-field segment so the long thread hands off into "Tu historia".
 const SPIRAL_PATH_D =
-  "M631 -24C895 57 904 201 943 312C1006 476 946 519 763 567C396 637 99 549 103 744C96 1006 175 1146 374 1181C402 1181 898 1178 958 1238C986 1260 975 1298 943 1360C866 1436 805 1490 711 1476C638 1464 631 1592 705 1614C792 1640 829 1485 740 1468C651 1452 583 1550 628 1640C684 1752 538 1832 438 1788C336 1742 425 1612 371 1558C312 1497 265 1660 205 1694C138 1732 58 1714 48 1662C39 1613 106 1584 151 1608C204 1636 161 1732 218 1766C296 1810 326 1678 270 1628C217 1582 122 1648 144 1732C170 1830 351 1800 455 1728C598 1628 681 1708 725 1810C772 1918 820 1966 900 1914C963 1874 950 1768 881 1778C810 1788 810 1907 886 1978C945 2050 850 2024 720 2022";
+  "M631 -24C902 56 933 164 913 316C906 377 840 558 763 567C504 666 99 549 114 942C130 1136 208 1409 429 1376C457 1376 776 1297 819 1431C768 1461 172 989 900 1584";
 const CURRICULUM_LEFT_PATH_D =
   "M0 132C72 140 92 142 128 126C170 108 178 72 158 58C138 44 112 60 120 91C130 131 192 136 254 124C336 108 394 84 506 78C626 72 608 120 675 126";
 const CURRICULUM_RIGHT_PATH_D =
   "M93 132C202 137 408 66 285 58C211 47 222 116 304 143C412 178 538 154 580 103C604 75 586 54 572 72C556 94 576 148 660 196C740 242 820 224 880 224";
 const SPIRAL_SCROLL = {
   start: "top 44%",
-  travelHeightScale: 0.8,
-  minTravelHeightScale: 2.36,
-  scrub: 0.55
+  travelHeightScale: 0.58,
+  minTravelHeightScale: 1.72,
+  scrub: 0.35
 };
 const STORYLINE_WORD_SCROLL = {
   start: "top 64%",
@@ -331,32 +331,33 @@ function buildMapThreadPath(points, width) {
 
 const STORYLINE_WORD_LINE_COMMANDS = [
   [
-    { type: "M", x: 1540, y: 456 },
-    { type: "C", x1: 1398, y1: 462, x2: 1248, y2: 478, x: 1136, y: 538 }
+    { type: "M", x: 1324, y: -264 },
+    { type: "C", x1: 1695, y1: 412, x2: 1326, y2: 677, x: 1245, y: 603 }
   ],
   [
-    { type: "M", x: 1136, y: 538 },
-    { type: "C", x1: 1260, y1: 414, x2: 1196, y2: 216, x: 1018, y: 132 }
+    { type: "M", x: 1178, y: 534 },
+    { type: "C", x1: 1118, y1: 433, x2: 1262, y2: -149, x: 1050, y: 68 }
   ],
   [
-    { type: "M", x: 982, y: 138 },
-    { type: "C", x1: 900, y1: 154, x2: 836, y2: 206, x: 790, y: 277 }
+    { type: "M", x: 985, y: 141 },
+    { type: "C", x1: 970, y1: 200, x2: 873, y2: 243, x: 817, y: 186 },
+    { type: "C", x1: 768, y1: 87, x2: 920, y2: 172, x: 907, y: 255 }
   ],
   [
-    { type: "M", x: 752, y: 304 },
-    { type: "C", x1: 710, y1: 390, x2: 642, y2: 466, x: 556, y: 500 }
+    { type: "M", x: 923, y: 325 },
+    { type: "C", x1: 1071, y1: 705, x2: 594, y2: 714, x: 632, y: 550 }
   ],
   [
-    { type: "M", x: 514, y: 480 },
-    { type: "C", x1: 560, y1: 370, x2: 524, y2: 250, x: 424, y: 188 }
+    { type: "M", x: 629, y: 451 },
+    { type: "C", x1: 700, y1: 262, x2: 655, y2: -63, x: 493, y: 138 }
   ],
   [
-    { type: "M", x: 386, y: 205 },
-    { type: "C", x1: 310, y1: 242, x2: 266, y2: 342, x: 176, y: 390 }
+    { type: "M", x: 466, y: 241 },
+    { type: "C", x1: 543, y1: 410, x2: 386, y2: 619, x: 309, y: 439 }
   ],
   [
-    { type: "M", x: 136, y: 396 },
-    { type: "C", x1: 50, y1: 422, x2: -16, y2: 438, x: -126, y: 488 }
+    { type: "M", x: 245, y: 370 },
+    { type: "C", x1: 204, y1: 237, x2: 41, y2: 473, x: -280, y: 450 }
   ]
 ];
 
@@ -1633,7 +1634,7 @@ export default function TheLab() {
                   className="lab-storyline-word-anchor-hit"
                   cx={anchorX}
                   cy={anchorY}
-                  r={20}
+                  r={28}
                   onPointerDown={(event) => handleStorylineAnchorPointerDown(event, group, lineIndex, commandIndex, anchor.keys)}
                 />
                 <circle
@@ -1872,7 +1873,7 @@ export default function TheLab() {
                 </figure>
               </div>
 
-              <div className="lab-storyline-panel lab-storyline-panel--final">
+              <div className={`lab-storyline-panel lab-storyline-panel--final${isStorylineEditorOpen ? " is-editing" : ""}`}>
                 <article className="lab-storyline-copy lab-storyline-copy--final">
                   <p>
                     Pero la idea no es convertirte en un gurú de las redes sociales.
@@ -1881,7 +1882,10 @@ export default function TheLab() {
                   </p>
                 </article>
 
-                <div className="lab-storyline-word-field" aria-label="Elementos desde donde crear contenido">
+                <div
+                  className={`lab-storyline-word-field${isStorylineEditorOpen ? " is-editing" : ""}`}
+                  aria-label="Elementos desde donde crear contenido"
+                >
                   <svg
                     ref={storylineWordLinesRef}
                     className={`lab-storyline-word-lines${isStorylineEditorOpen ? " is-editing" : ""}`}

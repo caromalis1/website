@@ -92,7 +92,12 @@ h2 {
 
 .lab-storyline-line.is-editing,
 .lab-curriculum-line.is-editing {
+  z-index: 90;
   pointer-events: auto;
+}
+
+.lab-storyline-word-lines.is-editing {
+  z-index: 90;
 }
 
 .lab-storyline-line path {
@@ -1367,6 +1372,10 @@ h2 {
   text-align: center;
 }
 
+.lab-storyline-panel--final.is-editing {
+  z-index: 120;
+}
+
 .lab-storyline-panel--final::before {
   content: "";
   position: absolute;
@@ -1454,6 +1463,11 @@ h2 {
   pointer-events: none;
 }
 
+.lab-storyline-word-field.is-editing {
+  z-index: 95;
+  pointer-events: auto;
+}
+
 .lab-storyline-word-field::before {
   content: none;
 }
@@ -1470,6 +1484,7 @@ h2 {
 }
 
 .lab-storyline-word-lines.is-editing {
+  z-index: 96;
   pointer-events: auto;
 }
 
@@ -1493,15 +1508,19 @@ h2 {
   stroke-width: 2.4;
   cursor: grab;
   filter: drop-shadow(0 2px 4px rgba(50, 50, 50, 0.22));
-  pointer-events: auto;
+  pointer-events: all;
   vector-effect: non-scaling-stroke;
+}
+
+.lab-storyline-word-anchor-group {
+  pointer-events: all;
 }
 
 .lab-storyline-word-anchor-hit {
   fill: transparent;
   stroke: transparent;
   cursor: grab;
-  pointer-events: auto;
+  pointer-events: all;
 }
 
 .lab-storyline-word-anchor-hit:active {
