@@ -255,17 +255,25 @@ const SPIRAL_VIEWBOX = {
   width: 1000,
   height: 2200
 };
+// Storyline thread coordinates use SPIRAL_VIEWBOX. Keep the final point aligned
+// with the first word-field segment so the long thread hands off into "Tu historia".
 const SPIRAL_PATH_D =
-  "M631 -24C895 57 904 201 943 312C1006 476 946 519 763 567C396 637 99 549 103 744C96 1006 175 1146 374 1181C402 1181 898 1178 958 1238C986 1260 975 1298 943 1360C866 1436 805 1490 711 1476C638 1464 631 1592 705 1614C792 1640 829 1485 740 1468C651 1452 583 1550 628 1640C684 1752 538 1832 438 1788C336 1742 425 1612 371 1558C312 1497 265 1660 205 1694C138 1732 58 1714 48 1662C39 1613 106 1584 151 1608C204 1636 161 1732 218 1766C296 1810 326 1678 270 1628C217 1582 122 1648 144 1732C170 1830 351 1800 455 1728C598 1628 681 1708 725 1810C772 1918 820 1966 900 1914C963 1874 950 1768 881 1778C810 1788 810 1907 886 1978C970 2056 988 2138 918 2188";
+  "M631 -24C895 57 904 201 943 312C1006 476 946 519 763 567C396 637 99 549 103 744C96 1006 175 1146 374 1181C402 1181 898 1178 958 1238C986 1260 975 1298 943 1360C866 1436 805 1490 711 1476C638 1464 631 1592 705 1614C792 1640 829 1485 740 1468C651 1452 583 1550 628 1640C684 1752 538 1832 438 1788C336 1742 425 1612 371 1558C312 1497 265 1660 205 1694C138 1732 58 1714 48 1662C39 1613 106 1584 151 1608C204 1636 161 1732 218 1766C296 1810 326 1678 270 1628C217 1582 122 1648 144 1732C170 1830 351 1800 455 1728C598 1628 681 1708 725 1810C772 1918 820 1966 900 1914C963 1874 950 1768 881 1778C810 1788 810 1907 886 1978C945 2050 850 2024 720 2022";
 const CURRICULUM_LEFT_PATH_D =
   "M0 132C72 140 92 142 128 126C170 108 178 72 158 58C138 44 112 60 120 91C130 131 192 136 254 124C336 108 394 84 506 78C626 72 608 120 675 126";
 const CURRICULUM_RIGHT_PATH_D =
   "M93 132C202 137 408 66 285 58C211 47 222 116 304 143C412 178 538 154 580 103C604 75 586 54 572 72C556 94 576 148 660 196C740 242 820 224 880 224";
 const SPIRAL_SCROLL = {
   start: "top 44%",
-  travelHeightScale: 0.72,
-  minTravelHeightScale: 0.95,
+  travelHeightScale: 0.8,
+  minTravelHeightScale: 2.36,
   scrub: 0.55
+};
+const STORYLINE_WORD_SCROLL = {
+  start: "top 64%",
+  segmentDuration: 0.34,
+  exitDuration: 0.44,
+  stagger: 0.18
 };
 const SMOOTHER_OPTIONS = {
   smooth: 1.1,
@@ -323,32 +331,32 @@ function buildMapThreadPath(points, width) {
 
 const STORYLINE_WORD_LINE_COMMANDS = [
   [
-    { type: "M", x: 653, y: 499 },
-    { type: "C", x1: 552, y1: 89, x2: 722, y2: 99, x: 743, y: 202 },
-    { type: "C", x1: 769, y1: 282, x2: 602, y2: 126, x: 559, y: 190 }
+    { type: "M", x: 1540, y: 456 },
+    { type: "C", x1: 1398, y1: 462, x2: 1248, y2: 478, x: 1136, y: 538 }
   ],
   [
-    { type: "M", x: 890, y: 278 },
-    { type: "C", x1: 889, y1: 216, x2: 964, y2: 224, x: 997, y: 181 }
+    { type: "M", x: 1136, y: 538 },
+    { type: "C", x1: 1260, y1: 414, x2: 1196, y2: 216, x: 1018, y: 132 }
   ],
   [
-    { type: "M", x: 867, y: 339 },
-    { type: "C", x1: 728, y1: 497, x2: 943, y2: 365, x: 785, y: 390 },
-    { type: "C", x1: 710, y1: 406, x2: 764, y2: 456, x: 707, y: 507 },
-    { type: "M", x: 1225, y: 496 },
-    { type: "C", x1: 1112, y1: 351, x2: 1252, y2: 327, x: 1178, y: 213 },
-    { type: "C", x1: 962, y1: -32, x2: 1275, y2: 48, x: 1077, y: 133 }
+    { type: "M", x: 982, y: 138 },
+    { type: "C", x1: 900, y1: 154, x2: 836, y2: 206, x: 790, y: 277 }
   ],
   [
-    { type: "M", x: 1378, y: 17 },
-    { type: "C", x1: 1318, y1: 171, x2: 1342, y2: 347, x: 1400, y: 433 },
-    { type: "C", x1: 1604, y1: 726, x2: 1349, y2: 653, x: 1289, y: 568 }
+    { type: "M", x: 752, y: 304 },
+    { type: "C", x1: 710, y1: 390, x2: 642, y2: 466, x: 556, y: 500 }
   ],
   [
-    { type: "M", x: 452, y: 264 },
-    { type: "C", x1: 394, y1: 341, x2: 313, y2: 327, x: 263, y: 371 },
-    { type: "C", x1: 206, y1: 218, x2: 452, y2: 347, x: 134, y: 326 },
-    { type: "C", x1: -5, y1: 321, x2: -36, y2: 369, x: -70, y: 416 }
+    { type: "M", x: 514, y: 480 },
+    { type: "C", x1: 560, y1: 370, x2: 524, y2: 250, x: 424, y: 188 }
+  ],
+  [
+    { type: "M", x: 386, y: 205 },
+    { type: "C", x1: 310, y1: 242, x2: 266, y2: 342, x: 176, y: 390 }
+  ],
+  [
+    { type: "M", x: 136, y: 396 },
+    { type: "C", x1: 50, y1: 422, x2: -16, y2: 438, x: -126, y: 488 }
   ]
 ];
 
@@ -580,6 +588,7 @@ export default function TheLab() {
   const resizeObserverRef = useRef(null);
   const resizeRafRef = useRef(0);
   const storylineWordDragRef = useRef(null);
+  const storylineTouchRef = useRef(null);
 
   useLayoutEffect(() => {
     let isActive = true;
@@ -837,7 +846,7 @@ export default function TheLab() {
                 ease: "none",
                 scrollTrigger: {
                   trigger: includeCards[index + 1],
-                  start: () => `top ${cardPinTop + 260}`,
+                  start: () => `top ${cardPinTop + 320}`,
                   end: () => `top ${cardPinTop + 24}`,
                   scrub: true,
                   invalidateOnRefresh: true
@@ -1016,21 +1025,46 @@ export default function TheLab() {
           return;
         }
 
-        storylineWordLineTweenRef.current = gsap.timeline({
-          scrollTrigger: {
-            trigger: svgElement,
-            start: "top 78%",
-            end: "bottom 46%",
-            scrub: 0.8,
-            invalidateOnRefresh: true
-          }
+        const triggerElement = svgElement.closest(".lab-storyline-panel--final") || svgElement;
+
+        const lineTimeline = gsap.timeline({ paused: true });
+
+        linePaths.forEach((pathElement, index) => {
+          lineTimeline.to(pathElement, {
+            strokeDashoffset: 0,
+            duration: index === linePaths.length - 1
+              ? STORYLINE_WORD_SCROLL.exitDuration
+              : STORYLINE_WORD_SCROLL.segmentDuration,
+            ease: "none"
+          }, index * STORYLINE_WORD_SCROLL.stagger);
         });
 
-        storylineWordLineTweenRef.current.to(linePaths, {
-          strokeDashoffset: 0,
-          duration: 1,
-          ease: "none",
-          stagger: 0.18
+        const lineTrigger = ScrollTrigger.create({
+          trigger: triggerElement,
+          start: STORYLINE_WORD_SCROLL.start,
+          invalidateOnRefresh: true,
+          onEnter: () => lineTimeline.restart(),
+          onEnterBack: () => lineTimeline.restart(),
+          onLeaveBack: () => lineTimeline.pause(0)
+        });
+
+        storylineWordLineTweenRef.current = {
+          scrollTrigger: lineTrigger,
+          kill: () => lineTimeline.kill()
+        };
+
+        requestAnimationFrame(() => {
+          ScrollTrigger.refresh();
+
+          const triggerRect = triggerElement.getBoundingClientRect();
+          const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+          const isPanelVisible =
+            triggerRect.top < viewportHeight * 0.72 &&
+            triggerRect.bottom > viewportHeight * 0.28;
+
+          if (isPanelVisible) {
+            lineTimeline.restart();
+          }
         });
       };
 
@@ -1208,6 +1242,100 @@ export default function TheLab() {
       }
     };
   }, [isPaymentModalOpen]);
+
+  useEffect(() => {
+    document.documentElement.classList.add("lab-storyline-snap");
+
+    const mobileMatch = window.matchMedia("(max-width: 900px)");
+
+    const getStorylinePanels = () => (
+      Array.from(document.querySelectorAll(".lab-storyline-panel"))
+    );
+
+    const scrollToStorylinePanel = (panel) => {
+      if (smootherRef.current?.scrollTo) {
+        smootherRef.current.scrollTo(panel, true, "top top");
+        return;
+      }
+
+      window.scrollTo({
+        top: panel.getBoundingClientRect().top + window.scrollY,
+        behavior: "smooth"
+      });
+    };
+
+    const getNearestPanelIndex = (panels, scrollTop) => {
+      const viewportCenter = scrollTop + window.innerHeight / 2;
+
+      return panels.reduce((nearestIndex, panel, index) => {
+        const panelTop = panel.getBoundingClientRect().top + window.scrollY;
+        const panelCenter = panelTop + panel.getBoundingClientRect().height / 2;
+        const nearestPanel = panels[nearestIndex];
+        const nearestTop = nearestPanel.getBoundingClientRect().top + window.scrollY;
+        const nearestCenter = nearestTop + nearestPanel.getBoundingClientRect().height / 2;
+
+        return Math.abs(panelCenter - viewportCenter) < Math.abs(nearestCenter - viewportCenter)
+          ? index
+          : nearestIndex;
+      }, 0);
+    };
+
+    const handleTouchStart = (event) => {
+      const target = event.target instanceof Element ? event.target : null;
+
+      if (!mobileMatch.matches || !target?.closest(".lab-storyline")) {
+        storylineTouchRef.current = null;
+        return;
+      }
+
+      storylineTouchRef.current = {
+        y: event.touches[0]?.clientY ?? 0,
+        scrollY: window.scrollY
+      };
+    };
+
+    const handleTouchEnd = (event) => {
+      const touchStart = storylineTouchRef.current;
+      storylineTouchRef.current = null;
+
+      if (!mobileMatch.matches || !touchStart) {
+        return;
+      }
+
+      const endY = event.changedTouches[0]?.clientY ?? touchStart.y;
+      const deltaY = touchStart.y - endY;
+
+      if (Math.abs(deltaY) < 42) {
+        return;
+      }
+
+      const panels = getStorylinePanels();
+      if (!panels.length) {
+        return;
+      }
+
+      const currentIndex = getNearestPanelIndex(panels, touchStart.scrollY);
+      const targetIndex = Math.max(0, Math.min(
+        panels.length - 1,
+        currentIndex + (deltaY > 0 ? 1 : -1)
+      ));
+
+      if (targetIndex === currentIndex) {
+        return;
+      }
+
+      scrollToStorylinePanel(panels[targetIndex]);
+    };
+
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
+    window.addEventListener("touchend", handleTouchEnd, { passive: true });
+
+    return () => {
+      document.documentElement.classList.remove("lab-storyline-snap");
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchend", handleTouchEnd);
+    };
+  }, []);
 
   useEffect(() => {
     if (!isStorylineEditorOpen) {
@@ -1717,67 +1845,73 @@ export default function TheLab() {
                 {renderEditablePathAnchors(spiralLineCommands, "spiral")}
               </svg>
 
-              <article className="lab-storyline-copy lab-storyline-copy--first">
-                <p>
-                  Seamos sinceras: Crear contenido se siente más difícil de lo que debería...
-                </p>
-              </article>
+              <div className="lab-storyline-panel lab-storyline-panel--first">
+                <article className="lab-storyline-copy lab-storyline-copy--first">
+                  <p>
+                    Seamos sinceras: Crear contenido se siente más difícil de lo que debería...
+                  </p>
+                </article>
 
-              <figure className="lab-sketch lab-sketch--runner" aria-hidden="true">
-                <img src="/img/2-Doodle%201.png" alt="" loading="lazy" />
-              </figure>
+                <figure className="lab-sketch lab-sketch--runner" aria-hidden="true">
+                  <img src="/img/2-Doodle%201.png" alt="" loading="lazy" />
+                </figure>
+              </div>
 
-              <article className="lab-storyline-copy lab-storyline-copy--second">
-                <p>
-                  Sobre todo cuando eres tú sola haciéndolo TODO
-                </p>
-                <small>
-                  La CEO, la contadora, la de marketing, la de atención al cliente... y ahora también la creadora de contenido.
-                </small>
-              </article>
+              <div className="lab-storyline-panel lab-storyline-panel--second">
+                <article className="lab-storyline-copy lab-storyline-copy--second">
+                  <p>
+                    Sobre todo cuando eres tú sola haciéndolo TODO
+                  </p>
+                  <small>
+                    La CEO, la contadora, la de marketing, la de atención al cliente... y ahora también la creadora de contenido.
+                  </small>
+                </article>
 
-              <figure className="lab-sketch lab-sketch--knitter" aria-hidden="true">
-                <img src="/img/3-Doodle%202.png" alt="" loading="lazy" />
-              </figure>
+                <figure className="lab-sketch lab-sketch--knitter" aria-hidden="true">
+                  <img src="/img/3-Doodle%202.png" alt="" loading="lazy" />
+                </figure>
+              </div>
 
-              <article className="lab-storyline-copy lab-storyline-copy--final">
-                <p>
-                  Pero la idea no es convertirte en un gurú de las redes sociales.
-                  <br />
-                  Es aprender a crear desde lo que ya tienes:
-                </p>
-              </article>
+              <div className="lab-storyline-panel lab-storyline-panel--final">
+                <article className="lab-storyline-copy lab-storyline-copy--final">
+                  <p>
+                    Pero la idea no es convertirte en un gurú de las redes sociales.
+                    <br />
+                    Es aprender a crear desde lo que ya tienes:
+                  </p>
+                </article>
 
-              <div className="lab-storyline-word-field" aria-label="Elementos desde donde crear contenido">
-                <svg
-                  ref={storylineWordLinesRef}
-                  className={`lab-storyline-word-lines${isStorylineEditorOpen ? " is-editing" : ""}`}
-                  viewBox="0 0 1440 700"
-                  preserveAspectRatio="none"
-                  aria-hidden="true"
-                  data-editing={isStorylineEditorOpen ? "true" : undefined}
-                >
-                  {storylineWordLineCommands.map((lineCommands, lineIndex) => (
-                    <path
-                      key={`storyline-word-line-${lineIndex}`}
-                      className={isStorylineEditorOpen ? "lab-editable-path" : undefined}
-                      d={buildStorylineWordLinePath(lineCommands)}
-                      onPointerDown={(event) => handleEditablePathPointerDown(event, "storylineWords", lineIndex, lineCommands)}
-                    />
-                  ))}
+                <div className="lab-storyline-word-field" aria-label="Elementos desde donde crear contenido">
+                  <svg
+                    ref={storylineWordLinesRef}
+                    className={`lab-storyline-word-lines${isStorylineEditorOpen ? " is-editing" : ""}`}
+                    viewBox="0 0 1440 700"
+                    preserveAspectRatio="none"
+                    aria-hidden="true"
+                    data-editing={isStorylineEditorOpen ? "true" : undefined}
+                  >
+                    {storylineWordLineCommands.map((lineCommands, lineIndex) => (
+                      <path
+                        key={`storyline-word-line-${lineIndex}`}
+                        className={isStorylineEditorOpen ? "lab-editable-path" : undefined}
+                        d={buildStorylineWordLinePath(lineCommands)}
+                        onPointerDown={(event) => handleEditablePathPointerDown(event, "storylineWords", lineIndex, lineCommands)}
+                      />
+                    ))}
 
-                  {isStorylineEditorOpen && storylineWordLineCommands.map((lineCommands, lineIndex) => (
-                    <g key={`storyline-word-editor-${lineIndex}`}>
-                      {renderEditablePathAnchors(lineCommands, "storylineWords", lineIndex)}
-                    </g>
-                  ))}
-                </svg>
-                <span className="lab-storyline-word lab-storyline-word--errors">Tus errores</span>
-                <span className="lab-storyline-word lab-storyline-word--moves">Lo que te<br />mueve</span>
-                <span className="lab-storyline-word lab-storyline-word--opinions">Lo que opinas</span>
-                <span className="lab-storyline-word lab-storyline-word--awkward">Tus trágame tierra</span>
-                <span className="lab-storyline-word lab-storyline-word--voice">Tu voz</span>
-                <span className="lab-storyline-word lab-storyline-word--history">Tu historia</span>
+                    {isStorylineEditorOpen && storylineWordLineCommands.map((lineCommands, lineIndex) => (
+                      <g key={`storyline-word-editor-${lineIndex}`}>
+                        {renderEditablePathAnchors(lineCommands, "storylineWords", lineIndex)}
+                      </g>
+                    ))}
+                  </svg>
+                  <span className="lab-storyline-word lab-storyline-word--errors">Tus errores</span>
+                  <span className="lab-storyline-word lab-storyline-word--moves">Lo que te<br />mueve</span>
+                  <span className="lab-storyline-word lab-storyline-word--opinions">Lo que opinas</span>
+                  <span className="lab-storyline-word lab-storyline-word--awkward">Tus trágame tierra</span>
+                  <span className="lab-storyline-word lab-storyline-word--voice">Tu voz</span>
+                  <span className="lab-storyline-word lab-storyline-word--history">Tu historia</span>
+                </div>
               </div>
             </div>
           </section>
@@ -1789,9 +1923,14 @@ export default function TheLab() {
                   <h2>
                     El Storytelling Lab nació para eso. No como un curso de marketing tradicional ni una colección de fórmulas genéricas. Sino como un espacio con una ruta concreta y herramientas prácticas para aprender a ordenar tus ideas y convertirlas en contenido que se sienta tuyo.
                   </h2>
-                  <a className="lab-method-cta cta-button" href="/storytelling-lab" ref={depthStickyCtaRef}>
+                  <button
+                    className="lab-method-cta cta-button"
+                    type="button"
+                    ref={depthStickyCtaRef}
+                    onClick={() => setIsPaymentModalOpen(true)}
+                  >
                     Únete al Storytelling Lab
-                  </a>
+                  </button>
                 </div>
               </div>
             </section>
@@ -1894,18 +2033,25 @@ export default function TheLab() {
                 comunidad al Storytelling Lab
               </h2>
               <div className="lab-testimonial-row">
-                {[...TESTIMONIALS, ...TESTIMONIALS].map((item, index) => (
-                  <article
-                    key={`${item.quote}-${index}`}
-                    className="lab-testimonial-card"
-                    aria-hidden={index >= TESTIMONIALS.length}
+                {[0, 1, 2, 3].map((setIndex) => (
+                  <div
+                    className="lab-testimonial-set"
+                    aria-hidden={setIndex > 0}
+                    key={`testimonial-set-${setIndex}`}
                   >
-                    <img src={item.avatar} alt="" loading="lazy" />
-                    <p className="lab-quote">{item.quote}</p>
-                    <p className="lab-meta">
-                      {item.name}, {item.role}
-                    </p>
-                  </article>
+                    {TESTIMONIALS.map((item, index) => (
+                      <article
+                        key={`${item.quote}-${setIndex}-${index}`}
+                        className="lab-testimonial-card"
+                      >
+                        <img src={item.avatar} alt="" loading="lazy" />
+                        <p className="lab-quote">{item.quote}</p>
+                        <p className="lab-meta">
+                          {item.name}, {item.role}
+                        </p>
+                      </article>
+                    ))}
+                  </div>
                 ))}
               </div>
             </div>
@@ -2056,10 +2202,7 @@ export default function TheLab() {
               <div className="lab-faq-copy">
                 <h2>Tengo algunas preguntas...</h2>
                 <p>
-                  Estas son algunas de las preguntas más comunes que me llegan antes de que alguien entre al Lab.
-                </p>
-                <p>
-                  Y si todavía no estás segura o tienes alguna otra pregunta, escríbeme!
+                  Estas son algunas de las preguntas más comunes que me llegan antes de que alguien entre al Lab. Y si todavía no estás segura o tienes alguna otra pregunta, escríbeme!
                 </p>
                 <a href="mailto:hola@socialsbycaro.com" className="lab-faq-cta cta-button">
                   Escríbeme!

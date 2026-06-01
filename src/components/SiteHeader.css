@@ -100,10 +100,11 @@
 }
 
 .site-nav {
-  display: inline-flex;
-  align-items: center;
-  gap: clamp(28px, 4.2vw, 58px);
-  margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: clamp(28px, 4.2vw, 58px);
+    margin-left: auto;
+    letter-spacing: -0.5px !important;
 }
 
 .site-header .nav-link {

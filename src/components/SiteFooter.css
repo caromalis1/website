@@ -41,7 +41,7 @@
   width: max-content;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 4px;
 }
 
 .site-lab-footer-socials a {
@@ -109,14 +109,12 @@
 }
 
 .site-lab-footer-links a {
-  color: var(--white);
-  font-family: var(--paragraph-font);
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: 0;
-  text-decoration: none;
-  text-transform: uppercase;
+    color: var(--white);
+    font-family: var(--paragraph-font);
+    font-size: 16px;
+    line-height: 1;
+    text-decoration: none;
+    text-transform: uppercase;
 }
 
 
@@ -131,9 +129,9 @@
 .site-lab-footer-bottom h2 {
     color: var(--white);
     font-family: 'Libre Caslon Text', 'Times New Roman', serif;
-    font-size: 100px;
+    font-size: 120px;
     font-weight: 400;
-    line-height: 0.72;
+    line-height: 68px !important;
     letter-spacing: 0;
     white-space: nowrap;
     margin: 0;
@@ -143,7 +141,7 @@
   z-index: 2;
   color: rgba(255, 253, 252, 0.9);
   font-family: var(--paragraph-font);
-  font-size: 12px;
+  font-size: 10px;
   line-height: 1;
   letter-spacing: 0;
   text-transform: uppercase;

@@ -2,13 +2,6 @@ import './Home.css';
 import SiteFooter from '../components/SiteFooter';
 import SiteHeader from '../components/SiteHeader';
 
-const SERVICES = [
-  'Creative Content Production',
-  'Copy & Creative Writing',
-  'Social Media Strategy',
-  'Email Marketing'
-];
-
 const WHAT_I_DO = [
   'Blog Posts',
   'Editorial Content',
@@ -42,15 +35,6 @@ const SERVICE_DETAILS = [
   }
 ];
 
-const FEATURED_WORK = [
-  'Editorial Direction',
-  'Social Campaign',
-  'Brand Story',
-  'Newsletter Flow',
-  'Website Copy',
-  'Launch Content'
-];
-
 export default function Home() {
   return (
     <main className="portfolio-home">
@@ -75,6 +59,7 @@ export default function Home() {
         </div>
 
         <div className="portfolio-hero-visual" aria-hidden="true">
+          <img className="portfolio-hero-bio" src="/img/16-Bio.png" alt="" />
           <svg viewBox="0 0 620 520" role="img">
             <path className="portfolio-line portfolio-line--one" d="M94 92C184 40 319 59 394 105C481 158 515 266 451 331C386 397 250 373 218 294C194 236 252 185 323 199C390 212 419 286 377 334C329 389 207 388 139 334" />
             <path className="portfolio-line portfolio-line--two" d="M103 353C151 430 271 457 385 427C490 400 558 319 529 250" />
@@ -91,16 +76,10 @@ export default function Home() {
           email marketing, I help transform a brand's presence into content that feels clear,
           useful, and human.
         </p>
+        <a className="portfolio-intro-link" href="/storytelling-lab">
+          Explore the Storytelling Lab
+        </a>
       </section>
-
-      <section className="portfolio-services" aria-label="Services">
-        <div className="portfolio-service-track">
-          {[...SERVICES, ...SERVICES].map((service, index) => (
-            <span key={`${service}-${index}`}>{service}</span>
-          ))}
-        </div>
-      </section>
-
       <section className="portfolio-what content-shell" id="what-i-do">
         <div>
           <p className="portfolio-kicker">What I do</p>
@@ -123,20 +102,9 @@ export default function Home() {
         ))}
       </section>
 
-      <section className="portfolio-featured" id="featured-work">
-        <div className="content-shell">
-          <p className="portfolio-kicker">Featured Work</p>
-          <h2>Selected stories, campaigns, and content systems.</h2>
-          <div className="portfolio-work-grid">
-            {FEATURED_WORK.map((item, index) => (
-              <article className="portfolio-work" key={item}>
-                <span>{String(index + 1).padStart(2, '0')}</span>
-                <h3>{item}</h3>
-              </article>
-            ))}
-          </div>
+        <div className="portfolio-reels-strip" aria-hidden="true">
+          <img src="/img/17-IG%20Reels.png" alt="" />
         </div>
-      </section>
 
       <SiteFooter title="Caro Malis" />
     </main>
