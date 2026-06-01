@@ -803,19 +803,6 @@ export default function TheLab() {
           gsap.set(card, { clearProps: "position,top,left,width,maxWidth,zIndex,transform,opacity,visibility,scale" });
         });
 
-        gsap.set(depthStackRef.current, {
-          "--lab-depth-top": "#3f96c9",
-          "--lab-depth-mid": "#57a8d4",
-          "--lab-depth-bottom": "#74b9dc",
-          "--lab-depth-glow": 0.2,
-          "--lab-depth-swirl-a-x": "18%",
-          "--lab-depth-swirl-a-y": "12%",
-          "--lab-depth-swirl-b-x": "82%",
-          "--lab-depth-swirl-b-y": "34%",
-          "--lab-depth-swirl-c-x": "36%",
-          "--lab-depth-swirl-c-y": "80%"
-        });
-
         if (stickyCta) {
           gsap.set(stickyCta, { clearProps: "all" });
         }
@@ -859,29 +846,6 @@ export default function TheLab() {
             );
           }
         });
-
-        includeStackTweensRef.current.push(
-          gsap.to(depthStackRef.current, {
-            "--lab-depth-top": "#469dcd",
-            "--lab-depth-mid": "#63aed7",
-            "--lab-depth-bottom": "#82c1e0",
-            "--lab-depth-glow": 0.25,
-            "--lab-depth-swirl-a-x": "74%",
-            "--lab-depth-swirl-a-y": "18%",
-            "--lab-depth-swirl-b-x": "24%",
-            "--lab-depth-swirl-b-y": "56%",
-            "--lab-depth-swirl-c-x": "68%",
-            "--lab-depth-swirl-c-y": "86%",
-            ease: "none",
-            scrollTrigger: {
-              trigger: depthStackRef.current,
-              start: "top top",
-              end: "bottom bottom",
-              scrub: 0.7,
-              invalidateOnRefresh: true
-            }
-          })
-        );
 
         if (stickyCta) {
           depthStickyCtaPinRef.current = ScrollTrigger.create({

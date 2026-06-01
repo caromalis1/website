@@ -1199,12 +1199,9 @@
 .home-hero {
     position: relative;
     display: flex;
-    /* align-items: flex-start; */
-    /* place-items: initial; */
-    /* min-height: clamp(1080px, 88svh, 1240px); */
     overflow: hidden;
     padding: clamp(280px, 25vh, 360px) clamp(28px, 7.4vw, 128px) clamp(120px, 11vh, 180px);
-    /* background: var(--lab-bg); */
+    height: 100vh;
 }
 
 .home-hero::after {
@@ -1622,16 +1619,6 @@
 }
 
 .lab-depth-stack {
-  --lab-depth-top: #3f96c9;
-  --lab-depth-mid: #57a8d4;
-  --lab-depth-bottom: #74b9dc;
-  --lab-depth-glow: 0.2;
-  --lab-depth-swirl-a-x: 18%;
-  --lab-depth-swirl-a-y: 12%;
-  --lab-depth-swirl-b-x: 82%;
-  --lab-depth-swirl-b-y: 34%;
-  --lab-depth-swirl-c-x: 36%;
-  --lab-depth-swirl-c-y: 80%;
   position: relative;
   isolation: isolate;
   order: 4;
@@ -1639,30 +1626,7 @@
   margin: 0 clamp(20px, 4.55vw, 86px);
   overflow: visible;
   border-radius: var(--lab-radius-xs);
-  background-color: var(--lab-depth-mid);
-  background-image:
-    radial-gradient(ellipse at var(--lab-depth-swirl-a-x) var(--lab-depth-swirl-a-y), rgba(176, 221, 244, var(--lab-depth-glow)) 0, rgba(176, 221, 244, 0) 31rem),
-    radial-gradient(ellipse at var(--lab-depth-swirl-b-x) var(--lab-depth-swirl-b-y), rgba(33, 132, 190, 0.22) 0, rgba(33, 132, 190, 0) 35rem),
-    radial-gradient(ellipse at var(--lab-depth-swirl-c-x) var(--lab-depth-swirl-c-y), rgba(122, 190, 225, 0.26) 0, rgba(122, 190, 225, 0) 38rem),
-    linear-gradient(160deg, var(--lab-depth-top) 0%, var(--lab-depth-mid) 50%, var(--lab-depth-bottom) 100%);
-  background-position: center;
-  background-size: cover;
-}
-
-.lab-depth-stack::before,
-.lab-faq::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  border-radius: inherit;
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.05' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='.25'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.82'/%3E%3C/svg%3E"),
-    repeating-linear-gradient(102deg, rgba(20, 72, 105, 0.16) 0 1px, transparent 1px 8px);
-  background-size: 180px 180px, 58px 58px;
-  mix-blend-mode: soft-light;
-  opacity: 0.58;
-  pointer-events: none;
+  background: #57a8d4 url("../../public/img/blue_gradient.png") center center / cover no-repeat;
 }
 
 .lab-depth-stack > *,
@@ -2358,25 +2322,18 @@
   padding-top: 52px;
   min-height: auto;
   padding-bottom: 152px;
-  background:
-    radial-gradient(circle at 52% 38%, rgba(230, 38, 127, 0.34), transparent 22rem),
-    radial-gradient(circle at 50% 82%, rgba(255, 121, 60, 0.28), transparent 30rem),
-    linear-gradient(180deg, #fffdfc 0%, #fffdfc 18%, #fff7f3 58%, #fffdfc 100%);
-  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 9%, #000 91%, transparent 100%);
-  mask-image: linear-gradient(180deg, transparent 0%, #000 9%, #000 91%, transparent 100%);
+  background: var(--lab-bg) url("../../public/img/curriculum-gradient.png") center top / cover no-repeat;
 }
 
-.lab-curriculum::before {
+.lab-curriculum::after {
   content: "";
   position: absolute;
-  inset: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: 0;
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='5' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23paper)' opacity='.88'/%3E%3C/svg%3E"),
-    repeating-linear-gradient(96deg, rgba(108, 82, 68, 0.12) 0 1px, transparent 1px 7px);
-  background-size: 220px 220px, 54px 54px;
-  mix-blend-mode: multiply;
-  opacity: 0.42;
+  height: 220px;
+  background: linear-gradient(180deg, rgba(255, 253, 252, 0) 0%, var(--lab-bg) 82%);
   pointer-events: none;
 }
 
@@ -2826,16 +2783,6 @@
 }
 
 .lab-faq {
-  --lab-depth-top: #3f96c9;
-  --lab-depth-mid: #57a8d4;
-  --lab-depth-bottom: #74b9dc;
-  --lab-depth-glow: 0.2;
-  --lab-depth-swirl-a-x: 18%;
-  --lab-depth-swirl-a-y: 12%;
-  --lab-depth-swirl-b-x: 82%;
-  --lab-depth-swirl-b-y: 34%;
-  --lab-depth-swirl-c-x: 36%;
-  --lab-depth-swirl-c-y: 80%;
   position: relative;
   z-index: 1;
   isolation: isolate;
@@ -2843,14 +2790,7 @@
   margin: 40px clamp(20px, 4.55vw, 86px);
   padding: 118px 24px;
   border-radius: var(--lab-radius-panel);
-  background-color: var(--lab-depth-mid);
-  background-image:
-    radial-gradient(ellipse at var(--lab-depth-swirl-a-x) var(--lab-depth-swirl-a-y), rgba(176, 221, 244, var(--lab-depth-glow)) 0, rgba(176, 221, 244, 0) 31rem),
-    radial-gradient(ellipse at var(--lab-depth-swirl-b-x) var(--lab-depth-swirl-b-y), rgba(33, 132, 190, 0.22) 0, rgba(33, 132, 190, 0) 35rem),
-    radial-gradient(ellipse at var(--lab-depth-swirl-c-x) var(--lab-depth-swirl-c-y), rgba(122, 190, 225, 0.26) 0, rgba(122, 190, 225, 0) 38rem),
-    linear-gradient(160deg, var(--lab-depth-top) 0%, var(--lab-depth-mid) 50%, var(--lab-depth-bottom) 100%);
-  background-position: center;
-  background-size: cover;
+  background: #57a8d4 url("../../public/img/blue_gradient.png") center center / cover no-repeat;
 }
 
 .lab-faq-panel {
@@ -2918,8 +2858,8 @@
     min-height: 58px;
     display: flex;
     align-items: center;
+    text-align: left;
     justify-content: space-between;
-    /* gap: 18px; */
     padding: 0;
     border: 0;
     background: transparent;
