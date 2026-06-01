@@ -1058,46 +1058,50 @@ h2 {
 
 }
 
-@media (min-width: 761px) and (max-width: 900px) {
+@media (min-width: 761px) and (max-width: 1100px) {
   .lab-depth-stack {
-    min-height: 5040px;
+    min-height: auto;
   }
 
   .lab-includes {
-    min-height: 520vh;
+    min-height: auto;
     padding: 0 22px 108px;
   }
 
   .lab-feature-grid {
-    width: min(100%, 760px);
-    min-height: inherit;
-    display: block;
+    width: min(100%, 820px);
+    min-height: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 92px;
     margin: 0 auto;
   }
 
   .lab-include-card,
+  .lab-include-card:nth-child(n),
   .lab-include-card:nth-child(even),
   .lab-include-card:nth-child(5) {
-    min-height: 445px;
+    width: 100%;
+    min-height: auto;
     display: grid;
-    grid-template-columns: minmax(0, 0.85fr) minmax(290px, 1fr);
-    align-items: center;
-    justify-content: space-between;
-    gap: 30px;
-    margin: 0 auto 76vh;
-    padding: 40px 22px;
+    grid-template-columns: 1fr;
+    align-items: start;
+    justify-content: stretch;
+    gap: 28px;
+    margin: 0 auto;
+    padding: 40px 22px 0;
   }
 
   .lab-include-card--reverse {
-    grid-template-columns: minmax(290px, 1fr) minmax(0, 0.85fr);
+    grid-template-columns: 1fr;
   }
 
   .lab-include-card--reverse .lab-include-illustration {
-    order: 1;
+    order: 2;
   }
 
   .lab-include-card--reverse .lab-include-copy {
-    order: 2;
+    order: 1;
   }
 
   .lab-include-card:last-child {
@@ -1105,10 +1109,25 @@ h2 {
   }
 
   .lab-include-illustration {
-    width: min(100%, 420px);
+    width: min(100%, 640px);
+    justify-self: center;
+  }
+
+  .lab-include-copy,
+  .lab-include-copy h3,
+  .lab .lab-include-copy p {
+    max-width: 100%;
+  }
+
+  .lab-include-copy h3 {
+    font-size: clamp(42px, 7.4vw, 68px);
+    line-height: 0.96;
   }
 
   .lab .lab-include-copy p {
+    max-width: 620px;
+    font-size: clamp(20px, 3.2vw, 30px);
+    line-height: 1.1;
     text-align: left;
   }
 }
@@ -3504,46 +3523,49 @@ button.lab-floating-cta.cta-button {
   }
 }
 
-@media (min-width: 761px) and (max-width: 900px) {
+@media (min-width: 761px) and (max-width: 1100px) {
   .lab-depth-stack {
-    min-height: 5040px;
+    min-height: auto;
   }
 
   .lab-includes {
-    min-height: 520vh;
+    min-height: auto;
     padding: 0 22px 108px;
   }
 
   .lab-feature-grid {
-    width: min(100%, 760px);
-    min-height: inherit;
-    display: block;
+    width: min(100%, 820px);
+    min-height: auto;
+    display: grid;
+    gap: 92px;
     margin: 0 auto;
   }
 
   .lab-include-card,
+  .lab-include-card:nth-child(n),
   .lab-include-card:nth-child(even),
   .lab-include-card:nth-child(5) {
-    min-height: 445px;
+    width: 100%;
+    min-height: auto;
     display: grid;
-    grid-template-columns: minmax(0, 0.85fr) minmax(290px, 1fr);
-    align-items: center;
-    justify-content: space-between;
-    gap: 30px;
-    margin: 0 auto 76vh;
-    padding: 40px 22px;
+    grid-template-columns: 1fr;
+    align-items: start;
+    justify-content: stretch;
+    gap: 28px;
+    margin: 0 auto;
+    padding: 40px 22px 0;
   }
 
   .lab-include-card--reverse {
-    grid-template-columns: minmax(290px, 1fr) minmax(0, 0.85fr);
+    grid-template-columns: 1fr;
   }
 
   .lab-include-card--reverse .lab-include-illustration {
-    order: 1;
+    order: 2;
   }
 
   .lab-include-card--reverse .lab-include-copy {
-    order: 2;
+    order: 1;
   }
 
   .lab-include-card:last-child {
@@ -3551,10 +3573,25 @@ button.lab-floating-cta.cta-button {
   }
 
   .lab-include-illustration {
-    width: min(100%, 420px);
+    width: min(100%, 640px);
+    justify-self: center;
+  }
+
+  .lab-include-copy,
+  .lab-include-copy h3,
+  .lab .lab-include-copy p {
+    max-width: 100%;
+  }
+
+  .lab-include-copy h3 {
+    font-size: clamp(42px, 7.4vw, 68px);
+    line-height: 0.96;
   }
 
   .lab .lab-include-copy p {
+    max-width: 620px;
+    font-size: clamp(20px, 3.2vw, 30px);
+    line-height: 1.1;
     text-align: left;
   }
 }
@@ -3697,6 +3734,7 @@ button.lab-floating-cta.cta-button {
   }
 
   .lab-include-card,
+  .lab-include-card:nth-child(n),
   .lab-include-card:nth-child(even),
   .lab-include-card:nth-child(5) {
     padding: 12px 0;

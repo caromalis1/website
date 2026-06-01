@@ -283,7 +283,7 @@ const FAQ_ITEMS = [
 const SPIRAL_MATCH = {
   reducedMotion: "(prefers-reduced-motion: no-preference)"
 };
-const LAB_DESKTOP_MOTION_QUERY = "(min-width: 901px)";
+const LAB_DESKTOP_MOTION_QUERY = "(min-width: 1101px)";
 const SPIRAL_VIEWBOX = {
   width: 1000,
   height: 2200
