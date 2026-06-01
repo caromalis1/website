@@ -138,7 +138,7 @@
   }
 
   .site-header-spacer {
-    height: 112px;
+    height: 154px;
   }
 
   .site-header-content-fade {
@@ -157,5 +157,32 @@
     justify-content: space-between;
     gap: 14px;
     margin-left: 0;
+  }
+
+  .site-header .nav-link {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 420px) {
+  .site-header {
+    padding-inline: 14px;
+  }
+
+  .site-header-spacer {
+    height: 146px;
+  }
+
+  .site-header .brand-logo {
+    width: clamp(122px, 38vw, 154px);
+  }
+
+  .site-nav {
+    gap: 8px;
+  }
+
+  .site-header .nav-link {
+    font-size: 12px;
+    line-height: 1.05;
   }
 }

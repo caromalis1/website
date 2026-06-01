@@ -215,3 +215,32 @@
     font-size: 10px;
   }
 }
+
+@media (max-width: 760px) {
+  .site-lab-footer-inner {
+    min-height: 420px;
+    padding: 116px 18px 22px;
+  }
+
+  .site-lab-footer-bottom {
+    width: 100%;
+    height: auto;
+    align-items: flex-end;
+    gap: 12px;
+  }
+
+  .site-lab-footer-bottom h2 {
+    min-width: 0;
+    max-width: 72vw;
+    overflow: hidden;
+    font-size: clamp(54px, 18vw, 78px);
+    line-height: 0.78 !important;
+    white-space: nowrap;
+  }
+
+  .site-lab-footer-bottom small {
+    flex: 0 0 auto;
+    max-width: 74px;
+    line-height: 1.05;
+  }
+}
