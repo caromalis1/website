@@ -1207,26 +1207,30 @@
   text-align: center;
 }
 
+.lab-testimonials-heading-break {
+  display: block;
+}
+
 .lab-testimonial-row {
   display: flex;
   width: max-content;
-  --lab-testimonial-gap: 18px;
-  --lab-testimonial-card-width: clamp(196px, 12.5vw, 242px);
+  --lab-testimonial-gap: 10px;
+  --lab-testimonial-card-width: clamp(236px, 12.5vw, 282px);
   align-items: center;
   margin-top: 96px;
-  animation: testimonial-marquee 38s linear infinite;
+  animation: testimonial-marquee 304s linear infinite;
 }
 
 .lab-testimonial-set {
   display: flex;
   flex: 0 0 auto;
+  align-items: flex-end;
   gap: var(--lab-testimonial-gap);
   padding-right: var(--lab-testimonial-gap);
 }
 
 .lab-testimonial-card {
   width: var(--lab-testimonial-card-width);
-  min-height: 166px;
   margin: 0;
   padding: 20px 18px 18px;
   border-radius: 10px;
@@ -1250,10 +1254,34 @@
   letter-spacing: var(--lab-tracking-reset);
 }
 
+.lab-testimonial-expand {
+  display: inline;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--lab-blue);
+  font: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
 .lab .lab-meta {
   font-size: var(--lab-type-body);
   line-height: 1.15;
   letter-spacing: var(--lab-tracking-reset);
+}
+
+@keyframes testimonial-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-75%);
+  }
 }
 
 .lab-about {
@@ -2790,6 +2818,12 @@ button.lab-floating-cta.cta-button {
   }
 }
 
+@media (max-width: 800px) {
+  .lab-testimonial-row {
+    --lab-testimonial-gap: 8px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .site-header-inner,
   .home-hero-content,
@@ -3018,7 +3052,29 @@ button.lab-floating-cta.cta-button {
   .lab-testimonials-inner {
     width: 94%;
     border-radius: 7px;
-}
+  }
+
+  .lab-testimonial-row {
+    --lab-testimonial-gap: 8px;
+    --lab-testimonial-card-width: clamp(189px, 10vw, 226px);
+  }
+
+  .lab-testimonial-card {
+    padding: 16px 14px 14px;
+    border-radius: 8px;
+  }
+
+  .lab-testimonial-card img {
+    width: 27px;
+    height: 27px;
+    margin-bottom: 10px;
+  }
+
+  .lab .lab-quote,
+  .lab .lab-meta,
+  .lab-testimonial-expand {
+    font-size: 14px;
+  }
 
   .lab-about {
     padding: 15px;
@@ -3619,7 +3675,7 @@ button.lab-floating-cta.cta-button {
   .lab-include-card:nth-child(even),
   .lab-include-card:nth-child(5) {
     gap: 18px;
-    padding: 0;
+    padding: 0 0 70px;
   }
 
   .lab-include-illustration {
@@ -3712,5 +3768,9 @@ button.lab-floating-cta.cta-button {
     width: 100vw;
     margin: 28px auto 0;
     margin-left: calc(50% - 50vw);
+  }
+
+  .lab-testimonials-heading-break {
+    display: none;
   }
 }

@@ -110,48 +110,104 @@ const LAB_FIT_CONTENT = [
 
 const TESTIMONIALS = [
   {
-    quote: "Por fin pude explicar lo que hago sin sentir que estaba copiando una fórmula ajena.",
-    name: "Camila R.",
-    role: "Diseñadora de marca",
+    quote: "hola, Caro! cómo estás? te sigo hace un tiempo, y recien hoy me di el permiso de comprar tu curso porque quiero lanzar una mentoria para profesoras de portugues y creo que saber de storytelling me va a ayudar. fui el primer video y ya estoy llorando. Gracias, tu curso promete. Acercaré mis pañuelos a la pc",
     avatar: "/img/15-testimonials-1.png"
   },
   {
-    quote: "El mapa narrativo me ordenó la cabeza. Ahora sé desde dónde escribir cada pieza de contenido.",
-    name: "Valentina M.",
-    role: "Mentora creativa",
+    quote: "¡Hola! No suelo escribir este tipo de mensajes, pero de verdad necesito darte las gracias. Tengo una escuela de español online, llevaba un año completamente bloqueada sin atreverme a empezar a publicar en mi cuenta de instagram (inseguridades, perfeccionismo, no saber lo que publicar...). Hace unas semanas, por casualidad, me apareció tu vídeo sobre la vida a los 30 y ME ENCANTO, entré en tu perfil, me vi casi todos tus vídeos y compré tu curso. Lo he ido haciendo poco a poco, casi no he aplicado el storytelling de momento, pero por alguna razón, tu contenido hizo clic en mí y empecé a publicar en instagram (después de un año bloqueada!!), es como si de repente hubiera encontrado exactamente la forma en la que quería crear contenido, vender y relacionarme con instagram. Así que quería darte las GRACIAS!!",
     avatar: "/img/15-testimonials-2.png"
   },
   {
-    quote: "Dejé de publicar por cumplir. Mis captions volvieron a sonar como yo.",
-    name: "Paula S.",
-    role: "Fotógrafa",
+    quote: `Hola Caro! Un abrazo y las gracias infinitas por este regalo "Storytelling LAB" que has traído al mundo. Lo he amado con cada célula de mi ser. Gracias gracias gracias. Conectada abrumadoramente ✨✨✨✨`,
     avatar: "/img/15-testimonials-3.png"
   },
   {
-    quote: "Me ayudó a convertir ideas sueltas en una narrativa clara para mi lanzamiento.",
-    name: "Mariana F.",
-    role: "Consultora",
+    quote: "Hola Caro!! En ese mes que no estuviste vi tus videos, me animé a comprar tu storytelling lab y me encantó!!!!!!",
     avatar: "/img/15-testimonials-4.png"
   },
   {
-    quote: "Nunca había sentido que un curso de contenido entendiera tan bien mi manera de trabajar.",
-    name: "Daniela L.",
-    role: "Ceramista",
+    quote: "CAroooo! te queria contar que el viernes subi un reel que armé con los ejercicios del workbook y me esxribieron 2 personas para agendar asesorías! Se que puede sonar a que es poquito pero para mi es mucho porque nunca alguien me habia escrito por algo que subi a IG. No estoy acostumbrada a esto jajaja",
     avatar: "/img/15-testimonials-5.png"
   },
   {
-    quote: "Volví a mirar mi historia como una herramienta, no como algo que tenía que esconder.",
-    name: "Sofía G.",
-    role: "Psicóloga",
+    quote: "Gracias por el storytelling lab. Ahora mismo estoy practicando y ufff, literalmente se siente como un mapa narrativo 🤭💕🌸 gracias por crear tan valiosa herramienta para poder hablar desde el corazón 💖 pero con orden y estrategia a la vez!!!",
     avatar: "/img/15-testimonials-6.png"
   },
   {
-    quote: "Reescribí todo mi calendario en una tarde. Se sintió más humano y mucho más sostenible.",
-    name: "D. Mejía",
-    role: "Fundadora",
+    quote: "Caro! Cómo estay?! Por fin aquí estoy avanzando con tu curso y AMO, te juro que me está dando mucha claridad no solo para el storytelling de mi marca sino que para entender realmente lo que quiero hacer. Gracias gracias gracias!!",
     avatar: "/img/15-testimonials-7.png"
+  },
+  {
+    quote: "Hola Caro! Te queria contar que empece el Storytelling Lab y WOW, es increible como pase de un bloqueo creativo a diez mil ideas en sólo unos días! Tu perspectiva es tan fresca, tan fuera de la caja en relación a otros creadores que he escuchado que se siente un respiro de aire puro ❤️ ojala prepares más propuestas de este estilo! 😍",
+    avatar: "/img/15-testimonials-8.png"
+  },
+  {
+    quote: `Hola Caro, Te escribo porque compré tu curso y 😱🤩 De verdad, era justo lo que necesitaba. Por primera vez siento que encontré algo que realmente conecta con lo que quiero expresar. Me encanta que tu enfoque no sea en "volverse viral", sino en la esencia, en el mensaje, en lo que venimos a dejar. Gracias por tu autenticidad, por crear desde un lugar tan real y por recordarnos que esto no se trata de nosotros, sino de lo que despertamos en los demás. Solo quería decirte gracias por este trabajo tan valioso. Me está ayudando muchísimo e inspirando aún más. 💛`,
+    avatar: "/img/15-testimonials-9.png"
+  },
+  {
+    quote: "Hola Caro! amando el curso!!!! en serio es el segundo cursoque compró sobre storytelling, y la vdd que el primero no fue lo que esperaba estaba mas centrado en editar, y eso me llevo unos cuantos dias para animarme a ir por el tuyo. Pero dije bueno vamos a intentarlo, y la verdad que totalmente diferente, lo que compartes es exactamente lo que esperaba de un curso de storytelling, aunque debo de decir que es bastante informacion por procesar pero de hecho que valiosa!",
+    avatar: "/img/15-testimonials-10.png"
+  },
+  {
+    quote: "Necesito que sepas esto! 🤣 Tu curso es mucho más que storytelling, a medida que he ido haciendo los ejercicios he encontrado un montón de cosas que hablan de mi marca personal, he respondido preguntas que no había encontrado la forma de ponerlo en palabras, estaban dentro pero no sabía cómo explicarlas, es una joyita. Muuuuchas gracias",
+    avatar: "/img/15-testimonials-11.png"
+  },
+  {
+    quote: `Hola Caro!!! Yo también compré el storytelling lao y estoy amando, no pensé que fuera tan práctico y eso lo hace mágico. Siento que muchas veces este tipo de temas, son muy "estratégicos" pero con todos los ejercicios y las preguntas, me he sentido conectada con mi audiencia y ahora entiendo que verlo desde ese punto de vista más humano, hace TODA LA DIFERENCIA, no puedo esperar a empezar a crear con lo aprendido, gracias Caro 🥹🙏🧡 Que miles de personas se inscriban porque vale 100% la pena!!!`,
+    avatar: "/img/15-testimonials-12.png"
+  },
+  {
+    quote: "Muchas gracias Caro, ayer vi los vídeos hasta el obstáculo y el monstruo e hice el hubcreativo y la verdad que pensaba que iba a estar más bloqueada con esas preguntas pero fluyó la inspiración y ahora tengo un poquito más de claridad. Muchas gracias, me encanta como lo explicas todo, me sirven muchísimo los ejemplos que vas dando 🩷",
+    avatar: "/img/15-testimonials-13.png"
+  },
+  {
+    quote: "Amo tus clases ! Espero poder expresar todo esto que tengo en el pecho que siento que explota a Mi comunidad ! Gracias por crear con sinceridad una clase que nos da más que conceptos ! Amo tu credibilidad ! Tu clase habla más de tu corazón que de conceptos !",
+    avatar: "/img/15-testimonials-14.png"
+  },
+  {
+    quote: "Hola bonita!! Te escribo para decirte que ayer cogí tu curso y me tiene absolutamente enganchada tanto la teoría como los ejercicios!!! Sinceramente creo que cuesta mucho más del precio al que lo estás vendiendo",
+    avatar: "/img/15-testimonials-15.png"
+  },
+  {
+    quote: "Amo tu energía y la forma en como dar el lab de storytelling. Era justo lo que estaba buscando.",
+    avatar: "/img/15-testimonials-16.png"
+  },
+  {
+    quote: "Me está encantando demasiadoooo. No sabía cuánto necesitaba los ejercicios, he escrito un montón de mi protagonista y sus angustias jajaja todo todo. Me desperté haciendo lo que tengo pendiente en mi casa rapidito!!! para sentarme a continuar de lo inspirada que me siento. Muchas gracias Caroooo se nota el esfuerzo en todo el trabajo. Está impecable 🤍🫧🫶🏼",
+    avatar: "/img/15-testimonials-17.png"
+  },
+  {
+    quote: "A mi si me llegó, lo abrí y de inmediato compré!!! Estoy feliz... aprendiendo muchoooo, amo tu estilo y esperaba mucho este momento. GRACIAS POR TANTO CALOR Y ENERGÍA BONITA",
+    avatar: "/img/15-testimonials-18.png"
+  },
+  {
+    quote: "Hola Caro! Te quiero enviar este mensaje porque estoy tomando tu Storytelling Lab y estoy explotando de todo lo que estoy aprendiendo! ❤️ Gracias por crear esto tan increíble! Te envío un abrazo desde Ecuador 🇪🇨",
+    avatar: "/img/15-testimonials-19.png"
   }
 ];
+
+const TESTIMONIAL_WORD_LIMIT = 62;
+
+function getWords(text) {
+  return text.trim().split(/\s+/);
+}
+
+function getTruncatedTestimonial(text, limit = TESTIMONIAL_WORD_LIMIT) {
+  const words = getWords(text);
+
+  if (words.length <= limit) {
+    return {
+      isTruncated: false,
+      text
+    };
+  }
+
+  return {
+    isTruncated: true,
+    text: words.slice(0, limit).join(" ")
+  };
+}
 
 const COURSE_MODULES = [
   {
@@ -569,6 +625,7 @@ export default function TheLab() {
   const [openFaqIndex, setOpenFaqIndex] = useState(-1);
   const [selectedFitIndex, setSelectedFitIndex] = useState(0);
   const [selectedPaymentIndex, setSelectedPaymentIndex] = useState(0);
+  const [expandedTestimonials, setExpandedTestimonials] = useState(() => new Set());
   const [isFitCardVisible, setIsFitCardVisible] = useState(true);
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   const [isStorylineEditorOpen] = useState(getStorylineEditorEnabled);
@@ -1403,6 +1460,20 @@ export default function TheLab() {
 
   const selectedFit = LAB_FIT_CONTENT[selectedFitIndex];
   const selectedPaymentPlan = PAYMENT_PLANS[selectedPaymentIndex];
+
+  const handleToggleTestimonial = useCallback((testimonialId) => {
+    setExpandedTestimonials((current) => {
+      const next = new Set(current);
+
+      if (next.has(testimonialId)) {
+        next.delete(testimonialId);
+      } else {
+        next.add(testimonialId);
+      }
+
+      return next;
+    });
+  }, []);
   const storylineEditorJson = JSON.stringify({
     spiral: spiralLineCommands,
     storylineWords: storylineWordLineCommands,
@@ -2007,6 +2078,7 @@ export default function TheLab() {
             <div className="lab-testimonials-inner content-shell">
               <h2>
                 Cartitas de amor de nuestra
+                <br className="lab-testimonials-heading-break" />
                 comunidad al Storytelling Lab
               </h2>
               <div className="lab-testimonial-row">
@@ -2017,16 +2089,40 @@ export default function TheLab() {
                     key={`testimonial-set-${setIndex}`}
                   >
                     {TESTIMONIALS.map((item, index) => (
-                      <article
-                        key={`${item.quote}-${setIndex}-${index}`}
-                        className="lab-testimonial-card"
-                      >
-                        <img src={item.avatar} alt="" loading="lazy" />
-                        <p className="lab-quote">{item.quote}</p>
-                        <p className="lab-meta">
-                          {item.name}, {item.role}
-                        </p>
-                      </article>
+                      (() => {
+                        const testimonialId = item.avatar;
+                        const isExpanded = expandedTestimonials.has(testimonialId);
+                        const truncatedQuote = getTruncatedTestimonial(item.quote);
+
+                        return (
+                          <article
+                            key={`${item.quote}-${setIndex}-${index}`}
+                            className="lab-testimonial-card"
+                          >
+                            <img src={item.avatar} alt="" loading="lazy" />
+                            <p className="lab-quote">
+                              {isExpanded || !truncatedQuote.isTruncated ? item.quote : truncatedQuote.text}
+                              {truncatedQuote.isTruncated ? (
+                                <>
+                                  {" "}
+                                  <button
+                                    className="lab-testimonial-expand"
+                                    type="button"
+                                    onClick={() => handleToggleTestimonial(testimonialId)}
+                                  >
+                                    {isExpanded ? "...leer menos" : "...leer más"}
+                                  </button>
+                                </>
+                              ) : null}
+                            </p>
+                            {item.name || item.role ? (
+                              <p className="lab-meta">
+                                {[item.name, item.role].filter(Boolean).join(", ")}
+                              </p>
+                            ) : null}
+                          </article>
+                        );
+                      })()
                     ))}
                   </div>
                 ))}
