@@ -848,7 +848,7 @@
   background: var(--lab-pink-soft);
   color: #a0082d;
   font-family: var(--paragraph-font);
-  font-size: var(--lab-type-body);
+  font-size: var(--lab-button-font-size);
   letter-spacing: var(--lab-tracking-reset);
   text-transform: uppercase;
 }
@@ -1072,13 +1072,13 @@
     flex-wrap: nowrap;
     margin: 36px auto 0;
     justify-content: space-between;
-    gap: 10px;
+    gap: 5px;
 }
 
 
 .lab-fit-pills button {
   min-height: var(--lab-button-min-h);
-  flex: 0 0 auto;
+  flex-grow: 1;
   min-width: 0;
   padding: 0 var(--lab-button-pad-x);
   border: 1.0px solid #4fa1cf;
@@ -1100,7 +1100,7 @@
 
 .lab-fit-card-wrap {
   height: auto;
-  margin: 16px auto 0;
+  margin: 5px auto 0;
   padding: 0;
   background: transparent;
 }
@@ -1386,13 +1386,13 @@
   --tilt: 1deg;
 }
 
-.lab-curriculum {
-  position: relative;
-  isolation: isolate;
-  order: 9;
-  padding-top: 52px;
-  min-height: auto;
-  padding-bottom: 152px;
+  .lab-curriculum {
+    position: relative;
+    isolation: isolate;
+    order: 9;
+    padding-top: 52px;
+    min-height: auto;
+    padding-bottom: 30px;
   background: var(--lab-bg);
 }
 
@@ -1510,7 +1510,7 @@
   border: 0;
   background: transparent;
   color: inherit;
-  font-size: var(--lab-type-body);
+  font-size: var(--lab-button-font-size);
   line-height: var(--lab-lh-body);
   text-align: left;
   cursor: pointer;
@@ -1525,9 +1525,9 @@
   margin: 0;
   color: var(--lab-body);
   font-family: 'Libre Caslon Text', 'Times New Roman', serif;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 400;
-  line-height: 1.05;
+  line-height: 19px;
 }
 
 .lab .lab-curriculum-module p {
@@ -1542,6 +1542,10 @@
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.lab .lab-curriculum-meta span {
+  font-size: 11px;
 }
 
 .lab-curriculum-meta-icon {
@@ -1565,7 +1569,7 @@
 }
 
 .lab-curriculum-panel-inner {
-  padding: 0 64px 28px;
+  padding: 0 34px 28px;
 }
 
 .lab-curriculum-panel ul {
@@ -1695,6 +1699,9 @@
 }
 
 .lab-price-tabs button.is-active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-color: var(--lab-sky);
   background: var(--lab-sky);
   color: #fffdf7;
@@ -1707,13 +1714,13 @@
     justify-content: center;
     margin: 0 auto;
     padding: 56px 76px;
-    border: 1.5px solid var(--lab-blue);
+    border: 1.5px solid #4fa1cf;
     border-radius: 10px;
     background: white;
 }
 
 .lab-price-copy h3 {
-  margin: 0 0 10px;
+  margin: 15px 15px 10px 20px;
   color: var(--lab-body);
   font-family: 'Libre Caslon Text', 'Times New Roman', serif;
   font-size: clamp(38px, 2.65vw, 48px);
@@ -1728,21 +1735,23 @@
 
 .lab-price-copy li {
     font-family: var(--paragraph-font);
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.25;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .lab-price-summary {
-  margin-top: 36px;
+  margin-top: 16px;
 }
 
 .lab .lab-price-installments {
     color: var(--lab-body);
     font-family: var(--paragraph-font);
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 700;
     line-height: 1.1;
-    margin-bottom: 25px;
+    margin: 0 0 10px 20px;
 }
 
 .lab-price-amount {
@@ -1755,14 +1764,16 @@
 
 .lab-price-amount span {
     font-family: 'Libre Caslon Text', 'Times New Roman', serif;
-    font-size: 36px;
+    font-size: 25px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .lab-price-amount small {
     font-family: 'Libre Caslon Text', 'Times New Roman', serif;
-    font-size: 20px;
+    font-size: 17px;
     font-weight: 400;
-    margin-left: -5px;
+    margin-left: -20px;
 }
 
 .lab .lab-price-badge {
@@ -1783,16 +1794,17 @@
 
 .lab-price-cta {
   width: min(100%, 382px);
-  min-height: var(--lab-button-min-h);
-  margin-top: 30px;
+  height: 56px;
+  min-height: 56px;
+  margin-top: 15px;
   padding-inline: var(--lab-button-pad-x);
-  border: var(--lab-button-border-width) solid var(--lab-button-border-color);
+  border: none;
   border-radius: var(--lab-button-radius);
   background: var(--lab-tan);
   color: #fffdf7;
-  font-size: var(--lab-button-font-size);
+  font-size: 14px;
   font-weight: var(--lab-button-font-weight);
-  line-height: var(--lab-lh-tight);
+  line-height: 16px;
   letter-spacing: var(--lab-tracking-reset);
   text-transform: uppercase;
 }
@@ -1821,7 +1833,7 @@
   border-radius: 0;
   background: transparent;
   color: #12366b;
-  font-size: var(--lab-type-body);
+  font-size: var(--lab-button-font-size);
   line-height: var(--lab-lh-tight);
   letter-spacing: var(--lab-tracking-reset);
 }
@@ -2102,7 +2114,7 @@ button.lab-floating-cta.cta-button {
 }
 
 .lab-faq-item {
-  margin: 0;
+  margin: 20px;
   border: 0;
   border-bottom: 1px solid rgba(255, 253, 252, 0.64);
   border-radius: 0;
@@ -2213,7 +2225,7 @@ button.lab-floating-cta.cta-button {
     gap: 18px;
     min-height: 54px;
     padding: 14px 0;
-    font-size: var(--lab-type-body);
+    font-size: var(--lab-button-font-size);
     line-height: 1.18;
   }
 
@@ -2228,7 +2240,7 @@ button.lab-floating-cta.cta-button {
   }
 
   .lab-curriculum::before {
-    top: 214px;
+    top: 100px;
     right: 0;
     bottom: 34px;
     left: 0;
@@ -2562,7 +2574,7 @@ button.lab-floating-cta.cta-button {
   }
 
   .lab-reels {
-    padding: 12px 0 82px;
+    padding: 12px 0 62px;
   }
 
   .lab-reels-strip img {
@@ -2604,26 +2616,27 @@ button.lab-floating-cta.cta-button {
   }
 
   .lab-price-copy li {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.22;
   }
 
   .lab .lab-price-installments {
-    font-size: 16px;
+    font-size: 13px;
   }
 
   .lab-price-amount span {
-    font-size: 46px;
+    font-size: 25px;
   }
 
   .lab-price-amount small {
-    font-size: 22px;
+    font-size: 17px;
   }
 
   .lab-price-cta {
     width: 100%;
-    min-height: 52px;
-    font-size: 16px;
+    height: 40px;
+    min-height: 40px;
+    font-size: 14px;
   }
 
   .lab-price-illustration {
@@ -2907,7 +2920,7 @@ button.lab-floating-cta.cta-button {
   .lab-includes,
   .lab-curriculum,
   .lab-price {
-    padding-inline: var(--lab-mobile-gutter);
+    padding-inline: 30px;
   }
 
   .lab-method-copy h2,
@@ -3008,17 +3021,17 @@ button.lab-floating-cta.cta-button {
 }
 
   .lab-about {
-    padding: 78px var(--lab-mobile-gutter) 98px;
+    padding: 15px;
   }
 
   .lab-about h2 {
-    margin: 0 0 18px;
-    font-size: clamp(54px, 15vw, 72px);
+    margin: 45px 0 15px;
+    font-size: 40px;
     line-height: 0.94;
   }
 
   .lab-about-card {
-    padding: 0 20px 28px;
+    padding: 0 30px 28px;
     overflow: hidden;
   }
 
@@ -3027,12 +3040,16 @@ button.lab-floating-cta.cta-button {
     top: auto;
     left: auto;
     width: calc(100% + 24px);
-    margin: -8px -12px 36px;
+    margin: 20px -12px 36px;
     transform: none;
   }
 
+  .lab-about-copy {
+    margin-top: 10px;
+  }
+
   .lab .lab-about-copy p:first-child {
-    font-size: clamp(36px, 10.2vw, 48px);
+    font-size: 26px;
     line-height: 1.02;
   }
 
@@ -3048,15 +3065,23 @@ button.lab-floating-cta.cta-button {
   .lab-about-facts p {
     max-width: none;
     flex-basis: 100%;
+    font-family: "Libre Caslon Text", "Times New Roman", serif;
+    font-weight: 400;
     font-size: 16px;
     transform: none;
   }
 
   .lab-curriculum-title {
     width: 100%;
-    height: 132px;
+    height: 72px;
+    margin-top: 50px;
     margin-left: 0;
     margin-bottom: 34px;
+}
+
+  .lab-curriculum-line--left,
+  .lab-curriculum-line--right {
+    display: none;
   }
 
   .lab-curriculum-title h2 {
@@ -3081,7 +3106,7 @@ button.lab-floating-cta.cta-button {
 
   .lab-curriculum-trigger {
     min-height: 0;
-    padding: 24px 18px;
+    padding: 24px 30px 6px;
   }
 
   .lab-curriculum-trigger > span {
@@ -3089,12 +3114,17 @@ button.lab-floating-cta.cta-button {
   }
 
   .lab-curriculum-module h3 {
-    font-size: clamp(30px, 8.8vw, 40px);
-    line-height: 0.98;
+    font-size: 18px;
+    line-height: 19px;
   }
 
   .lab .lab-curriculum-module p {
-    font-size: 15px;
+    font-size: 11px;
+  }
+
+  .lab-reels-strip img {
+    width: 130%;
+    max-width: none;
   }
 
   .lab-price-heading h2 {
@@ -3111,9 +3141,9 @@ button.lab-floating-cta.cta-button {
   }
 
   .lab-faq {
-    margin: 20px 0 0;
+    margin: 20px 20px 40px;
     padding: 64px var(--lab-mobile-gutter) 84px;
-    border-radius: 0;
+    border-radius: var(--lab-radius-md);
   }
 
   .lab-faq-panel {
@@ -3122,20 +3152,25 @@ button.lab-floating-cta.cta-button {
 
   .lab-faq-copy h2 {
     max-width: 330px;
-    margin: 0 0 24px;
-    font-size: clamp(36px, 10.8vw, 48px);
+    margin: 0 0 10px 30px;
+    font-size: 36px;
     line-height: 1;
   }
 
   .lab .lab-faq-copy p {
     max-width: 330px;
+    margin: 14px 10px 14px 10px;
+    padding: 0 10px 0 20px;
     font-size: 17px;
     line-height: 1.35;
+    text-align: left;
   }
 
   .lab-faq-cta {
     width: min(100%, 280px);
     min-height: var(--lab-button-min-h);
+    margin: 5px 30px 0;
+    font-size: 13px;
   }
 
   .lab-faq-list {
@@ -3146,6 +3181,7 @@ button.lab-floating-cta.cta-button {
     align-items: flex-start;
     min-height: 0;
     padding: 18px 14px;
+    font-weight: 500;
     line-height: 1.2;
   }
 
@@ -3155,6 +3191,10 @@ button.lab-floating-cta.cta-button {
 
   .lab-faq-answer-inner {
     padding: 0 30px 18px 14px;
+  }
+
+  .lab .lab-faq-answer p {
+    font-size: 14px;
   }
 
   .lab-scroll-wrapper,
@@ -3336,6 +3376,11 @@ button.lab-floating-cta.cta-button {
     letter-spacing: -1.5px;
   }
 
+  .lab-curriculum-module h3 {
+    font-size: 18px;
+    line-height: 19px;
+  }
+
   .home-hero {
     min-height: auto;
     overflow: visible;
@@ -3422,7 +3467,7 @@ button.lab-floating-cta.cta-button {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
     gap: 3px;
   }
 
@@ -3439,7 +3484,7 @@ button.lab-floating-cta.cta-button {
     font-size: 11px;
     line-height: 1;
     white-space: nowrap;
-    flex: 0 0 auto;
+  flex-grow: 1;
   }
 
   .lab-fit-pills button:nth-child(3),
@@ -3452,6 +3497,27 @@ button.lab-floating-cta.cta-button {
     line-height: 1;
     white-space: nowrap;
     flex: 0 0 auto;
+  }
+
+  .lab-price-tabs {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 3px;
+    margin: 20px auto 7px;
+  }
+
+  .lab-price-tabs button {
+    width: auto;
+    min-width: 0;
+    min-height: 37px;
+    height: 37px;
+    padding: 0 10px;
+    font-size: 11px;
+    line-height: 1;
+    white-space: nowrap;
+    flex-grow: 1;
   }
 
   .lab .lab-storyline-copy--final p {
@@ -3604,16 +3670,20 @@ button.lab-floating-cta.cta-button {
   }
 
   .lab .lab-about-copy p:first-child {
-    font-size: 30px;
+    font-size: 26px;
   }
 
   .lab-map-copy h2,
   .lab-fit-copy h2,
   .lab-testimonials h2,
-  .lab-curriculum-title h2,
-  .lab-price-heading h2 {
-    padding-inline: 40px;
+  .lab-curriculum-title h2 {
+    padding-inline: 20px;
     font-size: 30px;
+  }
+
+  .lab-price-heading h2 {
+    padding-inline: 20px;
+    font-size: 32px;
   }
 
   .lab-fit-copy h2 {

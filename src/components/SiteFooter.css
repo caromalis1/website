@@ -42,6 +42,8 @@
   display: flex;
   align-items: center;
   gap: 4px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .site-lab-footer-socials a {
@@ -97,6 +99,8 @@
 }
 
 .site-lab-footer-links a {
+  margin-left: 20px;
+  margin-right: 20px;
   color: var(--white);
   font-family: var(--paragraph-font);
   font-size: 16px;
@@ -134,7 +138,13 @@
   text-transform: uppercase;
 }
 
+.site-lab-footer-bottom small:first-child {
+  margin-left: 20px;
+  margin-right: 25px;
+}
+
 .site-lab-footer-bottom small:last-child {
+  width: 130px;
   text-align: right;
 }
 
@@ -237,5 +247,10 @@
   .site-lab-footer-bottom small {
     flex: 1 1 0;
     max-width: 155px;
+  }
+
+  .site-lab-footer-bottom small:last-child {
+    width: 130px;
+    max-width: 130px;
   }
 }

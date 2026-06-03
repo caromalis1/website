@@ -1840,7 +1840,7 @@ export default function TheLab() {
                 <article className="lab-storyline-copy lab-storyline-copy--final">
                   <p>
                     Pero la idea no es convertirte en un gurú de las redes sociales.
-                    <br />{" "}
+                    <br />
                     Es aprender a crear desde lo que ya tienes:
                   </p>
                 </article>
@@ -1849,13 +1849,6 @@ export default function TheLab() {
                   className={`lab-storyline-word-field${isStorylineEditorOpen ? " is-editing" : ""}`}
                   aria-label="Elementos desde donde crear contenido"
                 >
-                  <img
-                    className="lab-storyline-word-graphic"
-                    src="/img/storyline-mobile-words.png"
-                    alt=""
-                    loading="lazy"
-                    aria-hidden="true"
-                  />
                   <svg
                     ref={storylineWordLinesRef}
                     className={`lab-storyline-word-lines${isStorylineEditorOpen ? " is-editing" : ""}`}
@@ -1961,10 +1954,6 @@ export default function TheLab() {
                   </article>
                 ))}
               </div>
-
-              <figure className="lab-map-mobile-image" aria-hidden="true">
-                <img src="/img/mapa-narrativo-path.png" alt="" loading="lazy" />
-              </figure>
             </div>
           </section>
 
@@ -2006,7 +1995,8 @@ export default function TheLab() {
           <section className="lab-testimonials">
             <div className="lab-testimonials-inner content-shell">
               <h2>
-                Cartitas de amor de nuestra comunidad al Storytelling Lab
+                Cartitas de amor de nuestra
+                comunidad al Storytelling Lab
               </h2>
               <div className="lab-testimonial-row">
                 {[0, 1, 2, 3].map((setIndex) => (
@@ -2125,8 +2115,9 @@ export default function TheLab() {
 
           <section className="lab-about" id="about">
             <div className="lab-about-inner">
-              <h2>Hola! Soy Carolina</h2>
+              
               <div className="lab-about-card">
+                <h2>Hola! Soy Carolina</h2>
                 <div className="lab-about-photos" aria-label="Fotos de Carolina">
                   <img src="/img/16-bio.png" alt="" loading="lazy" />
                 </div>
