@@ -99,6 +99,16 @@ p, a, li, small, span, button {
   margin-inline: auto;
 }
 
+@media (max-width: 440px) {
+  :root {
+    --page-gutter: 10px;
+  }
+
+  .content-shell {
+    width: min(100%, calc(100% - 20px));
+  }
+}
+
 .surface-panel {
   background: var(--surface-paper);
   box-shadow: var(--shadow-panel);

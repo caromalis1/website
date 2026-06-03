@@ -251,17 +251,49 @@
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 440px) {
+  .site-header-content-fade {
+    background: none;
+  }
+
   .site-header {
-    padding-inline: 24px;
+    min-height: 100px;
+    padding-top: 14px;
+    padding-inline: 10px;
+    background: #fff6f3;
   }
 
   .site-header-spacer {
-    height: 104px;
+    height: 100px;
+    background: #fff6f3;
+  }
+
+  .site-header-content-fade {
+    height: 100px;
   }
 
   .site-header .brand-logo {
     width: clamp(118px, 33.6vw, 151px);
+  }
+
+  .site-menu-toggle {
+    width: 40px;
+    height: 40px;
+    border-color: #4fa1cf;
+    background: var(--lab-bg, var(--surface-page));
+    color: #4fa1cf;
+  }
+
+  .site-menu-toggle span {
+    width: 18px;
+  }
+
+  .site-menu-toggle span:nth-child(1) {
+    transform: translateY(-5px);
+  }
+
+  .site-menu-toggle span:nth-child(3) {
+    transform: translateY(5px);
   }
 
   .site-nav {

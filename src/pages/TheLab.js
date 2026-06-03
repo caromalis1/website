@@ -1764,7 +1764,7 @@ export default function TheLab() {
           >
             <div className="home-hero-content">
               <h1 className="home-hero-title">
-                Tu forma de ver el mundo es única. Tu contenido también debería serlo.
+                Tu forma de ver el mundo es única. Hagamos que tu contenido también lo sea.
               </h1>
               <p className="home-hero-subtitle">
                 El Storytelling Lab te ayuda a encontrar tu forma natural de comunicarte para
@@ -1776,7 +1776,8 @@ export default function TheLab() {
                   type="button"
                   onClick={() => setIsPaymentModalOpen(true)}
                 >
-                  Únete al Storytelling Lab
+                  <span className="home-hero-cta-label home-hero-cta-label--compact">Únete al Lab</span>
+                  <span className="home-hero-cta-label home-hero-cta-label--full">Únete al Storytelling Lab</span>
                 </button>
                 <button
                   className="home-hero-cta home-hero-cta--secondary cta-button"
@@ -1839,7 +1840,7 @@ export default function TheLab() {
                 <article className="lab-storyline-copy lab-storyline-copy--final">
                   <p>
                     Pero la idea no es convertirte en un gurú de las redes sociales.
-                    <br />
+                    <br />{" "}
                     Es aprender a crear desde lo que ya tienes:
                   </p>
                 </article>
@@ -1848,6 +1849,13 @@ export default function TheLab() {
                   className={`lab-storyline-word-field${isStorylineEditorOpen ? " is-editing" : ""}`}
                   aria-label="Elementos desde donde crear contenido"
                 >
+                  <img
+                    className="lab-storyline-word-graphic"
+                    src="/img/storyline-mobile-words.png"
+                    alt=""
+                    loading="lazy"
+                    aria-hidden="true"
+                  />
                   <svg
                     ref={storylineWordLinesRef}
                     className={`lab-storyline-word-lines${isStorylineEditorOpen ? " is-editing" : ""}`}
@@ -1953,6 +1961,10 @@ export default function TheLab() {
                   </article>
                 ))}
               </div>
+
+              <figure className="lab-map-mobile-image" aria-hidden="true">
+                <img src="/img/mapa-narrativo-path.png" alt="" loading="lazy" />
+              </figure>
             </div>
           </section>
 
@@ -1994,9 +2006,7 @@ export default function TheLab() {
           <section className="lab-testimonials">
             <div className="lab-testimonials-inner content-shell">
               <h2>
-                Cartitas de amor de nuestra
-                <br />
-                comunidad al Storytelling Lab
+                Cartitas de amor de nuestra comunidad al Storytelling Lab
               </h2>
               <div className="lab-testimonial-row">
                 {[0, 1, 2, 3].map((setIndex) => (
