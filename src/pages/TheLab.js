@@ -1849,6 +1849,13 @@ export default function TheLab() {
                   className={`lab-storyline-word-field${isStorylineEditorOpen ? " is-editing" : ""}`}
                   aria-label="Elementos desde donde crear contenido"
                 >
+                  <img
+                    className="lab-storyline-word-graphic"
+                    src="/img/storyline-mobile-words.png"
+                    alt=""
+                    loading="lazy"
+                    aria-hidden="true"
+                  />
                   <svg
                     ref={storylineWordLinesRef}
                     className={`lab-storyline-word-lines${isStorylineEditorOpen ? " is-editing" : ""}`}
@@ -1954,6 +1961,10 @@ export default function TheLab() {
                   </article>
                 ))}
               </div>
+
+              <figure className="lab-map-mobile-image" aria-hidden="true">
+                <img src="/img/mapa-narrativo-path.png" alt="" loading="lazy" />
+              </figure>
             </div>
           </section>
 
