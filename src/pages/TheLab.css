@@ -926,6 +926,7 @@
 }
 
 .lab-map-copy h2 {
+  font-size: 36px;
   line-height: 1.02;
   text-wrap: none;
 }
@@ -1291,6 +1292,7 @@
 }
 
 .lab-about-inner {
+  --lab-about-pad-x: clamp(54px, 6.4vw, 90px);
   position: relative;
   width: var(--lab-shell-card);
   margin: 0 auto;
@@ -1301,7 +1303,7 @@
   z-index: 4;
   width: max-content;
   max-width: calc(100vw - 48px);
-  margin: 0 0 34px 70px;
+  margin: 0 0 34px;
   color: #42403e;
   font-family: 'Libre Caslon Text', 'Times New Roman', serif;
   font-size: clamp(82px, 6.4vw, 118px);
@@ -1315,7 +1317,7 @@
     z-index: 1;
     width: 100%;
     margin: 0 auto;
-    padding: 292px clamp(54px, 6.4vw, 90px) 124px;
+    padding: 292px var(--lab-about-pad-x) 124px;
     border: 1.5px solid var(--lab-blue);
     background: rgba(255, 255, 252, 0.92);
     overflow: visible;
@@ -1510,6 +1512,7 @@
 }
 
 .lab-curriculum-list {
+  --lab-curriculum-inset-x: 64px;
   width: min(100%, 760px);
   margin: 0 auto;
 }
@@ -1534,7 +1537,7 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 24px;
-  padding: 24px 64px 22px;
+  padding: 24px var(--lab-curriculum-inset-x) 22px;
   border: 0;
   background: transparent;
   color: inherit;
@@ -1597,7 +1600,7 @@
 }
 
 .lab-curriculum-panel-inner {
-  padding: 0 34px 28px;
+  padding: 0 var(--lab-curriculum-inset-x) 28px;
 }
 
 .lab-curriculum-panel ul {
@@ -1974,7 +1977,7 @@
 
 .lab-price--modal .lab-price-tabs {
   width: min(100%, 760px);
-  margin: 0 auto 38px;
+  margin: 0 auto 5px;
 }
 
 .lab-price--modal .lab-price-tabs button {
@@ -2815,6 +2818,25 @@ button.lab-floating-cta.cta-button {
     font-size: clamp(20px, 3.2vw, 30px);
     line-height: 1.1;
     text-align: left;
+  }
+}
+
+@media (min-width: 1101px) {
+  .lab-include-card {
+    grid-template-columns: minmax(0, 420px) minmax(300px, 460px);
+    column-gap: clamp(18px, 2vw, 34px);
+  }
+
+  .lab-include-card--reverse {
+    grid-template-columns: minmax(300px, 460px) minmax(0, 420px);
+  }
+
+  .lab-include-illustration {
+    width: min(100%, 460px);
+  }
+
+  .lab-include-illustration img {
+    width: 118%;
   }
 }
 
@@ -3772,5 +3794,19 @@ button.lab-floating-cta.cta-button {
 
   .lab-testimonials-heading-break {
     display: none;
+  }
+}
+
+@media (max-width: 440px) {
+  .lab-price-copy {
+    width: 280px;
+  }
+
+  .lab-price-copy h3 {
+    font-size: 32px;
+  }
+
+  .lab-price-amount span {
+    font-size: 33px;
   }
 }
